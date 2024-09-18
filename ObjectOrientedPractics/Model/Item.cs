@@ -23,6 +23,7 @@ class Item
     /// </summary>
     private double _cost { get; set; }
 
+
     /// <summary>
     /// Переменная класса, хранящего метод валидации строк
     /// </summary>
