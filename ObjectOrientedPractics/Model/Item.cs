@@ -30,13 +30,22 @@ class Item
     private ValueValidator _validator = new ValueValidator();
 
     /// <summary>
-    /// 
+    /// Создаёт экземпляр класса <see cref="Item"/>.
     /// </summary>
     public Item()
     {
         _id = IdGenerator.GetNextId();
     }
-    
+
+    /// <summary>
+    /// Создаёт экземпляр класса <see cref="Item"/>.
+    /// </summary>
+    /// <param name="name">Имя Должно состоять только из
+    ///букв.</param>
+    /// <param name="info">Информация. Должна состоять только из
+    ///букв.</param>
+    /// <param name="cost">Стоимость. Должна быть вещественным числом.
+    /// </param>
     public Item(string name , string info, double cost)
     {
         _name = name;
