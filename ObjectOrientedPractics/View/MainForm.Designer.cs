@@ -31,8 +31,6 @@
             pages = new TabControl();
             Items = new TabPage();
             itemsTab1 = new View.ItemsTab.ItemsTab();
-            itemsTab2 = new View.ItemsTab.ItemsTab();
-            itemsTab3 = new View.ItemsTab.ItemsTab();
             pages.SuspendLayout();
             Items.SuspendLayout();
             SuspendLayout();
@@ -49,8 +47,6 @@
             // 
             // Items
             // 
-            Items.Controls.Add(itemsTab3);
-            Items.Controls.Add(itemsTab2);
             Items.Controls.Add(itemsTab1);
             Items.Location = new Point(4, 34);
             Items.Name = "Items";
@@ -67,20 +63,6 @@
             itemsTab1.Name = "itemsTab1";
             itemsTab1.Size = new Size(976, 586);
             itemsTab1.TabIndex = 0;
-            // 
-            // itemsTab2
-            // 
-            itemsTab2.Location = new Point(163, 177);
-            itemsTab2.Name = "itemsTab2";
-            itemsTab2.Size = new Size(225, 225);
-            itemsTab2.TabIndex = 1;
-            // 
-            // itemsTab3
-            // 
-            itemsTab3.Location = new Point(196, 168);
-            itemsTab3.Name = "itemsTab3";
-            itemsTab3.Size = new Size(445, 318);
-            itemsTab3.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -101,7 +83,5 @@
         private TabControl pages;
         private TabPage Items;
         private View.ItemsTab.ItemsTab itemsTab1;
-        private View.ItemsTab.ItemsTab itemsTab3;
-        private View.ItemsTab.ItemsTab itemsTab2;
     }
 }
