@@ -82,7 +82,6 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Items";
-           
             // 
             // tableLayoutPanel1
             // 
@@ -100,7 +99,6 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(539, 63);
             tableLayoutPanel1.TabIndex = 1;
-            
             // 
             // Add
             // 
@@ -159,6 +157,7 @@
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Selected Item";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // descriptionField
             // 
@@ -167,18 +166,16 @@
             descriptionField.Size = new Size(634, 243);
             descriptionField.TabIndex = 7;
             descriptionField.Text = "";
-            
             // 
             // description
             // 
             description.AutoSize = true;
-            description.Font = new Font("Arial", 8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            description.Font = new Font("Arial", 9F);
             description.Location = new Point(6, 362);
             description.Name = "description";
-            description.Size = new Size(92, 18);
+            description.Size = new Size(105, 21);
             description.TabIndex = 6;
             description.Text = "Description:";
-           
             // 
             // nameField
             // 
@@ -187,21 +184,19 @@
             nameField.Size = new Size(634, 156);
             nameField.TabIndex = 5;
             nameField.Text = "";
-           
             // 
             // name
             // 
             name.AutoSize = true;
-            name.Font = new Font("Arial", 8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            name.Font = new Font("Arial", 9F);
             name.Location = new Point(6, 156);
             name.Name = "name";
-            name.Size = new Size(54, 18);
+            name.Size = new Size(62, 21);
             name.TabIndex = 4;
             name.Text = "Name:";
             // 
             // costField
             // 
-            
             costField.Location = new Point(64, 84);
             costField.Name = "costField";
             costField.Size = new Size(198, 32);
@@ -216,7 +211,6 @@
             cost.Size = new Size(52, 21);
             cost.TabIndex = 2;
             cost.Text = "Cost:";
-            
             // 
             // ID
             // 
@@ -235,7 +229,6 @@
             IDfield.ReadOnly = true;
             IDfield.Size = new Size(198, 32);
             IDfield.TabIndex = 0;
-          
             // 
             // ItemsTab
             // 

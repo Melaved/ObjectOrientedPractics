@@ -189,6 +189,10 @@ namespace ObjectOrientedPractics.View.ItemsTab
             return value > 0.0 && value < 100000.0;
         }
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

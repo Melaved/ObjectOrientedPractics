@@ -65,9 +65,8 @@ class Customer
     public Customer(string fullName, string adress)
     {
         _id = IdGenerator.GetNextId();
-        _fullname = fullName;
-        _adress = adress;
-        _validator.AssertStringOnLength(fullName, 200, nameof(fullName));
-        _validator.AssertStringOnLength(adress, 500, nameof(adress));
+        FullName = fullName;
+        Adress = adress;
+        
     }
 }
