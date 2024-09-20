@@ -13,29 +13,40 @@ namespace ObjectOrientedPractics.View.ItemsTab
     public partial class ItemsTab : UserControl
     {
         private List<Item> items = new List<Item>();
+        private ValueValidator validator = new ValueValidator();
 
         public ItemsTab()
         {
             InitializeComponent();
             IDfield.ReadOnly = true;
+
+            // Привязка событий
+            nameField.Leave += nameField_Leave;
+            descriptionField.Leave += descriptionField_Leave;
+            costField.Leave += costField_Leave;
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
             string name = nameField.Text;
-            string info = descriptionField.Text; 
+            string info = descriptionField.Text;
             double cost;
 
-            if (double.TryParse(costField.Text, out cost))
+            try
             {
+                if (!double.TryParse(costField.Text, out cost) || !IsCostValid(cost))
+                {
+                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
+                }
+
                 Item newItem = new Item(name, info, cost);
                 items.Add(newItem);
                 UpdateListBox();
                 ClearFields();
             }
-            else
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Введите корректную стоимость.");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -57,11 +68,10 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             if (ItemsListBox.SelectedItem is Item selectedItem)
             {
-
                 IDfield.Text = selectedItem.Id.ToString();
                 nameField.Text = selectedItem.Name;
-                descriptionField.Text = selectedItem.Info; 
-                costField.Text = selectedItem.Cost.ToString(); 
+                descriptionField.Text = selectedItem.Info;
+                costField.Text = selectedItem.Cost.ToString();
             }
         }
 
@@ -69,9 +79,8 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             ItemsListBox.DataSource = null;
             ItemsListBox.DataSource = items;
-            ItemsListBox.DisplayMember = "Display"; 
+            ItemsListBox.DisplayMember = "Display";
         }
-
         private void ClearFields()
         {
             IDfield.Clear();
@@ -79,7 +88,58 @@ namespace ObjectOrientedPractics.View.ItemsTab
             descriptionField.Clear();
             costField.Clear();
         }
-    
+
+        private void nameField_Leave(object sender, EventArgs e) { ValidateName(); }
+        private void descriptionField_Leave(object sender, EventArgs e) { ValidateInfo(); }
+        private void costField_Leave(object sender, EventArgs e) { ValidateCost(); }
+
+        private void ValidateName()
+        {
+            try
+            {
+                validator.AssertStringOnLength(nameField.Text, 200, nameof(nameField));
+                nameField.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                nameField.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ValidateInfo()
+        {
+            try
+            {
+                validator.AssertStringOnLength(descriptionField.Text, 1000, nameof(descriptionField));
+                descriptionField.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                descriptionField.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ValidateCost()
+        {
+            try
+            {
+                double costValue;
+                if (!double.TryParse(costField.Text, out costValue) || !IsCostValid(costValue))
+                {
+                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
+                }
+                costField.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                costField.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private bool IsCostValid(double value) => value > 0.0 && value < 100000.0;
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -97,7 +157,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         }
         private void label2_Click(object sender, EventArgs e)
         {
- 
+
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
@@ -132,3 +192,208 @@ namespace ObjectOrientedPractics.View.ItemsTab
         }
     }
 }
+
+//namespace ObjectOrientedPractics.View.ItemsTab
+//{
+//    public partial class ItemsTab : UserControl
+//    {
+//        private List<Item> items = new List<Item>();
+//        private ValueValidator validator = new ValueValidator();
+
+//        public ItemsTab()
+//        {
+//            InitializeComponent();
+//            IDfield.ReadOnly = true;
+
+//            // Привязка событий
+//            nameField.Leave += nameField_Leave;
+//            descriptionField.Leave += descriptionField_Leave;
+//            costField.Leave += costField_Leave;
+//        }
+
+//        private void Add_Click(object sender, EventArgs e)
+//        {
+//            string name = nameField.Text;
+//            string info = descriptionField.Text;
+//            double cost;
+
+//            try
+//            {
+//                if (!double.TryParse(costField.Text, out cost) || !IsCostValid(cost))
+//                {
+//                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
+//                }
+
+//                Item newItem = new Item(name, info, cost);
+//                items.Add(newItem);
+//                UpdateListBox();
+//                ClearFields();
+//            }
+//            catch (ArgumentException ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void Remove_Click(object sender, EventArgs e)
+//        {
+//            if (ItemsListBox.SelectedItem is Item selectedItem)
+//            {
+//                items.Remove(selectedItem);
+//                UpdateListBox();
+//                ClearFields();
+//            }
+//            else
+//            {
+//                MessageBox.Show("Выберите товар для удаления.");
+//            }
+//        }
+
+//        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+//        {
+//            if (ItemsListBox.SelectedItem is Item selectedItem)
+//            {
+//                IDfield.Text = selectedItem.Id.ToString();
+//                nameField.Text = selectedItem.Name;
+//                descriptionField.Text = selectedItem.Info;
+//                costField.Text = selectedItem.Cost.ToString();
+//            }
+//        }
+
+//        private void UpdateListBox()
+//        {
+//            ItemsListBox.DataSource = null;
+//            ItemsListBox.DataSource = items;
+//            ItemsListBox.DisplayMember = "Display";
+//        }
+
+//        private void ClearFields()
+//        {
+//            IDfield.Clear();
+//            nameField.Clear();
+//            descriptionField.Clear();
+//            costField.Clear();
+//        }
+
+//        private void nameField_Leave(object sender, EventArgs e) { ValidateName(); }
+//        private void descriptionField_Leave(object sender, EventArgs e) { ValidateInfo(); }
+//        private void costField_Leave(object sender, EventArgs e) { ValidateCost(); }
+
+//        private void ValidateName()
+//        {
+//            try
+//            {
+//                validator.AssertStringOnLength(nameField.Text, 50, nameof(nameField));
+//                nameField.BackColor = System.Drawing.Color.White;
+//            }
+//            catch (ArgumentException ex)
+//            {
+//                nameField.BackColor = System.Drawing.Color.Red;
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void ValidateInfo()
+//        {
+//            try
+//            {
+//                validator.AssertStringOnLength(descriptionField.Text, 200, nameof(descriptionField));
+//                descriptionField.BackColor = System.Drawing.Color.White;
+//            }
+//            catch (ArgumentException ex)
+//            {
+//                descriptionField.BackColor = System.Drawing.Color.Red;
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void ValidateCost()
+//        {
+//            try
+//            {
+//                double costValue;
+//                if (!double.TryParse(costField.Text, out costValue) || !IsCostValid(costValue))
+//                {
+//                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
+//                }
+//                costField.BackColor = System.Drawing.Color.White;
+//            }
+//            catch (ArgumentException ex)
+//            {
+//                costField.BackColor = System.Drawing.Color.Red;
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private bool IsCostValid(double value) => value > 0.0 && value < 100000.0;
+//        private void UpdateListBox()
+//        {
+//            ItemsListBox.DataSource = null;
+//            ItemsListBox.DataSource = items;
+//            ItemsListBox.DisplayMember = "Display";
+//        }
+
+//        private void ClearFields()
+//        {
+//            IDfield.Clear();
+//            nameField.Clear();
+//            descriptionField.Clear();
+//            costField.Clear();
+//        }
+
+
+//        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void groupBox1_Enter(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+//        {
+
+//        }
+//        private void label2_Click(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void richTextBox2_TextChanged(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void label3_Click(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void richTextBox1_TextChanged(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void label4_Click(object sender, EventArgs e)
+//        {
+
+//        }
+
+//        private void IDfield_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+//        {
+
+//        }
+
+
+//        private void costField_TextChanged(object sender, EventArgs e)
+//        {
+
+//        }
+//    }
+//}
+//    }
+//}
+
+

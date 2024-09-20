@@ -93,12 +93,23 @@ class Item
         }
         set
         {
-            if (value <= 0.0 || value >= 100000.0)
+            if (!IsCostValid(value))
             {
-                throw new ArgumentException($"{Cost} должен быть больше 0 и меньше 100000\"");
+                throw new ArgumentException($"{value} должен быть больше 0 и меньше 100000");
             }
             _cost = value;
         }
+    }
+
+    /// <summary>
+    /// Проверяет, что стоимость в нужном диапазоне значений.
+    /// </summary>
+    /// <param name="value">Проверяемая строка.</param>
+    /// <returns>Возвращает true, если значение стоимости подходит.
+    ///И false, если нет.</returns>
+    public bool IsCostValid(double value)
+    {
+        return value > 0.0 && value < 100000.0;
     }
 
     /// <summary>
