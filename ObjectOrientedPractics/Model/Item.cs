@@ -53,6 +53,5 @@ class Item
 
         _validator.AssertStringOnLength(name, 200, nameof(name));
 
-        _validator.AssertStringOnLength(info, 1000, nameof(name));
     }
 }
