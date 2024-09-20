@@ -102,11 +102,10 @@ class Item
     }
 
     /// <summary>
-    /// Проверяет, что стоимость в нужном диапазоне значений.
+    /// Проверяет, находится ли стоимость в допустимых пределах (больше 0 и меньше 100000).
     /// </summary>
-    /// <param name="value">Проверяемая строка.</param>
-    /// <returns>Возвращает true, если значение стоимости подходит.
-    ///И false, если нет.</returns>
+    /// <param name="value">Стоимость для проверки.</param>
+    /// <returns>True, если стоимость допустима; иначе False.</returns>
     public bool IsCostValid(double value)
     {
         return value > 0.0 && value < 100000.0;

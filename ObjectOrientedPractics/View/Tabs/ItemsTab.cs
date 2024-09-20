@@ -10,11 +10,25 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.ItemsTab
 {
+    /// <summary>
+    /// Элемент управления для работы со списком товаров.
+    /// Позволяет добавлять, удалять и отображать товары.
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Список элементов класса <see cref="Item"/>
+        /// </summary>
         private List<Item> items = new List<Item>();
+
+        /// <summary>
+        /// Переменная класса <see cref="ValueValidator"/>, хранящего метод валидации строк
+        /// </summary>
         private ValueValidator validator = new ValueValidator();
 
+        /// <summary>
+        /// Инициализирует новый экземпляр <see cref="ItemsTab"/> и настраивает события.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
@@ -75,12 +89,19 @@ namespace ObjectOrientedPractics.View.ItemsTab
             }
         }
 
+        /// <summary>
+        /// Обновляет отображаемый список товаров в элементе управления.
+        /// </summary>
         private void UpdateListBox()
         {
             ItemsListBox.DataSource = null;
             ItemsListBox.DataSource = items;
             ItemsListBox.DisplayMember = "Display";
         }
+
+        /// <summary>
+        /// Очищает все поля ввода.
+        /// </summary>
         private void ClearFields()
         {
             IDfield.Clear();
@@ -89,10 +110,22 @@ namespace ObjectOrientedPractics.View.ItemsTab
             costField.Clear();
         }
 
-        private void nameField_Leave(object sender, EventArgs e) { ValidateName(); }
-        private void descriptionField_Leave(object sender, EventArgs e) { ValidateInfo(); }
-        private void costField_Leave(object sender, EventArgs e) { ValidateCost(); }
+        private void nameField_Leave(object sender, EventArgs e)
+        {
+            ValidateName();
+        }
+        private void descriptionField_Leave(object sender, EventArgs e)
+        {
+            ValidateInfo();
+        }
+        private void costField_Leave(object sender, EventArgs e)
+        {
+            ValidateCost();
+        }
 
+        /// <summary>
+        /// Проверяет корректность введенного имени товара.
+        /// </summary>
         private void ValidateName()
         {
             try
@@ -107,6 +140,9 @@ namespace ObjectOrientedPractics.View.ItemsTab
             }
         }
 
+        /// <summary>
+        /// Проверяет корректность введенной информации о товаре(описании).
+        /// </summary>
         private void ValidateInfo()
         {
             try
@@ -121,6 +157,9 @@ namespace ObjectOrientedPractics.View.ItemsTab
             }
         }
 
+        /// <summary>
+        /// Проверяет корректность введенной стоимости товара.
+        /// </summary>
         private void ValidateCost()
         {
             try
@@ -139,57 +178,17 @@ namespace ObjectOrientedPractics.View.ItemsTab
             }
         }
 
-        private bool IsCostValid(double value) => value > 0.0 && value < 100000.0;
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Проверяет, находится ли стоимость в допустимых пределах (больше 0 и меньше 100000).
+        /// </summary>
+        /// <param name="value">Стоимость для проверки.</param>
+        /// <returns>True, если стоимость допустима; иначе False.</returns>
+        private bool IsCostValid(double value)
         {
-
+            return value > 0.0 && value < 100000.0;
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void IDfield_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-
-        private void costField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             pages = new TabControl();
             Items = new TabPage();
             itemsTab1 = new View.ItemsTab.ItemsTab();
@@ -70,6 +71,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(990, 630);
             Controls.Add(pages);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             Text = "ObjestOrientedPractics";
             Load += Form1_Load;

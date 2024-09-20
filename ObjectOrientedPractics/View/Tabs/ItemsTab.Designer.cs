@@ -82,7 +82,7 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Items";
-            groupBox1.Enter += groupBox1_Enter;
+           
             // 
             // tableLayoutPanel1
             // 
@@ -100,7 +100,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(539, 63);
             tableLayoutPanel1.TabIndex = 1;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            
             // 
             // Add
             // 
@@ -178,7 +178,7 @@
             description.Size = new Size(92, 18);
             description.TabIndex = 6;
             description.Text = "Description:";
-            description.Click += label4_Click;
+           
             // 
             // nameField
             // 
@@ -187,8 +187,7 @@
             nameField.Size = new Size(634, 156);
             nameField.TabIndex = 5;
             nameField.Text = "";
-            nameField.Click += richTextBox1_TextChanged;
-            nameField.TextChanged += richTextBox1_TextChanged;
+           
             // 
             // name
             // 
@@ -199,7 +198,6 @@
             name.Size = new Size(54, 18);
             name.TabIndex = 4;
             name.Text = "Name:";
-            name.Click += label3_Click;
             // 
             // costField
             // 
@@ -208,7 +206,6 @@
             costField.Name = "costField";
             costField.Size = new Size(198, 32);
             costField.TabIndex = 3;
-            costField.TextChanged += costField_TextChanged;
             // 
             // cost
             // 
@@ -219,7 +216,7 @@
             cost.Size = new Size(52, 21);
             cost.TabIndex = 2;
             cost.Text = "Cost:";
-            cost.Click += label2_Click;
+            
             // 
             // ID
             // 
@@ -238,7 +235,7 @@
             IDfield.ReadOnly = true;
             IDfield.Size = new Size(198, 32);
             IDfield.TabIndex = 0;
-            IDfield.MaskInputRejected += IDfield_MaskInputRejected;
+          
             // 
             // ItemsTab
             // 
