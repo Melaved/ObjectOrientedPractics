@@ -65,8 +65,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(groupBox2);
-            splitContainer1.Size = new Size(1517, 800);
-            splitContainer1.SplitterDistance = 636;
+            splitContainer1.Size = new Size(1301, 800);
+            splitContainer1.SplitterDistance = 545;
             splitContainer1.TabIndex = 0;
             // 
             // groupBox1
@@ -78,7 +78,7 @@
             groupBox1.ForeColor = SystemColors.Desktop;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(636, 800);
+            groupBox1.Size = new Size(545, 800);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Items";
@@ -98,7 +98,7 @@
             tableLayoutPanel1.Padding = new Padding(1);
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(630, 63);
+            tableLayoutPanel1.Size = new Size(539, 63);
             tableLayoutPanel1.TabIndex = 1;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
@@ -109,22 +109,24 @@
             Add.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Add.Location = new Point(4, 4);
             Add.Name = "Add";
-            Add.Size = new Size(203, 55);
+            Add.Size = new Size(173, 55);
             Add.TabIndex = 0;
             Add.Text = "Add";
             Add.UseVisualStyleBackColor = false;
+            Add.Click += Add_Click;
             // 
             // Remove
             // 
             Remove.BackColor = SystemColors.ActiveBorder;
             Remove.Dock = DockStyle.Fill;
             Remove.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Remove.Location = new Point(213, 4);
+            Remove.Location = new Point(183, 4);
             Remove.Name = "Remove";
-            Remove.Size = new Size(203, 55);
+            Remove.Size = new Size(173, 55);
             Remove.TabIndex = 1;
             Remove.Text = "Remove";
             Remove.UseVisualStyleBackColor = false;
+            Remove.Click += Remove_Click;
             // 
             // ItemsListBox
             // 
@@ -134,8 +136,9 @@
             ItemsListBox.ItemHeight = 18;
             ItemsListBox.Location = new Point(4, 29);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(626, 706);
+            ItemsListBox.Size = new Size(535, 706);
             ItemsListBox.TabIndex = 0;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // groupBox2
             // 
@@ -152,7 +155,7 @@
             groupBox2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             groupBox2.Location = new Point(0, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(877, 800);
+            groupBox2.Size = new Size(752, 800);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Selected Item";
@@ -184,6 +187,7 @@
             nameField.Size = new Size(634, 156);
             nameField.TabIndex = 5;
             nameField.Text = "";
+            nameField.Click += richTextBox1_TextChanged;
             nameField.TextChanged += richTextBox1_TextChanged;
             // 
             // name
@@ -199,10 +203,12 @@
             // 
             // costField
             // 
+            
             costField.Location = new Point(64, 84);
             costField.Name = "costField";
             costField.Size = new Size(198, 32);
             costField.TabIndex = 3;
+            costField.TextChanged += costField_TextChanged;
             // 
             // cost
             // 
@@ -224,12 +230,12 @@
             ID.Size = new Size(32, 21);
             ID.TabIndex = 1;
             ID.Text = "ID:";
-            ID.Click += label1_Click;
             // 
             // IDfield
             // 
             IDfield.Location = new Point(64, 41);
             IDfield.Name = "IDfield";
+            IDfield.ReadOnly = true;
             IDfield.Size = new Size(198, 32);
             IDfield.TabIndex = 0;
             IDfield.MaskInputRejected += IDfield_MaskInputRejected;
@@ -240,7 +246,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
             Name = "ItemsTab";
-            Size = new Size(1517, 800);
+            Size = new Size(1301, 800);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();

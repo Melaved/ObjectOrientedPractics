@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.Xml.Linq;
+
+/// <summary>
 /// Хранит данные о товаре.
 /// </summary>
 class Item
@@ -11,31 +13,24 @@ class Item
     /// <summary>
     /// Уникальное имя товара.
     /// </summary>
-    private string _name { get; set; }
+    internal string _name { get;private set; }
 
     /// <summary>
     /// Информация о товаре.
     /// </summary>
-    private string _info { get; set; }
+    internal string _info { get;private set; }
 
     /// <summary>
     /// Стоимость товара.
     /// </summary>
-    private double _cost { get; set; }
-
+    internal double _cost { get;private set; }
+    public string Display => $"ID: {_id}, Name: {_name}";
+    public int Id => _id;
 
     /// <summary>
     /// Переменная класса, хранящего метод валидации строк
     /// </summary>
     private ValueValidator _validator = new ValueValidator();
-
-    /// <summary>
-    /// Создаёт экземпляр класса <see cref="Item"/>.
-    /// </summary>
-    public Item()
-    {
-        _id = IdGenerator.GetNextId();
-    }
 
     /// <summary>
     /// Создаёт экземпляр класса <see cref="Item"/>.
@@ -48,6 +43,8 @@ class Item
     /// </param>
     public Item(string name , string info, double cost)
     {
+        _id = IdGenerator.GetNextId();
+
         _name = name;
 
         _info = info;
