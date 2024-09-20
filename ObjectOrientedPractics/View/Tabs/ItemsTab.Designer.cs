@@ -167,7 +167,7 @@
             descriptionField.Size = new Size(634, 243);
             descriptionField.TabIndex = 7;
             descriptionField.Text = "";
-            descriptionField.TextChanged += richTextBox2_TextChanged;
+            
             // 
             // description
             // 

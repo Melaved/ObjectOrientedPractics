@@ -59,9 +59,9 @@ namespace ObjectOrientedPractics.View.ItemsTab
             {
 
                 IDfield.Text = selectedItem.Id.ToString();
-                nameField.Text = selectedItem._name;
-                descriptionField.Text = selectedItem._info; 
-                costField.Text = selectedItem._cost.ToString(); 
+                nameField.Text = selectedItem.Name;
+                descriptionField.Text = selectedItem.Info; 
+                costField.Text = selectedItem.Cost.ToString(); 
             }
         }
 

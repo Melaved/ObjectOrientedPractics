@@ -8,12 +8,12 @@
     /// <summary>
     /// Уникальное имя покупателя(customer).
     /// </summary>
-    private string _fullname { get; set; }
+    private string _fullname;
 
     /// <summary>
-    /// Уникальный поле с адресом доставки для покупателя.
+    /// Уникальное поле с адресом доставки для покупателя.
     /// </summary>
-    private string _adress { get; set; }
+    private string _adress;
 
     /// <summary>
     /// Переменная валидатор для строк.
@@ -21,11 +21,35 @@
     private ValueValidator _validator = new ValueValidator();
 
     /// <summary>
-    /// Создаёт экземпляр класса <see cref="Customer"/>.
+    /// Возвращает и задает полное имя покупателя.
     /// </summary>
-    public Customer()
+    public string FullName 
+    { 
+        get 
+        { 
+            return _fullname; 
+        }
+        set 
+        {
+            _validator.AssertStringOnLength(value, 200, nameof(value));
+            _fullname = value; 
+        }
+    }
+
+    /// <summary>
+    /// Возвращает и задает адрес доставки.
+    /// </summary>
+    public string Adress
     {
-        _id = IdGenerator.GetNextId();
+        get
+        {
+            return _adress;
+        }
+        set
+        {
+            _validator.AssertStringOnLength(value, 500, nameof(value));
+            _adress = value;
+        }
     }
 
     /// <summary>
@@ -37,6 +61,7 @@
     ///букв.</param>
     public Customer(string fullName, string adress)
     {
+        _id = IdGenerator.GetNextId();
         _fullname = fullName;
         _adress = adress;
         _validator.AssertStringOnLength(fullName, 200, nameof(fullName));
