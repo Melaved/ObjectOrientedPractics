@@ -33,17 +33,21 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             InitializeComponent();
             IDfield.ReadOnly = true;
+            comboBoxCategories.DataSource = Enum.GetValues(typeof(Category));
 
             // Привязка событий
             nameField.Leave += nameField_Leave;
             descriptionField.Leave += descriptionField_Leave;
             costField.Leave += costField_Leave;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
+            comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
             string name = nameField.Text;
             string info = descriptionField.Text;
+            
             double cost;
 
             try
@@ -52,8 +56,8 @@ namespace ObjectOrientedPractics.View.ItemsTab
                 {
                     throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
                 }
-
-                Item newItem = new Item(name, info, cost);
+                Category category = (Category)comboBoxCategories.SelectedItem;
+                Item newItem = new Item(name, info, cost,category);
                 items.Add(newItem);
                 UpdateListBox();
                 ClearFields();
@@ -86,6 +90,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
                 nameField.Text = selectedItem.Name;
                 descriptionField.Text = selectedItem.Info;
                 costField.Text = selectedItem.Cost.ToString();
+                comboBoxCategories.SelectedItem = selectedItem.Category;
             }
         }
 
@@ -108,6 +113,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
             nameField.Clear();
             descriptionField.Clear();
             costField.Clear();
+            comboBoxCategories.SelectedIndex = -1;
         }
 
         private void nameField_Leave(object sender, EventArgs e)
@@ -192,6 +198,29 @@ namespace ObjectOrientedPractics.View.ItemsTab
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void description_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void name_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void costField_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void comboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem is Item selectedItem && comboBoxCategories.SelectedItem is Category selectedCategory)
+            {
+                selectedItem.Category = selectedCategory;
+            }
         }
     }
 }

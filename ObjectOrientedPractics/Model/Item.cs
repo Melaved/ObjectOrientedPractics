@@ -23,6 +23,8 @@ class Item
     /// </summary>
     private double _cost;
 
+    public Category Category { get; set; }
+
     /// <summary>
     /// Возвращает отображение товара в меню.
     /// </summary>
@@ -111,9 +113,7 @@ class Item
         return value > 0.0 && value < 100000.0;
     }
 
-    /// <summary>
-    /// Переменная класса, хранящего метод валидации строк
-    /// </summary> 
+ 
     /// <summary>
     /// Создаёт экземпляр класса <see cref="Item"/>.
     /// </summary>
@@ -123,7 +123,8 @@ class Item
     ///букв.</param>
     /// <param name="cost">Стоимость. Должна быть вещественным числом.
     /// </param>
-    public Item(string name, string info, double cost)
+    /// <param name ="category"> Rатегория. Является перечислением Category. </param> 
+    public Item(string name, string info, double cost, Category category)
     {
         _id = IdGenerator.GetNextId();
 
@@ -132,6 +133,8 @@ class Item
         Info = info;
 
         Cost = cost;
+
+        Category = category;
     }
 }
 

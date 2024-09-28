@@ -35,6 +35,8 @@
             Remove = new Button();
             ItemsListBox = new ListBox();
             groupBox2 = new GroupBox();
+            comboBoxCategories = new ComboBox();
+            CategoryLabel = new Label();
             descriptionField = new RichTextBox();
             description = new Label();
             nameField = new RichTextBox();
@@ -141,6 +143,8 @@
             // groupBox2
             // 
             groupBox2.BackColor = SystemColors.ControlLightLight;
+            groupBox2.Controls.Add(comboBoxCategories);
+            groupBox2.Controls.Add(CategoryLabel);
             groupBox2.Controls.Add(descriptionField);
             groupBox2.Controls.Add(description);
             groupBox2.Controls.Add(nameField);
@@ -159,9 +163,28 @@
             groupBox2.Text = "Selected Item";
             groupBox2.Enter += groupBox2_Enter;
             // 
+            // comboBoxCategories
+            // 
+            comboBoxCategories.FormattingEnabled = true;
+            comboBoxCategories.Location = new Point(95, 132);
+            comboBoxCategories.Name = "comboBoxCategories";
+            comboBoxCategories.Size = new Size(198, 33);
+            comboBoxCategories.TabIndex = 9;
+            comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
+            // 
+            // CategoryLabel
+            // 
+            CategoryLabel.AutoSize = true;
+            CategoryLabel.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            CategoryLabel.Location = new Point(6, 138);
+            CategoryLabel.Name = "CategoryLabel";
+            CategoryLabel.Size = new Size(88, 21);
+            CategoryLabel.TabIndex = 8;
+            CategoryLabel.Text = "Category:";
+            // 
             // descriptionField
             // 
-            descriptionField.Location = new Point(6, 383);
+            descriptionField.Location = new Point(6, 409);
             descriptionField.Name = "descriptionField";
             descriptionField.Size = new Size(634, 243);
             descriptionField.TabIndex = 7;
@@ -171,15 +194,16 @@
             // 
             description.AutoSize = true;
             description.Font = new Font("Arial", 9F);
-            description.Location = new Point(6, 362);
+            description.Location = new Point(6, 385);
             description.Name = "description";
             description.Size = new Size(105, 21);
             description.TabIndex = 6;
             description.Text = "Description:";
+            description.Click += description_Click;
             // 
             // nameField
             // 
-            nameField.Location = new Point(6, 177);
+            nameField.Location = new Point(6, 203);
             nameField.Name = "nameField";
             nameField.Size = new Size(634, 156);
             nameField.TabIndex = 5;
@@ -189,18 +213,20 @@
             // 
             name.AutoSize = true;
             name.Font = new Font("Arial", 9F);
-            name.Location = new Point(6, 156);
+            name.Location = new Point(6, 179);
             name.Name = "name";
             name.Size = new Size(62, 21);
             name.TabIndex = 4;
             name.Text = "Name:";
+            name.Click += name_Click;
             // 
             // costField
             // 
-            costField.Location = new Point(64, 84);
+            costField.Location = new Point(95, 84);
             costField.Name = "costField";
             costField.Size = new Size(198, 32);
             costField.TabIndex = 3;
+            costField.MaskInputRejected += costField_MaskInputRejected;
             // 
             // cost
             // 
@@ -224,7 +250,7 @@
             // 
             // IDfield
             // 
-            IDfield.Location = new Point(64, 41);
+            IDfield.Location = new Point(95, 41);
             IDfield.Name = "IDfield";
             IDfield.ReadOnly = true;
             IDfield.Size = new Size(198, 32);
@@ -265,5 +291,7 @@
         private Label cost;
         private Label ID;
         private MaskedTextBox IDfield;
+        private Label CategoryLabel;
+        private ComboBox comboBoxCategories;
     }
 }
