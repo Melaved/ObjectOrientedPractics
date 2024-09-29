@@ -16,4 +16,20 @@ class ValueValidator
             throw new ArgumentException($"{propertyName} должен быть меньше {maxLength} символов.");
         }
     }
+
+    /// <summary>
+    /// Проверяет находится ли значение в заданном диапазоне
+    /// </summary>
+    /// <param name="value">Проверяемое значение.</param>
+    /// <param name="lessValue">Минимальное значение.</param>
+    /// <param name="moreValue">Максимальное значение.</param>
+    /// <exception cref="ArgumentException"></exception>
+    public void AssertNumberOnValue(double value, double lessValue, double moreValue)
+    {
+        if (value < lessValue || value > moreValue)
+        {
+            throw new ArgumentException($"{value} должен быть больше {lessValue} и меньше {moreValue}.");
+        }
+    }
+
 }

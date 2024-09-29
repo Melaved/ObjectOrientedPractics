@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.ComponentModel.DataAnnotations;
+
+/// <summary>
 /// Хранит данные о товаре.
 /// </summary>
 class Item
@@ -23,6 +25,9 @@ class Item
     /// </summary>
     private double _cost;
 
+    /// <summary>
+    /// Категория товара.
+    /// </summary>
     public Category Category { get; set; }
 
     /// <summary>
@@ -95,24 +100,10 @@ class Item
         }
         set
         {
-            if (!IsCostValid(value))
-            {
-                throw new ArgumentException($"{value} должен быть больше 0 и меньше 100000");
-            }
+            _validator.AssertNumberOnValue(value, 0, 100000);
             _cost = value;
         }
     }
-
-    /// <summary>
-    /// Проверяет, находится ли стоимость в допустимых пределах (больше 0 и меньше 100000).
-    /// </summary>
-    /// <param name="value">Стоимость для проверки.</param>
-    /// <returns>True, если стоимость допустима; иначе False.</returns>
-    public bool IsCostValid(double value)
-    {
-        return value > 0.0 && value < 100000.0;
-    }
-
  
     /// <summary>
     /// Создаёт экземпляр класса <see cref="Item"/>.
@@ -135,6 +126,14 @@ class Item
         Cost = cost;
 
         Category = category;
+    }
+
+    /// <summary>
+    /// Конструктор по умолчанию.
+    /// </summary>
+    public Item()
+    {
+
     }
 }
 

@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         /// <summary>
         /// Переменная класса <see cref="ValueValidator"/>, хранящего метод валидации строк
         /// </summary>
-        private ValueValidator validator = new ValueValidator();
+        private ValueValidator _validator = new ValueValidator();
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="ItemsTab"/> и настраивает события.
@@ -48,14 +48,11 @@ namespace ObjectOrientedPractics.View.ItemsTab
             string name = nameField.Text;
             string info = descriptionField.Text;
             
-            double cost;
+            double cost= 0.0;
 
             try
             {
-                if (!double.TryParse(costField.Text, out cost) || !IsCostValid(cost))
-                {
-                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
-                }
+                _validator.AssertNumberOnValue(double.Parse(costField.Text), 0, 100000);
                 Category category = (Category)comboBoxCategories.SelectedItem;
                 Item newItem = new Item(name, info, cost,category);
                 items.Add(newItem);
@@ -136,7 +133,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                validator.AssertStringOnLength(nameField.Text, 200, nameof(nameField));
+                _validator.AssertStringOnLength(nameField.Text, 200, nameof(nameField));
                 nameField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
@@ -153,7 +150,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                validator.AssertStringOnLength(descriptionField.Text, 1000, nameof(descriptionField));
+                _validator.AssertStringOnLength(descriptionField.Text, 1000, nameof(descriptionField));
                 descriptionField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
@@ -170,16 +167,12 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                double costValue;
-                if (!double.TryParse(costField.Text, out costValue) || !IsCostValid(costValue))
-                {
-                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
-                }
-                costField.BackColor = System.Drawing.Color.White;
+                _validator.AssertNumberOnValue(double.Parse(costField.Text), 0, 100000);
+                descriptionField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
             {
-                costField.BackColor = System.Drawing.Color.Red;
+                descriptionField.BackColor = System.Drawing.Color.Red;
                 MessageBox.Show(ex.Message);
             }
         }
