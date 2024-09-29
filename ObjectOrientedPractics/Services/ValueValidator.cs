@@ -32,4 +32,8 @@ class ValueValidator
         }
     }
 
+    internal void AssertNumberOnValue(Func<string> toString, int v1, int v2)
+    {
+        throw new NotImplementedException();
+    }
 }

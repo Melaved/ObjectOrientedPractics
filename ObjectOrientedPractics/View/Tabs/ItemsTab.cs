@@ -47,22 +47,27 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             string name = nameField.Text;
             string info = descriptionField.Text;
-            
-            double cost= 0.0;
 
             try
             {
+                // Проверяем значение в поле costField
                 _validator.AssertNumberOnValue(double.Parse(costField.Text), 0, 100000);
+
                 Category category = (Category)comboBoxCategories.SelectedItem;
-                Item newItem = new Item(name, info, cost,category);
+                Item newItem = new Item(name, info, double.Parse(costField.Text), category);
                 items.Add(newItem);
                 UpdateListBox();
                 ClearFields();
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Пожалуйста, введите корректное числовое значение для стоимости.", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+      
         }
 
         private void Remove_Click(object sender, EventArgs e)
@@ -165,15 +170,23 @@ namespace ObjectOrientedPractics.View.ItemsTab
         /// </summary>
         private void ValidateCost()
         {
-            try
+            if (double.TryParse(costField.Text, out double costValue))
             {
-                _validator.AssertNumberOnValue(double.Parse(costField.Text), 0, 100000);
-                descriptionField.BackColor = System.Drawing.Color.White;
+                try
+                {
+                    _validator.AssertNumberOnValue(costValue, 0, 100000);
+                    costField.BackColor = System.Drawing.Color.White;
+                }
+                catch (ArgumentException ex)
+                {
+                    costField.BackColor = System.Drawing.Color.Red;
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (ArgumentException ex)
+            else
             {
-                descriptionField.BackColor = System.Drawing.Color.Red;
-                MessageBox.Show(ex.Message);
+                costField.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show("Пожалуйста, введите корректное числовое значение для стоимости.");
             }
         }
 
