@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Хранит данные об адрессе покупателя.
 /// </summary>
-class Address
+public class Address
 {
     /// <summary>
     /// Уникальный индекс покупателя

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             deliveryAddressGroupBox = new GroupBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            cityTextBox = new TextBox();
+            apartmentTextBox = new TextBox();
+            buildingTextBox = new TextBox();
+            streetTextBox = new TextBox();
+            countryTextBox = new TextBox();
+            postIndexTextBox = new TextBox();
             apartmentlabel = new Label();
             citylabel = new Label();
             buildinglabel = new Label();
@@ -46,12 +46,12 @@
             // 
             // deliveryAddressGroupBox
             // 
-            deliveryAddressGroupBox.Controls.Add(textBox6);
-            deliveryAddressGroupBox.Controls.Add(textBox5);
-            deliveryAddressGroupBox.Controls.Add(textBox4);
-            deliveryAddressGroupBox.Controls.Add(textBox3);
-            deliveryAddressGroupBox.Controls.Add(textBox2);
-            deliveryAddressGroupBox.Controls.Add(textBox1);
+            deliveryAddressGroupBox.Controls.Add(cityTextBox);
+            deliveryAddressGroupBox.Controls.Add(apartmentTextBox);
+            deliveryAddressGroupBox.Controls.Add(buildingTextBox);
+            deliveryAddressGroupBox.Controls.Add(streetTextBox);
+            deliveryAddressGroupBox.Controls.Add(countryTextBox);
+            deliveryAddressGroupBox.Controls.Add(postIndexTextBox);
             deliveryAddressGroupBox.Controls.Add(apartmentlabel);
             deliveryAddressGroupBox.Controls.Add(citylabel);
             deliveryAddressGroupBox.Controls.Add(buildinglabel);
@@ -67,48 +67,47 @@
             deliveryAddressGroupBox.TabStop = false;
             deliveryAddressGroupBox.Text = "Delivery Address";
             // 
-            // textBox6
+            // cityTextBox
             // 
-            textBox6.Location = new Point(604, 70);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(378, 28);
-            textBox6.TabIndex = 11;
+            cityTextBox.Location = new Point(604, 70);
+            cityTextBox.Name = "cityTextBox";
+            cityTextBox.Size = new Size(373, 28);
+            cityTextBox.TabIndex = 11;
             // 
-            // textBox5
+            // apartmentTextBox
             // 
-            textBox5.Location = new Point(604, 159);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(194, 28);
-            textBox5.TabIndex = 10;
+            apartmentTextBox.Location = new Point(604, 159);
+            apartmentTextBox.Name = "apartmentTextBox";
+            apartmentTextBox.Size = new Size(194, 28);
+            apartmentTextBox.TabIndex = 10;
             // 
-            // textBox4
+            // buildingTextBox
             // 
-            textBox4.Location = new Point(124, 163);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(194, 28);
-            textBox4.TabIndex = 9;
-            textBox4.TextChanged += textBox4_TextChanged;
+            buildingTextBox.Location = new Point(124, 163);
+            buildingTextBox.Name = "buildingTextBox";
+            buildingTextBox.Size = new Size(194, 28);
+            buildingTextBox.TabIndex = 9;
             // 
-            // textBox3
+            // streetTextBox
             // 
-            textBox3.Location = new Point(124, 116);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(858, 28);
-            textBox3.TabIndex = 8;
+            streetTextBox.Location = new Point(124, 116);
+            streetTextBox.Name = "streetTextBox";
+            streetTextBox.Size = new Size(853, 28);
+            streetTextBox.TabIndex = 8;
             // 
-            // textBox2
+            // countryTextBox
             // 
-            textBox2.Location = new Point(124, 70);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(300, 28);
-            textBox2.TabIndex = 7;
+            countryTextBox.Location = new Point(124, 70);
+            countryTextBox.Name = "countryTextBox";
+            countryTextBox.Size = new Size(300, 28);
+            countryTextBox.TabIndex = 7;
             // 
-            // textBox1
+            // postIndexTextBox
             // 
-            textBox1.Location = new Point(124, 28);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(194, 28);
-            textBox1.TabIndex = 6;
+            postIndexTextBox.Location = new Point(124, 28);
+            postIndexTextBox.Name = "postIndexTextBox";
+            postIndexTextBox.Size = new Size(194, 28);
+            postIndexTextBox.TabIndex = 6;
             // 
             // apartmentlabel
             // 
@@ -185,12 +184,12 @@
         #endregion
 
         private GroupBox deliveryAddressGroupBox;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox cityTextBox;
+        private TextBox apartmentTextBox;
+        private TextBox buildingTextBox;
+        private TextBox streetTextBox;
+        private TextBox countryTextBox;
+        private TextBox postIndexTextBox;
         private Label apartmentlabel;
         private Label citylabel;
         private Label buildinglabel;

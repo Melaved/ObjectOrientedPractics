@@ -170,9 +170,9 @@
             // 
             // addressControl1
             // 
-            addressControl1.Location = new Point(-4, 131);
+            addressControl1.Location = new Point(-4, 132);
             addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(1050, 252);
+            addressControl1.Size = new Size(1083, 252);
             addressControl1.TabIndex = 4;
             // 
             // textBox2
