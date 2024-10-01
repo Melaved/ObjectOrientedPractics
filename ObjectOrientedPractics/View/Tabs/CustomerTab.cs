@@ -31,5 +31,20 @@ namespace ObjectOrientedPractics.View.Tabs
         {
 
         }
+
+        private void addressControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addressControl1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
     }
 }

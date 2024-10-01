@@ -161,7 +161,7 @@
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Selected Item";
-            groupBox2.Enter += groupBox2_Enter;
+          
             // 
             // comboBoxCategories
             // 
@@ -199,7 +199,7 @@
             description.Size = new Size(105, 21);
             description.TabIndex = 6;
             description.Text = "Description:";
-            description.Click += description_Click;
+           
             // 
             // nameField
             // 
@@ -218,7 +218,7 @@
             name.Size = new Size(62, 21);
             name.TabIndex = 4;
             name.Text = "Name:";
-            name.Click += name_Click;
+            
             // 
             // costField
             // 
@@ -226,7 +226,7 @@
             costField.Name = "costField";
             costField.Size = new Size(198, 32);
             costField.TabIndex = 3;
-            costField.MaskInputRejected += costField_MaskInputRejected;
+            
             // 
             // cost
             // 

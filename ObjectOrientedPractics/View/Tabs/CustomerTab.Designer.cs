@@ -36,8 +36,7 @@
             CustomerslistBox = new ListBox();
             splitContainer2 = new SplitContainer();
             SelectedCustomer = new GroupBox();
-            richTextBox1 = new RichTextBox();
-            AdressLabel = new Label();
+            addressControl1 = new Controls.AddressControl();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             FullNameAdress = new Label();
@@ -67,8 +66,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(1301, 800);
-            splitContainer1.SplitterDistance = 545;
+            splitContainer1.Size = new Size(1373, 721);
+            splitContainer1.SplitterDistance = 628;
             splitContainer1.TabIndex = 0;
             // 
             // groupBox1
@@ -80,7 +79,7 @@
             groupBox1.ForeColor = SystemColors.Desktop;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(470, 721);
+            groupBox1.Size = new Size(628, 721);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Customers";
@@ -99,7 +98,7 @@
             tableLayoutPanel1.Padding = new Padding(1);
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(464, 63);
+            tableLayoutPanel1.Size = new Size(622, 63);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // AddButton
@@ -109,7 +108,7 @@
             AddButton.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             AddButton.Location = new Point(4, 4);
             AddButton.Name = "AddButton";
-            AddButton.Size = new Size(147, 55);
+            AddButton.Size = new Size(200, 55);
             AddButton.TabIndex = 0;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = false;
@@ -119,9 +118,9 @@
             RemoveButton.BackColor = SystemColors.ActiveBorder;
             RemoveButton.Dock = DockStyle.Fill;
             RemoveButton.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            RemoveButton.Location = new Point(157, 4);
+            RemoveButton.Location = new Point(210, 4);
             RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(147, 55);
+            RemoveButton.Size = new Size(200, 55);
             RemoveButton.TabIndex = 1;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = false;
@@ -131,10 +130,10 @@
             CustomerslistBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomerslistBox.Font = new Font("Arial", 8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             CustomerslistBox.FormattingEnabled = true;
-            CustomerslistBox.ItemHeight = 18;
+            CustomerslistBox.ItemHeight = 19;
             CustomerslistBox.Location = new Point(4, 29);
             CustomerslistBox.Name = "CustomerslistBox";
-            CustomerslistBox.Size = new Size(535, 706);
+            CustomerslistBox.Size = new Size(618, 593);
             CustomerslistBox.TabIndex = 1;
             // 
             // splitContainer2
@@ -147,15 +146,15 @@
             // splitContainer2.Panel1
             // 
             splitContainer2.Panel1.Controls.Add(SelectedCustomer);
-            splitContainer2.Size = new Size(650, 721);
-            splitContainer2.SplitterDistance = 344;
+            splitContainer2.Size = new Size(741, 721);
+            splitContainer2.SplitterDistance = 239;
             splitContainer2.TabIndex = 0;
+            splitContainer2.SplitterMoved += splitContainer2_SplitterMoved;
             // 
             // SelectedCustomer
             // 
             SelectedCustomer.BackColor = SystemColors.ControlLightLight;
-            SelectedCustomer.Controls.Add(richTextBox1);
-            SelectedCustomer.Controls.Add(AdressLabel);
+            SelectedCustomer.Controls.Add(addressControl1);
             SelectedCustomer.Controls.Add(textBox2);
             SelectedCustomer.Controls.Add(textBox1);
             SelectedCustomer.Controls.Add(FullNameAdress);
@@ -164,47 +163,39 @@
             SelectedCustomer.Font = new Font("Arial Black", 9F, FontStyle.Bold);
             SelectedCustomer.Location = new Point(0, 0);
             SelectedCustomer.Name = "SelectedCustomer";
-            SelectedCustomer.Size = new Size(650, 344);
+            SelectedCustomer.Size = new Size(741, 239);
             SelectedCustomer.TabIndex = 0;
             SelectedCustomer.TabStop = false;
             SelectedCustomer.Text = "Selected Customer";
             // 
-            // richTextBox1
+            // addressControl1
             // 
-            richTextBox1.Location = new Point(108, 146);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(464, 169);
-            richTextBox1.TabIndex = 6;
-            richTextBox1.Text = "";
-            // 
-            // AdressLabel
-            // 
-            AdressLabel.AutoSize = true;
-            AdressLabel.Font = new Font("Arial", 9F);
-            AdressLabel.Location = new Point(6, 146);
-            AdressLabel.Name = "AdressLabel";
-            AdressLabel.Size = new Size(70, 21);
-            AdressLabel.TabIndex = 5;
-            AdressLabel.Text = "Adress:";
+            addressControl1.Location = new Point(-4, 131);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(1050, 252);
+            addressControl1.TabIndex = 4;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(108, 93);
+            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox2.Location = new Point(108, 81);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(462, 33);
+            textBox2.Size = new Size(400, 33);
             textBox2.TabIndex = 3;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(108, 40);
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Location = new Point(108, 34);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(226, 33);
+            textBox1.Size = new Size(1, 33);
             textBox1.TabIndex = 2;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // FullNameAdress
             // 
+            FullNameAdress.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             FullNameAdress.AutoSize = true;
             FullNameAdress.Font = new Font("Arial", 9F);
             FullNameAdress.Location = new Point(6, 93);
@@ -215,6 +206,7 @@
             // 
             // IdLabel
             // 
+            IdLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             IdLabel.AutoSize = true;
             IdLabel.Font = new Font("Arial", 9F);
             IdLabel.Location = new Point(6, 46);
@@ -229,7 +221,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
             Name = "CustomerTab";
-            Size = new Size(1124, 721);
+            Size = new Size(1373, 721);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -252,13 +244,12 @@
         private ListBox CustomerslistBox;
         private SplitContainer splitContainer2;
         private GroupBox SelectedCustomer;
-        private Label AdressLabel;
         private TextBox textBox2;
         private TextBox textBox1;
         private Label FullNameAdress;
         private Label IdLabel;
-        private RichTextBox richTextBox1;
         private Button AddButton;
         private Button RemoveButton;
+        private Controls.AddressControl addressControl1;
     }
 }

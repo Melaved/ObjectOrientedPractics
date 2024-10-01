@@ -35,12 +35,13 @@ namespace ObjectOrientedPractics.View.ItemsTab
             IDfield.ReadOnly = true;
             comboBoxCategories.DataSource = Enum.GetValues(typeof(Category));
 
-            // Привязка событий
+            
             nameField.Leave += nameField_Leave;
             descriptionField.Leave += descriptionField_Leave;
             costField.Leave += costField_Leave;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
+
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -190,42 +191,29 @@ namespace ObjectOrientedPractics.View.ItemsTab
             }
         }
 
-
-        /// <summary>
-        /// Проверяет, находится ли стоимость в допустимых пределах (больше 0 и меньше 100000).
-        /// </summary>
-        /// <param name="value">Стоимость для проверки.</param>
-        /// <returns>True, если стоимость допустима; иначе False.</returns>
-        private bool IsCostValid(double value)
-        {
-            return value > 0.0 && value < 100000.0;
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void description_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void name_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void costField_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         private void comboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedItem is Item selectedItem && comboBoxCategories.SelectedItem is Category selectedCategory)
             {
                 selectedItem.Category = selectedCategory;
+            }
+        }
+        private void nameField_TextChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem is Item selectedItem)
+            {
+                selectedItem.Name = nameField.Text;
+                ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
+            }
+        }
+
+        // Обработчик изменения стоимости
+        private void costField_TextChanged(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem is Item selectedItem && decimal.TryParse(costField.Text, out decimal cost))
+            {
+                selectedItem.Cost = (double)cost;
+                ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
             }
         }
     }
