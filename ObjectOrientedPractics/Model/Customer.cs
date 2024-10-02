@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.Net;
+
+/// <summary>
 /// Хранит данные о покупателе.
 /// </summary>
 public class Customer
@@ -16,7 +18,7 @@ public class Customer
     /// <summary>
     /// Уникальное поле с адресом доставки для покупателя.
     /// </summary>
-    private string _adress;
+    private Address _address = new Address();
 
     /// <summary>
     /// Переменная валидатор для строк.
@@ -34,7 +36,7 @@ public class Customer
         }
         set 
         {
-            _validator.AssertStringOnLength(value, 200, nameof(value));
+            _validator.AssertStringOnLength(value, 200, nameof(_fullname));
             _fullname = value; 
         }
     }
@@ -42,16 +44,18 @@ public class Customer
     /// <summary>
     /// Возвращает и задает адрес доставки.
     /// </summary>
-    public string Adress
+    public Address Address
     {
         get
         {
-            return _adress;
+            return new Address(_address.Index, _address.Country,
+                _address.City, _address.Street, _address.Building, _address.Apartment);
         }
         set
         {
-            _validator.AssertStringOnLength(value, 500, nameof(value));
-            _adress = value;
+            
+            _address = value ?? new Address();
+            
         }
     }
 
@@ -62,11 +66,10 @@ public class Customer
     ///букв.</param>
     /// <param name="adress">Адрес доставки. Должен состоять только из
     ///букв.</param>
-    public Customer(string fullName, string adress)
+    public Customer(string fullName, Address address)
     {
         _id = IdGenerator.GetNextId();
         FullName = fullName;
-        Adress = adress;
-        
+        Address = address;
     }
 }

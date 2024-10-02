@@ -49,7 +49,7 @@ public class Address
         } 
         set 
         {
-            _validator.AssertNumberOnValue(value.ToString, 100000, 999999);
+            ///_validator.AssertNumberOnIntValue(value, 100000, 999999);
             _index = value;
         }
     }

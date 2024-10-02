@@ -73,6 +73,7 @@
             cityTextBox.Name = "cityTextBox";
             cityTextBox.Size = new Size(373, 28);
             cityTextBox.TabIndex = 11;
+            cityTextBox.TextChanged += cityTextBox_TextChanged;
             // 
             // apartmentTextBox
             // 
@@ -80,6 +81,7 @@
             apartmentTextBox.Name = "apartmentTextBox";
             apartmentTextBox.Size = new Size(194, 28);
             apartmentTextBox.TabIndex = 10;
+            apartmentTextBox.TextChanged += apartmentTextBox_TextChanged;
             // 
             // buildingTextBox
             // 
@@ -87,6 +89,7 @@
             buildingTextBox.Name = "buildingTextBox";
             buildingTextBox.Size = new Size(194, 28);
             buildingTextBox.TabIndex = 9;
+            buildingTextBox.TextChanged += buildingTextBox_TextChanged;
             // 
             // streetTextBox
             // 
@@ -94,6 +97,7 @@
             streetTextBox.Name = "streetTextBox";
             streetTextBox.Size = new Size(853, 28);
             streetTextBox.TabIndex = 8;
+            streetTextBox.TextChanged += streetTextBox_TextChanged;
             // 
             // countryTextBox
             // 
@@ -101,6 +105,7 @@
             countryTextBox.Name = "countryTextBox";
             countryTextBox.Size = new Size(300, 28);
             countryTextBox.TabIndex = 7;
+            countryTextBox.TextChanged += countryTextBox_TextChanged;
             // 
             // postIndexTextBox
             // 
@@ -108,6 +113,7 @@
             postIndexTextBox.Name = "postIndexTextBox";
             postIndexTextBox.Size = new Size(194, 28);
             postIndexTextBox.TabIndex = 6;
+            postIndexTextBox.TextChanged += postIndexTextBox_TextChanged;
             // 
             // apartmentlabel
             // 

@@ -32,8 +32,20 @@ class ValueValidator
         }
     }
 
-    internal void AssertNumberOnValue(Func<string> toString, int v1, int v2)
+    /// <summary>
+    /// Проверяет находится ли значение в заданном диапазоне
+    /// </summary>
+    /// <param name="value">Проверяемое значение.</param>
+    /// <param name="lessValue">Минимальное значение.</param>
+    /// <param name="moreValue">Максимальное значение.</param>
+    /// <exception cref="ArgumentException"></exception>
+    public void AssertNumberOnIntValue(int value, int lessValue, int moreValue)
     {
-        throw new NotImplementedException();
+        if (value < lessValue || value > moreValue)
+        {
+            throw new ArgumentException($"{value} должен быть больше {lessValue} и меньше {moreValue}.");
+        }
     }
+
+
 }

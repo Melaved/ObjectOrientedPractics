@@ -51,7 +51,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
 
             try
             {
-                // Проверяем значение в поле costField
+               
                 _validator.AssertNumberOnValue(double.Parse(costField.Text), 0, 100000);
 
                 Category category = (Category)comboBoxCategories.SelectedItem;

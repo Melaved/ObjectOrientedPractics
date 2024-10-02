@@ -37,8 +37,8 @@
             splitContainer2 = new SplitContainer();
             SelectedCustomer = new GroupBox();
             addressControl1 = new Controls.AddressControl();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            fullNameTextBox = new TextBox();
+            idTextBox = new TextBox();
             FullNameAdress = new Label();
             IdLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -112,6 +112,7 @@
             AddButton.TabIndex = 0;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = false;
+            AddButton.Click += AddButton_Click;
             // 
             // RemoveButton
             // 
@@ -149,14 +150,13 @@
             splitContainer2.Size = new Size(741, 721);
             splitContainer2.SplitterDistance = 239;
             splitContainer2.TabIndex = 0;
-            splitContainer2.SplitterMoved += splitContainer2_SplitterMoved;
             // 
             // SelectedCustomer
             // 
             SelectedCustomer.BackColor = SystemColors.ControlLightLight;
             SelectedCustomer.Controls.Add(addressControl1);
-            SelectedCustomer.Controls.Add(textBox2);
-            SelectedCustomer.Controls.Add(textBox1);
+            SelectedCustomer.Controls.Add(fullNameTextBox);
+            SelectedCustomer.Controls.Add(idTextBox);
             SelectedCustomer.Controls.Add(FullNameAdress);
             SelectedCustomer.Controls.Add(IdLabel);
             SelectedCustomer.Dock = DockStyle.Fill;
@@ -170,28 +170,26 @@
             // 
             // addressControl1
             // 
-            addressControl1.Location = new Point(-4, 132);
+            addressControl1.Location = new Point(6, 130);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(1083, 252);
             addressControl1.TabIndex = 4;
             // 
-            // textBox2
+            // fullNameTextBox
             // 
-            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Location = new Point(108, 81);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(400, 33);
-            textBox2.TabIndex = 3;
-            textBox2.TextChanged += textBox2_TextChanged;
+            fullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            fullNameTextBox.Location = new Point(108, 81);
+            fullNameTextBox.Name = "fullNameTextBox";
+            fullNameTextBox.Size = new Size(400, 33);
+            fullNameTextBox.TabIndex = 3;
             // 
-            // textBox1
+            // idTextBox
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(108, 34);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(1, 33);
-            textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
+            idTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            idTextBox.Location = new Point(108, 34);
+            idTextBox.Name = "idTextBox";
+            idTextBox.Size = new Size(1, 33);
+            idTextBox.TabIndex = 2;
             // 
             // FullNameAdress
             // 
@@ -236,6 +234,11 @@
             ResumeLayout(false);
         }
 
+        private void AddButton_Click1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private SplitContainer splitContainer1;
@@ -244,8 +247,8 @@
         private ListBox CustomerslistBox;
         private SplitContainer splitContainer2;
         private GroupBox SelectedCustomer;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox fullNameTextBox;
+        private TextBox idTextBox;
         private Label FullNameAdress;
         private Label IdLabel;
         private Button AddButton;

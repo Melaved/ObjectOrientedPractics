@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.View.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,39 +13,46 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomerTab : UserControl
     {
+        /// <summary>
+        /// Список элементов класса <see cref="Customer"/>
+        /// </summary>
+        private List<Customer> items = new List<Customer>();
+
+        private AddressControl addressControl;
+
         public CustomerTab()
         {
             InitializeComponent();
+            addressControl = new AddressControl(CustomerslistBox);
+            idTextBox.ReadOnly = true;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
+            string fullName = fullNameTextBox.Text;
+            Address address = addressControl.Address;
+            Customer newCustomer = new Customer(fullName, address);
 
+            // Добавление в список
+            items.Add(newCustomer);
+
+            // Обновление ListBox
+            UpdateListBox();
+
+            // Очистка полей
+            ClearFields();
+        }
+        private void UpdateListBox()
+        {
+            CustomerslistBox.DataSource = null;
+            CustomerslistBox.DataSource = items;
+            CustomerslistBox.DisplayMember = "Name";
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void ClearFields()
         {
-
-        }
-
-        private void RemoveButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addressControl1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addressControl1_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
+            fullNameTextBox.Clear();
+            addressControl.Address = new Address(); // Очищаем AddressControl
         }
     }
 }

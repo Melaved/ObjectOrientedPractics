@@ -12,20 +12,26 @@ namespace ObjectOrientedPractics.View.Controls
 {
     public partial class AddressControl : UserControl
     {
-      
 
+        ///private ListBox _targetListBox;
         private Address _address = new Address();
+
+        public AddressControl(ListBox targetListBox)
+        {
+            InitializeComponent();
+            ///_targetListBox = targetListBox;
+            UpdateUI();
+        }
 
         public AddressControl()
         {
-            InitializeComponent();
         }
 
         public Address Address
         {
             get
             {
-                
+
                 return new Address(_address.Index, _address.Country,
                     _address.City, _address.Street, _address.Building, _address.Apartment);
             }
@@ -44,6 +50,36 @@ namespace ObjectOrientedPractics.View.Controls
             streetTextBox.Text = _address.Street;
             buildingTextBox.Text = _address.Building;
             apartmentTextBox.Text = _address.Apartment;
+        }
+
+        private void streetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _address.Street = streetTextBox.Text;
+        }
+
+        private void countryTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _address.Country = countryTextBox.Text;
+        }
+
+        private void cityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _address.City = cityTextBox.Text;  
+        }
+
+        private void postIndexTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _address.Index = _address.Index;
+        }
+
+        private void buildingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _address.Building = buildingTextBox.Text;
+        }
+
+        private void apartmentTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _address.Apartment = apartmentTextBox.Text;
         }
     }
 }
