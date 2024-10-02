@@ -113,7 +113,7 @@ public class Address
         }
         set
         {
-            _validator.AssertStringOnLength(_building, 10, nameof(_building));
+            _validator.AssertStringOnLength(value, 10, nameof(_building));
             _building = value;
         }
     }

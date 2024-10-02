@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Xml.Linq;
 
 /// <summary>
 /// Хранит данные о покупателе.
@@ -48,14 +49,24 @@ public class Customer
     {
         get
         {
-            return new Address(_address.Index, _address.Country,
-                _address.City, _address.Street, _address.Building, _address.Apartment);
+            return _address;
         }
         set
         {
             
             _address = value ?? new Address();
             
+        }
+    }
+
+    /// <summary>
+    /// Возвращает отображение покупателя в меню.
+    /// </summary>
+    public string Display
+    {
+        get
+        {
+            return $"ID: {_id}, Name: {_fullname}";
         }
     }
 
@@ -70,6 +81,6 @@ public class Customer
     {
         _id = IdGenerator.GetNextId();
         FullName = fullName;
-        Address = address;
+        Address = address ?? new Address();
     }
 }

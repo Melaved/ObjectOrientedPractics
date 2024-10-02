@@ -28,7 +28,7 @@ class ValueValidator
     {
         if (value < lessValue || value > moreValue)
         {
-            throw new ArgumentException($"{value} должен быть больше {lessValue} и меньше {moreValue}.");
+            throw new ArgumentException($"{nameof(value)} должен быть больше {lessValue} и меньше {moreValue}.");
         }
     }
 

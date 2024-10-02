@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.ItemsTab
 {
@@ -36,39 +37,40 @@ namespace ObjectOrientedPractics.View.ItemsTab
             comboBoxCategories.DataSource = Enum.GetValues(typeof(Category));
 
             
-            nameField.Leave += nameField_Leave;
-            descriptionField.Leave += descriptionField_Leave;
-            costField.Leave += costField_Leave;
-            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
-            comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
+            //nameField.Leave += nameField_Leave;
+            //descriptionField.Leave += descriptionField_Leave;
+            //costField.Leave += costField_Leave;
+            //ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
+            //comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
+            //comboBoxCategories.Leave += comboBoxCategories_Leave;
 
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
-            string name = nameField.Text;
-            string info = descriptionField.Text;
-
+            
             try
             {
-               
-                _validator.AssertNumberOnValue(double.Parse(costField.Text), 0, 100000);
+                string name = nameField.Text;
+                string info = descriptionField.Text;
+  
+                if (comboBoxCategories.SelectedItem == null)
+                {
+                    throw new InvalidOperationException("Пожалуйста, выберите категорию.");
+                }
 
                 Category category = (Category)comboBoxCategories.SelectedItem;
+
                 Item newItem = new Item(name, info, double.Parse(costField.Text), category);
                 items.Add(newItem);
                 UpdateListBox();
                 ClearFields();
             }
-            catch (FormatException)
+            catch (Exception ex)
             {
-                MessageBox.Show("Пожалуйста, введите корректное числовое значение для стоимости.", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (ArgumentException ex)
-            {
+              
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-      
         }
 
         private void Remove_Click(object sender, EventArgs e)
@@ -130,6 +132,27 @@ namespace ObjectOrientedPractics.View.ItemsTab
         private void costField_Leave(object sender, EventArgs e)
         {
             ValidateCost();
+        }
+
+        private void comboBoxCategories_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                // Пример кода, который может вызвать исключение
+                if (comboBoxCategories.SelectedItem == null)
+                {
+                    throw new Exception("Выберите элемент из списка.");
+                }
+
+                // Здесь может быть ваш код
+                MessageBox.Show("Вы выбрали: " + comboBoxCategories.SelectedItem.ToString());
+            }
+            catch (Exception ex)
+            {
+                // Обработка исключения
+                MessageBox.Show(ex.Message);
+                comboBoxCategories.BackColor = System.Drawing.Color.Red; // Меняем цвет на красный
+            }
         }
 
         /// <summary>
@@ -198,24 +221,24 @@ namespace ObjectOrientedPractics.View.ItemsTab
                 selectedItem.Category = selectedCategory;
             }
         }
-        private void nameField_TextChanged(object sender, EventArgs e)
-        {
-            if (ItemsListBox.SelectedItem is Item selectedItem)
-            {
-                selectedItem.Name = nameField.Text;
-                ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
-            }
-        }
+        //private void nameField_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (ItemsListBox.SelectedItem is Item selectedItem)
+        //    {
+        //        selectedItem.Name = nameField.Text;
+        //        ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
+        //    }
+        //}
 
-        // Обработчик изменения стоимости
-        private void costField_TextChanged(object sender, EventArgs e)
-        {
-            if (ItemsListBox.SelectedItem is Item selectedItem && decimal.TryParse(costField.Text, out decimal cost))
-            {
-                selectedItem.Cost = (double)cost;
-                ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
-            }
-        }
+        //
+        //private void costField_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (ItemsListBox.SelectedItem is Item selectedItem && decimal.TryParse(costField.Text, out decimal cost))
+        //    {
+        //        selectedItem.Cost = (double)cost;
+        //        ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
+        //    }
+        //}
     }
 }
 

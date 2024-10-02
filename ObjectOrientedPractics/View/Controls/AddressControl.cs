@@ -13,18 +13,14 @@ namespace ObjectOrientedPractics.View.Controls
     public partial class AddressControl : UserControl
     {
 
-        ///private ListBox _targetListBox;
+        private ListBox _targetListBox;
         private Address _address = new Address();
 
         public AddressControl(ListBox targetListBox)
         {
             InitializeComponent();
-            ///_targetListBox = targetListBox;
+            _targetListBox = targetListBox;
             UpdateUI();
-        }
-
-        public AddressControl()
-        {
         }
 
         public Address Address
@@ -32,12 +28,11 @@ namespace ObjectOrientedPractics.View.Controls
             get
             {
 
-                return new Address(_address.Index, _address.Country,
-                    _address.City, _address.Street, _address.Building, _address.Apartment);
+                return _address;
             }
             set
             {
-                // Присваиваем новый адрес и обновляем интерфейс
+               
                 _address = value ?? new Address();
                 UpdateUI();
             }

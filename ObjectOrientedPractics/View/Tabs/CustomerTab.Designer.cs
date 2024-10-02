@@ -36,7 +36,7 @@
             CustomerslistBox = new ListBox();
             splitContainer2 = new SplitContainer();
             SelectedCustomer = new GroupBox();
-            addressControl1 = new Controls.AddressControl();
+            addressControl1 = new Controls.AddressControl(CustomerslistBox);
             fullNameTextBox = new TextBox();
             idTextBox = new TextBox();
             FullNameAdress = new Label();
