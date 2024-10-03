@@ -171,7 +171,7 @@
             comboBoxCategories.Size = new Size(198, 33);
             comboBoxCategories.TabIndex = 9;
             comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
-            comboBoxCategories.Leave += comboBoxCategories_Leave;
+            //comboBoxCategories.Leave += comboBoxCategories_Leave;
             // 
             // CategoryLabel
             // 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Address address1 = new Address();
             splitContainer1 = new SplitContainer();
             groupBox1 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -36,7 +37,7 @@
             CustomerslistBox = new ListBox();
             splitContainer2 = new SplitContainer();
             SelectedCustomer = new GroupBox();
-            addressControl1 = new Controls.AddressControl(CustomerslistBox);
+            addressControl1 = new Controls.AddressControl();
             fullNameTextBox = new TextBox();
             idTextBox = new TextBox();
             FullNameAdress = new Label();
@@ -136,6 +137,7 @@
             CustomerslistBox.Name = "CustomerslistBox";
             CustomerslistBox.Size = new Size(618, 593);
             CustomerslistBox.TabIndex = 1;
+            CustomerslistBox.SelectedIndexChanged += CustomerListBox_SelectedIndexChanged;
             // 
             // splitContainer2
             // 
@@ -170,7 +172,14 @@
             // 
             // addressControl1
             // 
-            addressControl1.Location = new Point(6, 130);
+            address1.Apartment = null;
+            address1.Building = null;
+            address1.City = null;
+            address1.Country = null;
+            address1.Index = 0;
+            address1.Street = null;
+            addressControl1.Address = address1;
+            addressControl1.Location = new Point(0, 131);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(1083, 252);
             addressControl1.TabIndex = 4;

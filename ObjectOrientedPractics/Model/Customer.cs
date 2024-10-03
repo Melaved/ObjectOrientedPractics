@@ -75,12 +75,12 @@ public class Customer
     /// </summary>
     /// <param name="fullName">Полное имя покупателя. Должно состоять только из
     ///букв.</param>
-    /// <param name="adress">Адрес доставки. Должен состоять только из
+    /// <param name="address">Адрес доставки. Должен состоять только из
     ///букв.</param>
     public Customer(string fullName, Address address)
     {
         _id = IdGenerator.GetNextId();
         FullName = fullName;
-        Address = address ?? new Address();
+        Address = address;
     }
 }

@@ -49,7 +49,7 @@ public class Address
         } 
         set 
         {
-            ///_validator.AssertNumberOnIntValue(value, 100000, 999999);
+            //_validator.AssertNumberOnIntValue(value, 100000, 999999,Index.ToString());
             _index = value;
         }
     }
@@ -65,7 +65,7 @@ public class Address
         }
         set
         {
-            _validator.AssertStringOnLength(value, 50, nameof(_country));
+            //_validator.AssertStringOnLength(value, 50, nameof(_country));
             _country = value; 
         }
     }
@@ -81,7 +81,7 @@ public class Address
         }
         set
         {
-            _validator.AssertStringOnLength(value, 50, nameof(_city));
+            //_validator.AssertStringOnLength(value, 50, nameof(_city));
             _city = value;
         }
     }
@@ -97,7 +97,7 @@ public class Address
         }
         set
         {
-            _validator.AssertStringOnLength(value, 100, nameof(_street));
+           // _validator.AssertStringOnLength(value, 100, nameof(_street));
             _street = value;
         }
     }
@@ -113,7 +113,7 @@ public class Address
         }
         set
         {
-            _validator.AssertStringOnLength(value, 10, nameof(_building));
+            //_validator.AssertStringOnLength(value, 10, nameof(_building));
             _building = value;
         }
     }
@@ -129,7 +129,7 @@ public class Address
         }
         set
         {
-            _validator.AssertStringOnLength(value,10, nameof(_apartment));
+            //_validator.AssertStringOnLength(value,10, nameof(_apartment));
             _apartment = value;
         }
     }
@@ -158,6 +158,21 @@ public class Address
     /// </summary>
     public Address()
     {
-
+        Index = 0;
+        Country = "";
+        City = "";
+        Street = "";
+        Building = "";
+        Apartment = "";
     }
+
+    //public Address(Address address)
+    //{
+    //    this.Index = address.Index;
+    //    this.Country = address.Country;
+    //    this.City = address.City;
+    //    this.Street = address.Street;
+    //    this.Building = address.Building;
+    //    this.Apartment = address.Apartment;
+    //}
 }

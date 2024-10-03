@@ -100,7 +100,7 @@ public class Item
         }
         set
         {
-            _validator.AssertNumberOnValue(value, 0, 100000);
+            _validator.AssertNumberOnValue(value, 0, 100000,Cost.ToString());
             _cost = value;
         }
     }

@@ -35,13 +35,14 @@ namespace ObjectOrientedPractics.View.ItemsTab
             InitializeComponent();
             IDfield.ReadOnly = true;
             comboBoxCategories.DataSource = Enum.GetValues(typeof(Category));
+            comboBoxCategories.SelectedIndex = -1;
 
-            
-            //nameField.Leave += nameField_Leave;
-            //descriptionField.Leave += descriptionField_Leave;
-            //costField.Leave += costField_Leave;
-            //ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
-            //comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
+
+            nameField.Leave += nameField_Leave;
+            descriptionField.Leave += descriptionField_Leave;
+            costField.Leave += costField_Leave;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
+            comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
             //comboBoxCategories.Leave += comboBoxCategories_Leave;
 
         }
@@ -49,15 +50,10 @@ namespace ObjectOrientedPractics.View.ItemsTab
         private void Add_Click(object sender, EventArgs e)
         {
             
-            try
-            {
                 string name = nameField.Text;
                 string info = descriptionField.Text;
   
-                if (comboBoxCategories.SelectedItem == null)
-                {
-                    throw new InvalidOperationException("Пожалуйста, выберите категорию.");
-                }
+              
 
                 Category category = (Category)comboBoxCategories.SelectedItem;
 
@@ -65,12 +61,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
                 items.Add(newItem);
                 UpdateListBox();
                 ClearFields();
-            }
-            catch (Exception ex)
-            {
-              
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void Remove_Click(object sender, EventArgs e)
@@ -134,26 +125,26 @@ namespace ObjectOrientedPractics.View.ItemsTab
             ValidateCost();
         }
 
-        private void comboBoxCategories_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                // Пример кода, который может вызвать исключение
-                if (comboBoxCategories.SelectedItem == null)
-                {
-                    throw new Exception("Выберите элемент из списка.");
-                }
+        //private void comboBoxCategories_Leave(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Пример кода, который может вызвать исключение
+        //        if (comboBoxCategories.SelectedItem == null)
+        //        {
+        //            throw new Exception("Выберите элемент из списка.");
+        //        }
 
-                // Здесь может быть ваш код
-                MessageBox.Show("Вы выбрали: " + comboBoxCategories.SelectedItem.ToString());
-            }
-            catch (Exception ex)
-            {
-                // Обработка исключения
-                MessageBox.Show(ex.Message);
-                comboBoxCategories.BackColor = System.Drawing.Color.Red; // Меняем цвет на красный
-            }
-        }
+        //        // Здесь может быть ваш код
+        //        MessageBox.Show("Вы выбрали: " + comboBoxCategories.SelectedItem.ToString());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Обработка исключения
+        //        MessageBox.Show(ex.Message);
+        //        comboBoxCategories.BackColor = System.Drawing.Color.Red; // Меняем цвет на красный
+        //    }
+        //}
 
         /// <summary>
         /// Проверяет корректность введенного имени товара.
@@ -198,7 +189,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
             {
                 try
                 {
-                    _validator.AssertNumberOnValue(costValue, 0, 100000);
+                    _validator.AssertNumberOnValue(costValue, 0, 100000,costValue.ToString());
                     costField.BackColor = System.Drawing.Color.White;
                 }
                 catch (ArgumentException ex)

@@ -62,53 +62,61 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Список элементов класса <see cref="Customer"/>
         /// </summary>
-        private List<Customer> items = new List<Customer>();
+        private List<Customer> customers = new List<Customer>();
 
         private AddressControl addressControl;
 
         public CustomerTab()
         {
             InitializeComponent();
-            addressControl = new AddressControl(CustomerslistBox);
-            idTextBox.ReadOnly = true; // Поле ID только для чтения
+            addressControl = new AddressControl();
+            idTextBox.ReadOnly = true; 
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            string fullName = fullNameTextBox.Text.Trim(); // Удаляем лишние пробелы
-            Address address = new Address();
+            string fullName = fullNameTextBox.Text;
 
-            // Проверка на пустое имя
             if (string.IsNullOrWhiteSpace(fullName))
             {
-                MessageBox.Show("Полное имя не может быть пустым.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Полное имя покупателя не может быть пустым.");
                 return;
             }
 
-            try
+            Address address = addressControl.Address;
+
+            if (address == null)
             {
-                Customer newCustomer = new Customer(fullName, address);
-                items.Add(newCustomer);
-                UpdateListBox();
-                ClearFields();
+                MessageBox.Show("Адрес доставки не может быть пустым.");
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при добавлении клиента: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            Customer newCustomer = new Customer(fullName, address);
+            customers.Add(newCustomer);
+
+            UpdateListBox();
+            ClearFields();
         }
 
         private void UpdateListBox()
         {
-            CustomerslistBox.DataSource = null; // Сбрасываем источник данных
-            CustomerslistBox.DataSource = items; // Устанавливаем новый источник данных
-            CustomerslistBox.DisplayMember = "Display"; // Указываем, какое свойство отображать
+            CustomerslistBox.DataSource = null;
+            CustomerslistBox.DataSource = customers; 
+            CustomerslistBox.DisplayMember = "Display"; 
         }
 
         private void ClearFields()
         {
-            fullNameTextBox.Clear(); // Очищаем текстовое поле имени
-            addressControl.Address = new Address(); // Очищаем AddressControl
+            fullNameTextBox.Clear(); 
+            addressControl.ClearFields(); 
+        }
+        private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CustomerslistBox.SelectedItem is Customer selectedCustomer)
+            {
+                fullNameTextBox.Text = selectedCustomer.FullName;
+                addressControl.Address = selectedCustomer.Address;
+            }
         }
     }
 }
