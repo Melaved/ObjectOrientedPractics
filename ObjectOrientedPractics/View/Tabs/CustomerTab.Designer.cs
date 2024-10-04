@@ -193,7 +193,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(462, 33);
             textBox2.TabIndex = 3;
-            textBox2.TextChanged += textBox2_TextChanged;
+            //textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -201,7 +201,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(226, 33);
             textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
+            //textBox1.TextChanged += textBox1_TextChanged;
             // 
             // FullNameAdress
             // 

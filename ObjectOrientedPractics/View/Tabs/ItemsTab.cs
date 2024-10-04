@@ -33,11 +33,6 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             InitializeComponent();
             IDfield.ReadOnly = true;
-
-            // Привязка событий
-            nameField.Leave += nameField_Leave;
-            descriptionField.Leave += descriptionField_Leave;
-            costField.Leave += costField_Leave;
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -189,10 +184,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
             return value > 0.0 && value < 100000.0;
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 
