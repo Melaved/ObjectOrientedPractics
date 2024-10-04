@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         /// <summary>
         /// Список элементов класса <see cref="Item"/>
         /// </summary>
-        private List<Item> items = new List<Item>();
+        private List<Item> _items = new List<Item>();
 
         /// <summary>
         /// Переменная класса <see cref="ValueValidator"/>, хранящего метод валидации строк
@@ -63,7 +63,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             if (ItemsListBox.SelectedItem is Item selectedItem)
             {
-                items.Remove(selectedItem);
+                _items.Remove(selectedItem);
                 UpdateListBox();
                 ClearFields();
             }
@@ -90,7 +90,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         private void UpdateListBox()
         {
             ItemsListBox.DataSource = null;
-            ItemsListBox.DataSource = items;
+            ItemsListBox.DataSource = _items;
             ItemsListBox.DisplayMember = "Display";
         }
 
