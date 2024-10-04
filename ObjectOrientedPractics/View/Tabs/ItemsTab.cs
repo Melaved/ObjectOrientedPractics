@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         /// <summary>
         /// Переменная класса <see cref="ValueValidator"/>, хранящего метод валидации строк
         /// </summary>
-        private ValueValidator validator = new ValueValidator();
+        private ValueValidator _validator = new ValueValidator();
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="ItemsTab"/> и настраивает события.
@@ -48,8 +48,11 @@ namespace ObjectOrientedPractics.View.ItemsTab
                     throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
                 }
 
+
                 Item newItem = new Item(name, info, cost);
-                items.Add(newItem);
+                _items.Add(newItem);
+               
+
                 UpdateListBox();
                 ClearFields();
             }
@@ -125,7 +128,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                validator.AssertStringOnLength(nameField.Text, 200, nameof(nameField));
+                _validator.AssertStringOnLength(nameField.Text, 200, nameof(nameField));
                 nameField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
@@ -142,7 +145,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                validator.AssertStringOnLength(descriptionField.Text, 1000, nameof(descriptionField));
+                _validator.AssertStringOnLength(descriptionField.Text, 1000, nameof(descriptionField));
                 descriptionField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
