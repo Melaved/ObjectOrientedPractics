@@ -37,7 +37,7 @@
             CustomerslistBox = new ListBox();
             splitContainer2 = new SplitContainer();
             SelectedCustomer = new GroupBox();
-            addressControl1 = new Controls.AddressControl();
+            addressControl = new Controls.AddressControl();
             fullNameTextBox = new TextBox();
             idTextBox = new TextBox();
             FullNameAdress = new Label();
@@ -156,7 +156,7 @@
             // SelectedCustomer
             // 
             SelectedCustomer.BackColor = SystemColors.ControlLightLight;
-            SelectedCustomer.Controls.Add(addressControl1);
+            SelectedCustomer.Controls.Add(addressControl);
             SelectedCustomer.Controls.Add(fullNameTextBox);
             SelectedCustomer.Controls.Add(idTextBox);
             SelectedCustomer.Controls.Add(FullNameAdress);
@@ -170,19 +170,19 @@
             SelectedCustomer.TabStop = false;
             SelectedCustomer.Text = "Selected Customer";
             // 
-            // addressControl1
+            // addressControl
             // 
-            address1.Apartment = null;
-            address1.Building = null;
-            address1.City = null;
-            address1.Country = null;
-            address1.Index = 0;
-            address1.Street = null;
-            addressControl1.Address = address1;
-            addressControl1.Location = new Point(0, 131);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(1083, 252);
-            addressControl1.TabIndex = 4;
+            //address1.Apartment = null;
+            //address1.Building = null;
+            //address1.City = null;
+            //address1.Country = null;
+            //address1.Index = 0;
+            //address1.Street = null;
+            //addressControl.Address = address1;
+            addressControl.Location = new Point(0, 131);
+            addressControl.Name = "addressControl";
+            addressControl.Size = new Size(1083, 252);
+            addressControl.TabIndex = 4;
             // 
             // fullNameTextBox
             // 
@@ -243,10 +243,7 @@
             ResumeLayout(false);
         }
 
-        private void AddButton_Click1(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         #endregion
 
@@ -262,6 +259,6 @@
         private Label IdLabel;
         private Button AddButton;
         private Button RemoveButton;
-        private Controls.AddressControl addressControl1;
+        private Controls.AddressControl addressControl;
     }
 }

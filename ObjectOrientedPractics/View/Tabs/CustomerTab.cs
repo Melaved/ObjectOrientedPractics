@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -62,38 +63,30 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Список элементов класса <see cref="Customer"/>
         /// </summary>
-        private List<Customer> customers = new List<Customer>();
+        private List<Customer> Customers = new List<Customer>();
 
-        private AddressControl addressControl;
+        
 
         public CustomerTab()
         {
             InitializeComponent();
-            addressControl = new AddressControl();
-            idTextBox.ReadOnly = true; 
+           
+            idTextBox.ReadOnly = true;
+           
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             string fullName = fullNameTextBox.Text;
-
+            Address address = addressControl.Address;
             if (string.IsNullOrWhiteSpace(fullName))
             {
                 MessageBox.Show("Полное имя покупателя не может быть пустым.");
                 return;
             }
 
-            Address address = addressControl.Address;
-
-            if (address == null)
-            {
-                MessageBox.Show("Адрес доставки не может быть пустым.");
-                return;
-            }
-
             Customer newCustomer = new Customer(fullName, address);
-            customers.Add(newCustomer);
-
+            Customers.Add(newCustomer);
             UpdateListBox();
             ClearFields();
         }
@@ -101,22 +94,25 @@ namespace ObjectOrientedPractics.View.Tabs
         private void UpdateListBox()
         {
             CustomerslistBox.DataSource = null;
-            CustomerslistBox.DataSource = customers; 
+            CustomerslistBox.DataSource = Customers; 
             CustomerslistBox.DisplayMember = "Display"; 
         }
 
         private void ClearFields()
         {
             fullNameTextBox.Clear(); 
-            addressControl.ClearFields(); 
+           
         }
         private void CustomerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CustomerslistBox.SelectedItem is Customer selectedCustomer)
             {
                 fullNameTextBox.Text = selectedCustomer.FullName;
-                addressControl.Address = selectedCustomer.Address;
+               
             }
         }
+
+
+        
     }
 }
