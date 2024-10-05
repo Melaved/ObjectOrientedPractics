@@ -83,4 +83,9 @@ public class Customer
         FullName = fullName;
         Address = address;
     }
+
+
+
+
+    public Customer() { }
 }

@@ -166,13 +166,13 @@ public class Address
         Apartment = "";
     }
 
-    //public Address(Address address)
-    //{
-    //    this.Index = address.Index;
-    //    this.Country = address.Country;
-    //    this.City = address.City;
-    //    this.Street = address.Street;
-    //    this.Building = address.Building;
-    //    this.Apartment = address.Apartment;
-    //}
+    public void GiveAddress(Customer address)
+    {
+        this.Index = address.Index;
+        this.Country = address.Country;
+        this.City = address.City;
+        this.Street = address.Street;
+        this.Building = address.Building;
+        this.Apartment = address.Apartment;
+    }
 }
