@@ -157,7 +157,6 @@
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Selected Item";
-           
             // 
             // descriptionField
             // 
@@ -166,6 +165,7 @@
             descriptionField.Size = new Size(634, 243);
             descriptionField.TabIndex = 7;
             descriptionField.Text = "";
+            //descriptionField.TextChanged += descriptionField_TextChanged;
             descriptionField.Leave += descriptionField_Leave;
             // 
             // description
@@ -185,6 +185,7 @@
             nameField.Size = new Size(634, 156);
             nameField.TabIndex = 5;
             nameField.Text = "";
+            //nameField.TextChanged += nameField_TextChanged;
             nameField.Leave += nameField_Leave;
             // 
             // name
@@ -203,6 +204,7 @@
             costField.Name = "costField";
             costField.Size = new Size(198, 32);
             costField.TabIndex = 3;
+            //costField.TextChanged += costField_TextChanged;
             costField.Leave += costField_Leave;
             // 
             // cost

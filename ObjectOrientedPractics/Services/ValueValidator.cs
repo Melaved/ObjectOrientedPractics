@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Проверяет валидацию строк
 /// </summary>
-class ValueValidator
+static class ValueValidator
 {
     /// <summary>
     /// Проверяет, что строка не превышает максимальное количество символов.
@@ -10,7 +10,7 @@ class ValueValidator
     /// <param name="maxLength">Максимальное количество символов для свойства или объекта</param>
     /// <param name="propertyName">Имя свойства или объекта, которое
     ///подлежит проверке.</param>
-    public void AssertStringOnLength(string value, int maxLength, string propertyName)
+    public static void AssertStringOnLength(string value, int maxLength, string propertyName)
     {
         if (value.Length > maxLength) {
             throw new ArgumentException($"{propertyName} должен быть меньше {maxLength} символов.");

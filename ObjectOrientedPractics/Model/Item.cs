@@ -45,10 +45,7 @@ class Item
         }
     }
 
-    /// <summary>
-    /// Переменная класса, хранящего метод валидации строк
-    /// </summary>
-    private ValueValidator _validator = new ValueValidator();
+ 
 
     /// <summary>
     /// Возвращает и задает название предмета(товара).
@@ -61,7 +58,7 @@ class Item
         }
         set
         {
-            _validator.AssertStringOnLength(value, 200, nameof(_name));
+            ValueValidator.AssertStringOnLength(value, 200, nameof(_name));
             _name = value;
         }
     }
@@ -77,7 +74,7 @@ class Item
         }
         set
         {
-            _validator.AssertStringOnLength(value, 1000, nameof(_info));
+            ValueValidator.AssertStringOnLength(value, 1000, nameof(_info));
             _info = value;
         }
     }
@@ -133,6 +130,13 @@ class Item
 
         Cost = cost;
     }
+
+    public Item()
+    {
+
+    }
+    
+     
 }
 
 

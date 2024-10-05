@@ -16,6 +16,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
     /// </summary>
     public partial class ItemsTab : UserControl
     {
+        //private Item _item = new Item();
         /// <summary>
         /// Список элементов класса <see cref="Item"/>
         /// </summary>
@@ -27,7 +28,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         private ValueValidator _validator = new ValueValidator();
 
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="ItemsTab"/> и настраивает события.
+        /// Инициализирует новый экземпляр <see cref="ItemsTab"/> 
         /// </summary>
         public ItemsTab()
         {
@@ -39,27 +40,11 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             string name = nameField.Text;
             string info = descriptionField.Text;
-            double cost;
-
-            try
-            {
-                if (!double.TryParse(costField.Text, out cost) || !IsCostValid(cost))
-                {
-                    throw new ArgumentException("Стоимость должна быть больше 0 и меньше 100000.");
-                }
-
-
-                Item newItem = new Item(name, info, cost);
-                _items.Add(newItem);
-               
-
-                UpdateListBox();
-                ClearFields();
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            double cost = double.Parse(costField.Text);
+            Item newItem = new Item(name, info, cost);
+            _items.Add(newItem);
+            UpdateListBox();
+            ClearFields();
         }
 
         private void Remove_Click(object sender, EventArgs e)
@@ -187,9 +172,43 @@ namespace ObjectOrientedPractics.View.ItemsTab
             return value > 0.0 && value < 100000.0;
         }
 
-        
+       
     }
 }
+
+
+//private void nameField_TextChanged(object sender, EventArgs e)
+//{
+//    ValidateName();
+//    _item.Name = nameField.Text;
+//}
+
+//private void descriptionField_TextChanged(object sender, EventArgs e)
+//{
+//    ValidateInfo();
+//    _item.Info = descriptionField.Text;
+//}
+
+//private void costField_TextChanged(object sender, EventArgs e)
+//{
+
+//    try
+//    {
+//        // Проверка на наличие букв в поле
+//        if (!double.TryParse(costField.Text, out double cost))
+//        {
+//            throw new FormatException("Введите число без букв.");
+//        }
+
+//        _item.Cost = cost;
+//    }
+//    catch (FormatException ex)
+//    {
+//        // Сообщение пользователю
+//        MessageBox.Show(ex.Message, "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//    }
+//    ValidateCost();
+//}
 
 //namespace ObjectOrientedPractics.View.ItemsTab
 //{
