@@ -22,10 +22,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         /// </summary>
         private List<Item> items = new List<Item>();
 
-        /// <summary>
-        /// Переменная класса <see cref="ValueValidator"/>, хранящего метод валидации строк
-        /// </summary>
-        private ValueValidator _validator = new ValueValidator();
+     
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="ItemsTab"/> и настраивает события.
@@ -125,26 +122,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
             ValidateCost();
         }
 
-        //private void comboBoxCategories_Leave(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Пример кода, который может вызвать исключение
-        //        if (comboBoxCategories.SelectedItem == null)
-        //        {
-        //            throw new Exception("Выберите элемент из списка.");
-        //        }
-
-        //        // Здесь может быть ваш код
-        //        MessageBox.Show("Вы выбрали: " + comboBoxCategories.SelectedItem.ToString());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Обработка исключения
-        //        MessageBox.Show(ex.Message);
-        //        comboBoxCategories.BackColor = System.Drawing.Color.Red; // Меняем цвет на красный
-        //    }
-        //}
+       
 
         /// <summary>
         /// Проверяет корректность введенного имени товара.
@@ -153,7 +131,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                _validator.AssertStringOnLength(nameField.Text, 200, nameof(nameField));
+                ValueValidator.AssertStringOnLength(nameField.Text, 200, "Name");
                 nameField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
@@ -170,7 +148,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             try
             {
-                _validator.AssertStringOnLength(descriptionField.Text, 1000, nameof(descriptionField));
+                ValueValidator.AssertStringOnLength(descriptionField.Text, 1000, "Descriprion");
                 descriptionField.BackColor = System.Drawing.Color.White;
             }
             catch (ArgumentException ex)
@@ -189,7 +167,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
             {
                 try
                 {
-                    _validator.AssertNumberOnValue(costValue, 0, 100000,costValue.ToString());
+                    ValueValidator.AssertNumberOnValue(costValue, 0, 100000,"Cost");
                     costField.BackColor = System.Drawing.Color.White;
                 }
                 catch (ArgumentException ex)
@@ -212,24 +190,8 @@ namespace ObjectOrientedPractics.View.ItemsTab
                 selectedItem.Category = selectedCategory;
             }
         }
-        //private void nameField_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (ItemsListBox.SelectedItem is Item selectedItem)
-        //    {
-        //        selectedItem.Name = nameField.Text;
-        //        ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
-        //    }
-        //}
 
-        //
-        //private void costField_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (ItemsListBox.SelectedItem is Item selectedItem && decimal.TryParse(costField.Text, out decimal cost))
-        //    {
-        //        selectedItem.Cost = (double)cost;
-        //        ItemsListBox.Items[ItemsListBox.SelectedIndex] = selectedItem; // Обновляем элемент в ListBox
-        //    }
-        //}
+        
     }
 }
 

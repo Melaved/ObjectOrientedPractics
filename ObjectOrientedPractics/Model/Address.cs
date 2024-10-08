@@ -34,11 +34,6 @@ public class Address
     private string _apartment;
 
     /// <summary>
-    /// Переменная класса, хранящего метод валидации строк
-    /// </summary>
-    private ValueValidator _validator = new ValueValidator();
-
-    /// <summary>
     /// Возвращает и задает номер индекса покупателя.
     /// </summary>
     public int Index 
@@ -49,7 +44,7 @@ public class Address
         } 
         set 
         {
-            //_validator.AssertNumberOnIntValue(value, 100000, 999999,Index.ToString());
+            ValueValidator.AssertNumberOnValue(value, 100000, 999999,"Index");
             _index = value;
         }
     }
@@ -65,7 +60,7 @@ public class Address
         }
         set
         {
-            //_validator.AssertStringOnLength(value, 50, nameof(_country));
+            ValueValidator.AssertStringOnLength(value, 50, "Country");
             _country = value; 
         }
     }
@@ -81,7 +76,7 @@ public class Address
         }
         set
         {
-            //_validator.AssertStringOnLength(value, 50, nameof(_city));
+            ValueValidator.AssertStringOnLength(value, 50, "City");
             _city = value;
         }
     }
@@ -97,7 +92,7 @@ public class Address
         }
         set
         {
-           // _validator.AssertStringOnLength(value, 100, nameof(_street));
+            ValueValidator.AssertStringOnLength(value, 100, Street);
             _street = value;
         }
     }
@@ -113,7 +108,7 @@ public class Address
         }
         set
         {
-            //_validator.AssertStringOnLength(value, 10, nameof(_building));
+            ValueValidator.AssertStringOnLength(value, 10, Building);
             _building = value;
         }
     }
@@ -129,7 +124,7 @@ public class Address
         }
         set
         {
-            //_validator.AssertStringOnLength(value,10, nameof(_apartment));
+            ValueValidator.AssertStringOnLength(value,10, "Apartment");
             _apartment = value;
         }
     }
@@ -158,7 +153,7 @@ public class Address
     /// </summary>
     public Address()
     {
-        Index = 0;
+        Index = 100000;
         Country = "";
         City = "";
         Street = "";
@@ -166,13 +161,4 @@ public class Address
         Apartment = "";
     }
 
-    public void GiveAddress(Customer address)
-    {
-        this.Index = address.Index;
-        this.Country = address.Country;
-        this.City = address.City;
-        this.Street = address.Street;
-        this.Building = address.Building;
-        this.Apartment = address.Apartment;
-    }
 }

@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Генерирует значения для переменных _id.
 /// </summary>
-class IdGenerator
+public class IdGenerator
 {
     /// <summary>
     /// Значение следующего идентификатора.

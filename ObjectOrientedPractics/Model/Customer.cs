@@ -21,10 +21,7 @@ public class Customer
     /// </summary>
     private Address _address = new Address();
 
-    /// <summary>
-    /// Переменная валидатор для строк.
-    /// </summary>
-    private ValueValidator _validator = new ValueValidator();
+
 
     /// <summary>
     /// Возвращает и задает полное имя покупателя.
@@ -37,15 +34,26 @@ public class Customer
         }
         set 
         {
-            _validator.AssertStringOnLength(value, 200, nameof(_fullname));
+            ValueValidator.AssertStringOnLength(value, 200, "FullName");
             _fullname = value; 
+        }
+    }
+
+    /// <summary>
+    /// Возвращает идентификатор.
+    /// </summary>
+    public int Id
+    {
+        get
+        {
+            return _id;
         }
     }
 
     /// <summary>
     /// Возвращает и задает адрес доставки.
     /// </summary>
-    public Address Address
+    public Address CustomerAddress
     {
         get
         {
@@ -81,11 +89,16 @@ public class Customer
     {
         _id = IdGenerator.GetNextId();
         FullName = fullName;
-        Address = address;
+        CustomerAddress = address;
     }
 
 
 
 
-    public Customer() { }
+    public Customer()
+    {
+        _id = IdGenerator.GetNextId();
+        FullName = string.Empty;
+        CustomerAddress = new Address();
+    }
 }

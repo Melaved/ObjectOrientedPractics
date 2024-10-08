@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Проверяет валидацию строк
 /// </summary>
-class ValueValidator
+static class ValueValidator
 {
     /// <summary>
     /// Проверяет, что строка не превышает максимальное количество символов.
@@ -10,7 +10,7 @@ class ValueValidator
     /// <param name="maxLength">Максимальное количество символов для свойства или объекта</param>
     /// <param name="propertyName">Имя свойства или объекта, которое
     ///подлежит проверке.</param>
-    public void AssertStringOnLength(string value, int maxLength, string propertyName)
+    public static void AssertStringOnLength(string value, int maxLength, string propertyName)
     {
         if (value.Length > maxLength) 
         {
@@ -25,28 +25,11 @@ class ValueValidator
     /// <param name="lessValue">Минимальное значение.</param>
     /// <param name="moreValue">Максимальное значение.</param>
     /// <exception cref="ArgumentException"></exception>
-    public void AssertNumberOnValue(double value, double lessValue, double moreValue, string propertyName)
+    public static void AssertNumberOnValue(double value, int lessValue, int moreValue, string propertyName)
     {
         if (value < lessValue || value > moreValue)
         {
             throw new ArgumentException($"{nameof(propertyName)} должен быть больше {lessValue} и меньше {moreValue}.");
         }
     }
-
-    /// <summary>
-    /// Проверяет находится ли значение в заданном диапазоне
-    /// </summary>
-    /// <param name="value">Проверяемое значение.</param>
-    /// <param name="lessValue">Минимальное значение.</param>
-    /// <param name="moreValue">Максимальное значение.</param>
-    /// <exception cref="ArgumentException"></exception>
-    public void AssertNumberOnIntValue(int value, int lessValue, int moreValue, string propertyName)
-    {
-        if (value < lessValue || value > moreValue)
-        {
-            throw new ArgumentException($"{propertyName} должен быть больше {lessValue} и меньше {moreValue}.");
-        }
-    }
-
-
 }

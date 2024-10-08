@@ -126,7 +126,8 @@
             RemoveButton.TabIndex = 1;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = false;
-            // 
+            RemoveButton.Click += RemoveButton_Click;
+            //
             // CustomerslistBox
             // 
             CustomerslistBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -137,7 +138,8 @@
             CustomerslistBox.Name = "CustomerslistBox";
             CustomerslistBox.Size = new Size(618, 593);
             CustomerslistBox.TabIndex = 1;
-            CustomerslistBox.SelectedIndexChanged += CustomerListBox_SelectedIndexChanged;
+            CustomerslistBox.SelectedIndexChanged += CustomerslistBox_SelectedIndexChanged;
+            CustomerslistBox.DoubleClick += CustomerslistBox_DoubleClick;
             // 
             // splitContainer2
             // 
@@ -191,6 +193,7 @@
             fullNameTextBox.Name = "fullNameTextBox";
             fullNameTextBox.Size = new Size(400, 33);
             fullNameTextBox.TabIndex = 3;
+            fullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
             // idTextBox
             // 
@@ -243,7 +246,22 @@
             ResumeLayout(false);
         }
 
-        
+        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CustomerslistBox_DoubleClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         #endregion
 

@@ -52,10 +52,7 @@ public class Item
         }
     }
 
-    /// <summary>
-    /// Переменная класса, хранящего метод валидации строк
-    /// </summary>
-    private ValueValidator _validator = new ValueValidator();
+    
 
     /// <summary>
     /// Возвращает и задает название предмета(товара).
@@ -68,7 +65,7 @@ public class Item
         }
         set
         {
-            _validator.AssertStringOnLength(value, 200, nameof(_name));
+            ValueValidator.AssertStringOnLength(value, 200, "Name");
             _name = value;
         }
     }
@@ -84,7 +81,7 @@ public class Item
         }
         set
         {
-            _validator.AssertStringOnLength(value, 1000, nameof(_info));
+            ValueValidator.AssertStringOnLength(value, 1000, "Info");
             _info = value;
         }
     }
@@ -100,7 +97,7 @@ public class Item
         }
         set
         {
-            _validator.AssertNumberOnValue(value, 0, 100000,Cost.ToString());
+            ValueValidator.AssertNumberOnValue(value, 0, 100000,"Cost");
             _cost = value;
         }
     }
@@ -138,84 +135,6 @@ public class Item
 }
 
 
-
-
-
-
-//using System.Xml.Linq;
-
-///// <summary>
-///// Хранит данные о товаре.
-///// </summary>
-//class Item
-//{
-//    /// <summary>
-//    /// Уникальный идентификатор для всех объектов данного класса.
-//    /// </summary>
-//    private readonly int _id;
-
-//    /// <summary>
-//    /// Уникальное имя товара.
-//    /// </summary>
-//    internal string _name { get; private set; }
-
-//    /// <summary>
-//    /// Информация о товаре.
-//    /// </summary>
-//    internal string _info { get; private set; }
-
-//    /// <summary>
-//    /// Стоимость товара.
-//    /// </summary>
-//    internal double _cost { get; private set; }
-
-//    /// <summary>
-//    /// Отображение товара в меню.
-//    /// </summary>
-//    public string Display
-//    {
-//        get
-//        {
-//            return $"ID: {_id}, Name: {_name}, Cost {_cost}";
-//        }
-//    }
-//    public int Id
-//    {
-//        get
-//        {
-//            return _id;
-//        }
-//    }
-
-//    /// <summary>
-//    /// Переменная класса, хранящего метод валидации строк
-//    /// </summary>
-//    private ValueValidator _validator = new ValueValidator();
-
-//    /// <summary>
-//    /// Создаёт экземпляр класса <see cref="Item"/>.
-//    /// </summary>
-//    /// <param name="name">Имя Должно состоять только из
-//    ///букв.</param>
-//    /// <param name="info">Информация. Должна состоять только из
-//    ///букв.</param>
-//    /// <param name="cost">Стоимость. Должна быть вещественным числом.
-//    /// </param>
-//    public Item(string name, string info, double cost)
-//    {
-//        _id = IdGenerator.GetNextId();
-
-//        _validator.AssertStringOnLength(name, 200, nameof(name));
-
-//        _validator.AssertStringOnLength(info, 1000, nameof(name));
-
-//        _name = name;
-
-//        _info = info;
-
-//        _cost = cost;
-//    }
-//}
 
 
 
