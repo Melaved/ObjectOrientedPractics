@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         /// <summary>
         /// Список элементов класса <see cref="Item"/>
         /// </summary>
-        private List<Item> items = new List<Item>();
+        private List<Item> _items = new List<Item>();
 
      
 
@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
                 Category category = (Category)comboBoxCategories.SelectedItem;
 
                 Item newItem = new Item(name, info, double.Parse(costField.Text), category);
-                items.Add(newItem);
+                _items.Add(newItem);
                 UpdateListBox();
                 ClearFields();
             
@@ -65,7 +65,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         {
             if (ItemsListBox.SelectedItem is Item selectedItem)
             {
-                items.Remove(selectedItem);
+                _items.Remove(selectedItem);
                 UpdateListBox();
                 ClearFields();
             }
@@ -93,7 +93,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
         private void UpdateListBox()
         {
             ItemsListBox.DataSource = null;
-            ItemsListBox.DataSource = items;
+            ItemsListBox.DataSource = _items;
             ItemsListBox.DisplayMember = "Display";
         }
 

@@ -38,7 +38,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Updates information in TextBoxes.
         /// </summary>
-        public void SelelctedTextBoxs(Address address)
+        public  void SelelctedTextBoxs(Address address)
         {
             postIndexTextBox.Text = address.Index.ToString();
             countryTextBox.Text = address.Country.ToString();

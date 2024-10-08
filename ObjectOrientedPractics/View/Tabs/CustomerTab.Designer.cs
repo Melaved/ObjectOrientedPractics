@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Address address1 = new Address();
+            Address address2 = new Address();
             splitContainer1 = new SplitContainer();
             groupBox1 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             AddButton = new Button();
             RemoveButton = new Button();
-            CustomerslistBox = new ListBox();
+            CustomersListBox = new ListBox();
             splitContainer2 = new SplitContainer();
             SelectedCustomer = new GroupBox();
             addressControl = new Controls.AddressControl();
-            fullNameTextBox = new TextBox();
+            FullNameTextBox = new TextBox();
             idTextBox = new TextBox();
             FullNameAdress = new Label();
             IdLabel = new Label();
@@ -74,7 +74,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(tableLayoutPanel1);
-            groupBox1.Controls.Add(CustomerslistBox);
+            groupBox1.Controls.Add(CustomersListBox);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             groupBox1.ForeColor = SystemColors.Desktop;
@@ -126,20 +126,19 @@
             RemoveButton.TabIndex = 1;
             RemoveButton.Text = "Remove";
             RemoveButton.UseVisualStyleBackColor = false;
-            RemoveButton.Click += RemoveButton_Click;
-            //
-            // CustomerslistBox
+            RemoveButton.Click += RemoveButton_Click_1;
             // 
-            CustomerslistBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CustomerslistBox.Font = new Font("Arial", 8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            CustomerslistBox.FormattingEnabled = true;
-            CustomerslistBox.ItemHeight = 19;
-            CustomerslistBox.Location = new Point(4, 29);
-            CustomerslistBox.Name = "CustomerslistBox";
-            CustomerslistBox.Size = new Size(618, 593);
-            CustomerslistBox.TabIndex = 1;
-            CustomerslistBox.SelectedIndexChanged += CustomerslistBox_SelectedIndexChanged;
-            CustomerslistBox.DoubleClick += CustomerslistBox_DoubleClick;
+            // CustomersListBox
+            // 
+            CustomersListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CustomersListBox.Font = new Font("Arial", 8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            CustomersListBox.FormattingEnabled = true;
+            CustomersListBox.ItemHeight = 19;
+            CustomersListBox.Location = new Point(4, 29);
+            CustomersListBox.Name = "CustomersListBox";
+            CustomersListBox.Size = new Size(618, 593);
+            CustomersListBox.TabIndex = 1;
+            CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // splitContainer2
             // 
@@ -159,7 +158,7 @@
             // 
             SelectedCustomer.BackColor = SystemColors.ControlLightLight;
             SelectedCustomer.Controls.Add(addressControl);
-            SelectedCustomer.Controls.Add(fullNameTextBox);
+            SelectedCustomer.Controls.Add(FullNameTextBox);
             SelectedCustomer.Controls.Add(idTextBox);
             SelectedCustomer.Controls.Add(FullNameAdress);
             SelectedCustomer.Controls.Add(IdLabel);
@@ -174,26 +173,26 @@
             // 
             // addressControl
             // 
-            //address1.Apartment = null;
-            //address1.Building = null;
-            //address1.City = null;
-            //address1.Country = null;
-            //address1.Index = 0;
-            //address1.Street = null;
-            //addressControl.Address = address1;
             addressControl.Location = new Point(0, 131);
             addressControl.Name = "addressControl";
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 100000;
+            address2.Street = "";
+            addressControl.OurAddress = address2;
             addressControl.Size = new Size(1083, 252);
             addressControl.TabIndex = 4;
             // 
-            // fullNameTextBox
+            // FullNameTextBox
             // 
-            fullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            fullNameTextBox.Location = new Point(108, 81);
-            fullNameTextBox.Name = "fullNameTextBox";
-            fullNameTextBox.Size = new Size(400, 33);
-            fullNameTextBox.TabIndex = 3;
-            fullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
+            FullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            FullNameTextBox.Location = new Point(108, 81);
+            FullNameTextBox.Name = "FullNameTextBox";
+            FullNameTextBox.Size = new Size(400, 33);
+            FullNameTextBox.TabIndex = 3;
+            FullNameTextBox.TextChanged += fullNameTextBox_TextChanged_1;
             // 
             // idTextBox
             // 
@@ -268,10 +267,10 @@
         private SplitContainer splitContainer1;
         private GroupBox groupBox1;
         private TableLayoutPanel tableLayoutPanel1;
-        private ListBox CustomerslistBox;
+        private ListBox CustomersListBox;
         private SplitContainer splitContainer2;
         private GroupBox SelectedCustomer;
-        private TextBox fullNameTextBox;
+        private TextBox FullNameTextBox;
         private TextBox idTextBox;
         private Label FullNameAdress;
         private Label IdLabel;
