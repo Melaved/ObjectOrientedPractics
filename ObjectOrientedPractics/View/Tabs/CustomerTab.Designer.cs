@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics.View.Tabs
+﻿using ObjectOrientedPractics.Model;
+
+namespace ObjectOrientedPractics.View.Tabs
 {
     partial class CustomerTab
     {
