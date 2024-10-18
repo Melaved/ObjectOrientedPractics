@@ -47,7 +47,7 @@ namespace ObjectOrientedPractics.View.ItemsTab
             //comboBoxCategories.Leave += comboBoxCategories_Leave;
 
         }
-        public List<Item> Items
+        public List<Item> Item
         {
             get 
             {

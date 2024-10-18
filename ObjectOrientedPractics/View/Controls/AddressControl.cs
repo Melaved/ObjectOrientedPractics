@@ -34,8 +34,7 @@ namespace ObjectOrientedPractics.View.Controls
         public AddressControl NewAddress;
 
         /// <summary>
-        /// Получает или устанавливает объект <see cref="Address"/>.
-        /// При установке нового значения обновляются данные в пользовательском элементе управления.
+        /// Возвращает и задает объект <see cref="Address"/>.
         /// </summary>
         public Address Address
         {
@@ -61,25 +60,14 @@ namespace ObjectOrientedPractics.View.Controls
 
         }
 
-        /// <summary>
-        /// Создает подсказку с сообщением об ошибке для текстового поля.
-        /// </summary>
-        /// <param name="textBox">Текстовое поле, для которого создается подсказка.</param>
-        /// <param name="errorMessage">Сообщение об ошибке.</param>
-        public void CreateTooltip(TextBox textBox, string errorMessage)
-        {
-            ToolTip toolTip = new ToolTip();
-            toolTip.AutomaticDelay = 500;
-            toolTip.SetToolTip(textBox, errorMessage);
-        }
 
-      
+
         private void postIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!int.TryParse(postIndexTextBox.Text, out int index) || index < 100000 || index > 999999)
             {
                 postIndexTextBox.BackColor = Color.Pink;
-                CreateTooltip(postIndexTextBox, "Индекс почты должен быть числом и в диапазоне от 100000 до 999999.");
+                
                 return;
             }
 
@@ -90,12 +78,12 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch (ArgumentException error)
             {
-                CreateTooltip(postIndexTextBox, error.Message);
+                
                 postIndexTextBox.BackColor = Color.Pink;
             }
         }
 
-    
+
         private void countryTextBox_TextChanged(object sender, EventArgs e)
         {
             if (IsUpdatingFieldFlag == false)
@@ -109,14 +97,14 @@ namespace ObjectOrientedPractics.View.Controls
                 }
                 catch (ArgumentException error)
                 {
-                    CreateTooltip(countryTextBox, error.Message);
+                   
                     countryTextBox.BackColor = Color.Pink;
                 }
             }
 
         }
 
-       
+
         private void cityTextBox_TextChanged(object sender, EventArgs e)
         {
             if (IsUpdatingFieldFlag == false)
@@ -128,13 +116,13 @@ namespace ObjectOrientedPractics.View.Controls
                 }
                 catch (ArgumentException error)
                 {
-                    CreateTooltip(cityTextBox, error.Message);
+
                     cityTextBox.BackColor = Color.Pink;
                 }
             }
         }
 
-    
+
         private void streetTextBox_TextChanged(object sender, EventArgs e)
         {
             if (IsUpdatingFieldFlag == false)
@@ -146,7 +134,7 @@ namespace ObjectOrientedPractics.View.Controls
                 }
                 catch (ArgumentException error)
                 {
-                    CreateTooltip(streetTextBox, error.Message);
+                    
                     streetTextBox.BackColor = Color.Pink;
                 }
             }
@@ -163,7 +151,6 @@ namespace ObjectOrientedPractics.View.Controls
                 }
                 catch (ArgumentException error)
                 {
-                    CreateTooltip(buildingTextBox, error.Message);
                     buildingTextBox.BackColor = Color.Pink;
                 }
             }
@@ -180,7 +167,6 @@ namespace ObjectOrientedPractics.View.Controls
                 }
                 catch (ArgumentException error)
                 {
-                    CreateTooltip(apartmentTextBox, error.Message);
                     apartmentTextBox.BackColor = Color.Pink;
                 }
             }
@@ -222,12 +208,11 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Инициализируем обьект адресс на основе ткущих значениях текстбокс
+        /// Инициализируем обьект адресс на основе текущих значениях TextBox/
         /// </summary>
-        /// <returns></returns>
         public Address GiveValues()
         {
-            return new Address(Convert.ToInt32(postIndexTextBox.Text),
+            return new Address(int.Parse(postIndexTextBox.Text),
                 countryTextBox.Text, cityTextBox.Text, streetTextBox.Text, buildingTextBox.Text, apartmentTextBox.Text);
         }
 
@@ -235,7 +220,6 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Проверяет, является ли адрес пустым или отсутствующим.
         /// </summary>
-        /// <returns>true, если хотя бы одно поле адреса пустое; иначе false.</returns>
         public bool AddressIsNullOrEmpty()
         {
             if (string.IsNullOrEmpty(postIndexTextBox.Text) ||
@@ -257,6 +241,98 @@ namespace ObjectOrientedPractics.View.Controls
         private void AddressControl_Load(object sender, EventArgs e)
         {
             NewAddress = new AddressControl();
+        }
+
+        private void postIndexTextBox_Leave(object sender, EventArgs e)
+        {
+            if (int.TryParse(postIndexTextBox.Text, out int postIndexValue))
+            {
+                try
+                {
+                    ValueValidator.AssertNumberOnValue(postIndexValue, 100000, 999999, "PostIndex");
+                    postIndexTextBox.BackColor = System.Drawing.Color.White;
+                }
+                catch (ArgumentException ex)
+                {
+                    postIndexTextBox.BackColor = System.Drawing.Color.Red;
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                postIndexTextBox.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show("Пожалуйста, введите корректное числовое значение для индекса.");
+            }
+        }
+
+        private void countryTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                ValueValidator.AssertStringOnLength(countryTextBox.Text, 50, "Country");
+                countryTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                countryTextBox.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cityTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                ValueValidator.AssertStringOnLength(cityTextBox.Text, 50, "City");
+                cityTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                cityTextBox.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void streetTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                ValueValidator.AssertStringOnLength(streetTextBox.Text, 100, "Street");
+                streetTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                streetTextBox.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buildingTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                ValueValidator.AssertStringOnLength(buildingTextBox.Text, 10, "Building");
+                buildingTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                buildingTextBox.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void apartmentTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                ValueValidator.AssertStringOnLength(apartmentTextBox.Text, 10, "Apartment");
+                apartmentTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch (ArgumentException ex)
+            {
+                apartmentTextBox.BackColor = System.Drawing.Color.Red;
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics
         public MainForm()
         {
             InitializeComponent(); 
-            itemsTab1.Items = _store.Items;
+            itemsTab1.Item = _store.Items;
             customerTab1.Customer = _store.Customers;
         }
 

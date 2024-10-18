@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 /// <summary>
 /// Представляет магазин, содержащий товары и покупателей.
 /// </summary>
-class Store
+public class Store
 {
     /// <summary>
     /// Список товаров.

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
 
 /// <summary>
 /// Хранит данные о товаре.

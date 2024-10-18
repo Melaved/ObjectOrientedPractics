@@ -29,7 +29,7 @@ static class ValueValidator
     {
         if (value < lessValue || value > moreValue)
         {
-            throw new ArgumentException($"{nameof(propertyName)} должен быть больше {lessValue} и меньше {moreValue}.");
+            throw new ArgumentException($"{propertyName} должен быть больше {lessValue} и меньше {moreValue}.");
         }
     }
 
@@ -42,9 +42,9 @@ static class ValueValidator
     /// Возвращает <c>true</c>, если строка содержит хотя бы одну цифру; 
     /// в противном случае возвращает <c>false</c>.
     /// </returns>
-    public static bool IsNumeric(string input)
+    public static bool IsNumeric(string inputString)
     {
-        foreach (char c in input)
+        foreach (char c in inputString)
         {
             if (char.IsDigit(c))
             {
