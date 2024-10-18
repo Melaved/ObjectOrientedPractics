@@ -1,5 +1,4 @@
-﻿using ObjectOrientedPractics.Model;
-
+﻿
 namespace ObjectOrientedPractics.View.Tabs
 {
     partial class CustomerTab
@@ -30,7 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
-            Address address2 = new Address();
+            Address address1 = new Address();
             splitContainer1 = new SplitContainer();
             groupBox1 = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -140,6 +139,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Name = "CustomersListBox";
             CustomersListBox.Size = new Size(618, 593);
             CustomersListBox.TabIndex = 1;
+            CustomersListBox.MouseClick += CustomersListBox_MouseClick;
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // splitContainer2
@@ -175,15 +175,15 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // addressControl
             // 
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 100000;
+            address1.Street = "";
+            addressControl.Address = address1;
             addressControl.Location = new Point(0, 131);
             addressControl.Name = "addressControl";
-            address2.Apartment = "";
-            address2.Building = "";
-            address2.City = "";
-            address2.Country = "";
-            address2.Index = 100000;
-            address2.Street = "";
-            addressControl.OurAddress = address2;
             addressControl.Size = new Size(1083, 252);
             addressControl.TabIndex = 4;
             // 
@@ -194,7 +194,6 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Name = "FullNameTextBox";
             FullNameTextBox.Size = new Size(400, 33);
             FullNameTextBox.TabIndex = 3;
-            FullNameTextBox.TextChanged += fullNameTextBox_TextChanged_1;
             // 
             // idTextBox
             // 
@@ -247,20 +246,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ResumeLayout(false);
         }
 
-        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
-        private void RemoveButton_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void CustomerslistBox_DoubleClick(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
 
 

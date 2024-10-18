@@ -32,4 +32,16 @@ static class ValueValidator
             throw new ArgumentException($"{nameof(propertyName)} должен быть больше {lessValue} и меньше {moreValue}.");
         }
     }
+
+    public static bool IsNumeric(string input)
+    {
+        foreach (char c in input)
+        {
+            if (char.IsDigit(c))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
