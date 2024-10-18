@@ -49,11 +49,13 @@ namespace ObjectOrientedPractics.View.ItemsTab
         }
         public List<Item> Items
         {
-            get { return _items; }
+            get 
+            {
+                return _items;
+            }
             set
             {
                 _items = value;
-
             }
         }
         private void Add_Click(object sender, EventArgs e)
