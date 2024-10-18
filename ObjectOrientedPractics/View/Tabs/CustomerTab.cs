@@ -7,9 +7,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -74,7 +76,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NewCustomer.Address = addressControl.GiveValues();
 
             Customer.Add(NewCustomer);
-            CustomersListBoxItems.Add($"{NewCustomer.Id} - {NewCustomer.FullName}");
+            CustomersListBoxItems.Add($"ID: {NewCustomer.Id}, Name: {NewCustomer.FullName}");
             CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);
 
             ClearInfo();
