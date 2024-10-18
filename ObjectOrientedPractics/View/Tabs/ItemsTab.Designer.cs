@@ -139,7 +139,7 @@
             ItemsListBox.Size = new Size(535, 706);
             ItemsListBox.TabIndex = 0;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
-            //ItemsListBox.DoubleClick += ItemsListBox_DoubleClick;
+            ItemsListBox.MouseClick += ItemsListBox_MouseClick;
 
             // 
             // groupBox2

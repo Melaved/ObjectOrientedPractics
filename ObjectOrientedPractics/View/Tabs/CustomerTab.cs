@@ -44,7 +44,10 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <value>Список объектов <see cref="Customer"/>, представляющий клиентов.</value>
         public List<Customer> Customer
         {
-            get { return _customers; }
+            get 
+            { 
+                return _customers;
+            }
             set
             {
                 _customers = value;
@@ -62,7 +65,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             if (ValueValidator.IsNumeric(FullNameTextBox.Text))
             {
-                MessageBox.Show("FullName имеет только строковой тип");
+                MessageBox.Show("FullName должен состоять из букв");
                 return;
             }
 

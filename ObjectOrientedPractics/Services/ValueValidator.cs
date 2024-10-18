@@ -33,6 +33,15 @@ static class ValueValidator
         }
     }
 
+
+    /// <summary>
+    /// Определяет, содержит ли заданная строка хотя бы одну цифру.
+    /// </summary>
+    /// <param name="input">Строка, которую необходимо проверить.</param>
+    /// <returns>
+    /// Возвращает <c>true</c>, если строка содержит хотя бы одну цифру; 
+    /// в противном случае возвращает <c>false</c>.
+    /// </returns>
     public static bool IsNumeric(string input)
     {
         foreach (char c in input)
