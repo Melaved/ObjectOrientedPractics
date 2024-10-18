@@ -56,8 +56,6 @@ namespace ObjectOrientedPractics.View.Controls
         {
             InitializeComponent();
             Address = new Address();
-
-
         }
 
 
