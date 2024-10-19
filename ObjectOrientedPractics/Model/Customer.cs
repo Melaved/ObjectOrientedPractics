@@ -56,7 +56,7 @@ public class Customer
     ///букв.</param>
     /// <param name="address">Адрес доставки. Должен состоять только из
     ///букв.</param>
-    public Customer(string fullName, Address address)
+    public Customer(string fullName)
     {
         _id = IdGenerator.GetNextId();
         FullName = fullName;
