@@ -195,13 +195,14 @@ namespace ObjectOrientedPractics.View.Controls
         public void UpdateData(Address Address)
         {
 
-            postIndexTextBox.Text = OurAddress.Index.ToString();
-            countryTextBox.Text = OurAddress.Country.ToString();
-            cityTextBox.Text = OurAddress.City.ToString();
-            streetTextBox.Text = OurAddress.Street.ToString();
-            buildingTextBox.Text = OurAddress.Building.ToString();
-            apartmentTextBox.Text = OurAddress.Apartment.ToString();
+            NewAddress.Address = Address;
 
+            postIndexTextBox.Text = NewAddress.Address.Index.ToString();
+            countryTextBox.Text = NewAddress.Address.Country.ToString();
+            cityTextBox.Text = NewAddress.Address.City.ToString();
+            streetTextBox.Text = NewAddress.Address.Street.ToString();
+            buildingTextBox.Text = NewAddress.Address.Building.ToString();
+            apartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
         }
 
         /// <summary>
