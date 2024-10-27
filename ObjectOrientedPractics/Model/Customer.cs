@@ -14,10 +14,44 @@ public class Customer
     private string _fullname;
 
     /// <summary>
+    /// Экземпляр класса корзины.
+    /// </summary>
+    private Cart _cart = new Cart();
+
+
+    private List<Order> _orders = new List<Order>();
+
+    /// <summary>
     /// Уникальное поле с адресом доставки для покупателя.
     /// </summary>
     public Address Address { get; set; }
 
+    /// <summary>
+    /// Возвращает и задает данные в корзине товаров.
+    /// </summary>
+    public Cart CustomerCart 
+    {
+        get 
+        {
+            return _cart;
+        }
+        set 
+        {
+            _cart = value;
+        }
+    }
+
+    public List<Order> Orders
+    {
+        get 
+        {
+            return _orders;
+        }
+        set
+        {
+            _orders = value;
+        }
+    }
 
 
     /// <summary>
@@ -61,6 +95,7 @@ public class Customer
         _id = IdGenerator.GetNextId();
         FullName = fullName;
         Address = new Address();
+        CustomerCart = new Cart();
     }
 
 
@@ -73,6 +108,7 @@ public class Customer
         _id = IdGenerator.GetNextId();
         FullName = string.Empty;
         Address = new Address();
+        CustomerCart = new Cart();
     }
 }
 
