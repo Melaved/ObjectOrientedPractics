@@ -48,6 +48,8 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        public Address OurAddress { get { return _address; } set { _address = value; } }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="AddressControl"/>
         /// и устанавливает начальное значение для <see cref="Address"/>.
@@ -193,15 +195,12 @@ namespace ObjectOrientedPractics.View.Controls
         public void UpdateData(Address Address)
         {
 
-
-            NewAddress.Address = Address;
-
-            postIndexTextBox.Text = NewAddress.Address.Index.ToString();
-            countryTextBox.Text = NewAddress.Address.Country.ToString();
-            cityTextBox.Text = NewAddress.Address.City.ToString();
-            streetTextBox.Text = NewAddress.Address.Street.ToString();
-            buildingTextBox.Text = NewAddress.Address.Building.ToString();
-            apartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
+            postIndexTextBox.Text = OurAddress.Index.ToString();
+            countryTextBox.Text = OurAddress.Country.ToString();
+            cityTextBox.Text = OurAddress.City.ToString();
+            streetTextBox.Text = OurAddress.Street.ToString();
+            buildingTextBox.Text = OurAddress.Building.ToString();
+            apartmentTextBox.Text = OurAddress.Apartment.ToString();
 
         }
 
