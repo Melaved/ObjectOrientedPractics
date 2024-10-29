@@ -6,7 +6,7 @@ namespace ObjectOrientedPractics
         private Store _store = new Store();
         public MainForm()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             itemsTab1.Item = _store.Items;
             customerTab1.Customer = _store.Customers;
         }
@@ -16,5 +16,14 @@ namespace ObjectOrientedPractics
 
         }
 
+        private void ordersTab1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cartsTab1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

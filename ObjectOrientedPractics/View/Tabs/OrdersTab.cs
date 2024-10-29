@@ -26,5 +26,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
 
         }
+
+        private void DataGridGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

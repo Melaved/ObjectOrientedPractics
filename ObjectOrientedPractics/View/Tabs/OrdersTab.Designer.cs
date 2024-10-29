@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
-            Address address3 = new Address();
+            Address address2 = new Address();
             SelectedOrderGroupBox = new GroupBox();
             StatusComboBox = new ComboBox();
             CreatedTextBox = new TextBox();
@@ -46,9 +46,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CreatedColumn = new DataGridViewTextBoxColumn();
             OrderStatusColumn = new DataGridViewTextBoxColumn();
             CustomerFullNameColumn = new DataGridViewTextBoxColumn();
-            AddressControl = new Controls.AddressControl();
             DataGridGroupBox = new GroupBox();
             OrderItemsGroupBox = new GroupBox();
+            addressControl1 = new Controls.AddressControl();
             SelectedOrderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             DataGridGroupBox.SuspendLayout();
@@ -57,18 +57,18 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // SelectedOrderGroupBox
             // 
-            SelectedOrderGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             SelectedOrderGroupBox.Controls.Add(StatusComboBox);
             SelectedOrderGroupBox.Controls.Add(CreatedTextBox);
             SelectedOrderGroupBox.Controls.Add(IdTextBox);
             SelectedOrderGroupBox.Controls.Add(StatusLabel);
             SelectedOrderGroupBox.Controls.Add(CreatedLabel);
             SelectedOrderGroupBox.Controls.Add(IdLabel);
-            SelectedOrderGroupBox.Location = new Point(466, 5);
+            SelectedOrderGroupBox.Dock = DockStyle.Top;
+            SelectedOrderGroupBox.Location = new Point(457, 0);
             SelectedOrderGroupBox.Margin = new Padding(4, 5, 4, 5);
             SelectedOrderGroupBox.Name = "SelectedOrderGroupBox";
             SelectedOrderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            SelectedOrderGroupBox.Size = new Size(663, 213);
+            SelectedOrderGroupBox.Size = new Size(728, 213);
             SelectedOrderGroupBox.TabIndex = 0;
             SelectedOrderGroupBox.TabStop = false;
             SelectedOrderGroupBox.Text = "Selected Order";
@@ -132,7 +132,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             OrderItemsLabel.AutoSize = true;
             OrderItemsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            OrderItemsLabel.Location = new Point(466, 565);
+            OrderItemsLabel.Location = new Point(8, 0);
             OrderItemsLabel.Margin = new Padding(4, 0, 4, 0);
             OrderItemsLabel.Name = "OrderItemsLabel";
             OrderItemsLabel.Size = new Size(119, 25);
@@ -144,10 +144,10 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
             OrderItemsListBox.ItemHeight = 25;
-            OrderItemsListBox.Location = new Point(4, 30);
+            OrderItemsListBox.Location = new Point(0, 30);
             OrderItemsListBox.Margin = new Padding(4, 5, 4, 5);
             OrderItemsListBox.Name = "OrderItemsListBox";
-            OrderItemsListBox.Size = new Size(658, 204);
+            OrderItemsListBox.Size = new Size(691, 129);
             OrderItemsListBox.TabIndex = 3;
             OrderItemsListBox.SelectedIndexChanged += OrderItemsListBox_SelectedIndexChanged;
             // 
@@ -156,7 +156,7 @@ namespace ObjectOrientedPractics.View.Tabs
             AmountLabel.AutoSize = true;
             AmountLabel.Dock = DockStyle.Bottom;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(4, 368);
+            AmountLabel.Location = new Point(4, 303);
             AmountLabel.Margin = new Padding(4, 0, 4, 0);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(90, 25);
@@ -168,7 +168,7 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostLabel.AutoSize = true;
             TotalCostLabel.Dock = DockStyle.Bottom;
             TotalCostLabel.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalCostLabel.Location = new Point(4, 328);
+            TotalCostLabel.Location = new Point(4, 263);
             TotalCostLabel.Margin = new Padding(4, 0, 4, 0);
             TotalCostLabel.Name = "TotalCostLabel";
             TotalCostLabel.Size = new Size(68, 40);
@@ -182,17 +182,17 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.AllowUserToDeleteRows = false;
             OrdersDataGridView.AllowUserToResizeColumns = false;
             OrdersDataGridView.AllowUserToResizeRows = false;
-            OrdersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, OrderStatusColumn, CustomerFullNameColumn });
-            OrdersDataGridView.Location = new Point(16, 20);
+            OrdersDataGridView.Dock = DockStyle.Left;
+            OrdersDataGridView.Location = new Point(4, 29);
             OrdersDataGridView.Margin = new Padding(4, 5, 4, 5);
             OrdersDataGridView.MinimumSize = new Size(437, 760);
             OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.Name = "OrdersDataGridView";
             OrdersDataGridView.RightToLeft = RightToLeft.No;
             OrdersDataGridView.RowHeadersWidth = 30;
-            OrdersDataGridView.Size = new Size(437, 935);
+            OrdersDataGridView.Size = new Size(437, 959);
             OrdersDataGridView.TabIndex = 6;
             // 
             // IdColumn
@@ -223,22 +223,6 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerFullNameColumn.Name = "CustomerFullNameColumn";
             CustomerFullNameColumn.Width = 150;
             // 
-            // AddressControl
-            // 
-            address3.Apartment = "";
-            address3.Building = "";
-            address3.City = "";
-            address3.Country = "";
-            address3.Index = 100000;
-            address3.Street = "";
-            AddressControl.Address = address3;
-            AddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            AddressControl.Location = new Point(466, 242);
-            AddressControl.Margin = new Padding(4, 3, 4, 3);
-            AddressControl.Name = "AddressControl";
-            AddressControl.Size = new Size(663, 302);
-            AddressControl.TabIndex = 7;
-            // 
             // DataGridGroupBox
             // 
             DataGridGroupBox.Controls.Add(OrdersDataGridView);
@@ -250,35 +234,51 @@ namespace ObjectOrientedPractics.View.Tabs
             DataGridGroupBox.Size = new Size(457, 993);
             DataGridGroupBox.TabIndex = 8;
             DataGridGroupBox.TabStop = false;
+            DataGridGroupBox.Enter += DataGridGroupBox_Enter;
             // 
             // OrderItemsGroupBox
             // 
-            OrderItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsGroupBox.Controls.Add(OrderItemsListBox);
+            OrderItemsGroupBox.Controls.Add(OrderItemsLabel);
             OrderItemsGroupBox.Controls.Add(TotalCostLabel);
             OrderItemsGroupBox.Controls.Add(AmountLabel);
-            OrderItemsGroupBox.Location = new Point(461, 565);
+            OrderItemsGroupBox.Location = new Point(465, 531);
             OrderItemsGroupBox.Margin = new Padding(4, 5, 4, 5);
             OrderItemsGroupBox.Name = "OrderItemsGroupBox";
             OrderItemsGroupBox.Padding = new Padding(4, 5, 4, 5);
-            OrderItemsGroupBox.Size = new Size(669, 398);
+            OrderItemsGroupBox.Size = new Size(702, 333);
             OrderItemsGroupBox.TabIndex = 9;
             OrderItemsGroupBox.TabStop = false;
             OrderItemsGroupBox.Text = "groupBox1";
+            // 
+            // addressControl1
+            // 
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 100000;
+            address2.Street = "";
+            addressControl1.Address = address2;
+            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            addressControl1.Location = new Point(465, 215);
+            addressControl1.Name = "addressControl1";
+            addressControl1.OurAddress = address2;
+            addressControl1.Size = new Size(703, 211);
+            addressControl1.TabIndex = 10;
             // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(AddressControl);
-            Controls.Add(OrderItemsLabel);
+            Controls.Add(addressControl1);
             Controls.Add(SelectedOrderGroupBox);
             Controls.Add(DataGridGroupBox);
             Controls.Add(OrderItemsGroupBox);
             Margin = new Padding(4, 5, 4, 5);
             MinimumSize = new Size(1151, 993);
             Name = "OrdersTab";
-            Size = new Size(1151, 993);
+            Size = new Size(1185, 993);
             SelectedOrderGroupBox.ResumeLayout(false);
             SelectedOrderGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
@@ -286,7 +286,6 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderItemsGroupBox.ResumeLayout(false);
             OrderItemsGroupBox.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -308,8 +307,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private DataGridViewTextBoxColumn OrderStatusColumn;
         private DataGridViewTextBoxColumn CustomerFullNameColumn;
         private Label label1;
-        private GroupBox OrderItemsGroupBox;
-        private Controls.AddressControl AddressControl;
         private GroupBox DataGridGroupBox;
+        private Controls.AddressControl addressControl1;
+        public GroupBox OrderItemsGroupBox;
     }
 }
