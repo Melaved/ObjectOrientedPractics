@@ -1,4 +1,6 @@
-﻿
+﻿using ObjectOrientedPractics.Model;
+using System.Reflection;
+
 namespace ObjectOrientedPractics.View.Tabs
 {
     partial class OrdersTab
@@ -29,7 +31,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
-            Address address2 = new Address();
+            Address address1 = new Address();
             SelectedOrderGroupBox = new GroupBox();
             StatusComboBox = new ComboBox();
             CreatedTextBox = new TextBox();
@@ -46,9 +48,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CreatedColumn = new DataGridViewTextBoxColumn();
             OrderStatusColumn = new DataGridViewTextBoxColumn();
             CustomerFullNameColumn = new DataGridViewTextBoxColumn();
+            AddressControl = new Controls.AddressControl();
             DataGridGroupBox = new GroupBox();
             OrderItemsGroupBox = new GroupBox();
-            addressControl1 = new Controls.AddressControl();
             SelectedOrderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             DataGridGroupBox.SuspendLayout();
@@ -57,18 +59,16 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // SelectedOrderGroupBox
             // 
+            SelectedOrderGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             SelectedOrderGroupBox.Controls.Add(StatusComboBox);
             SelectedOrderGroupBox.Controls.Add(CreatedTextBox);
             SelectedOrderGroupBox.Controls.Add(IdTextBox);
             SelectedOrderGroupBox.Controls.Add(StatusLabel);
             SelectedOrderGroupBox.Controls.Add(CreatedLabel);
             SelectedOrderGroupBox.Controls.Add(IdLabel);
-            SelectedOrderGroupBox.Dock = DockStyle.Top;
-            SelectedOrderGroupBox.Location = new Point(457, 0);
-            SelectedOrderGroupBox.Margin = new Padding(4, 5, 4, 5);
+            SelectedOrderGroupBox.Location = new Point(326, 3);
             SelectedOrderGroupBox.Name = "SelectedOrderGroupBox";
-            SelectedOrderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            SelectedOrderGroupBox.Size = new Size(728, 213);
+            SelectedOrderGroupBox.Size = new Size(464, 128);
             SelectedOrderGroupBox.TabIndex = 0;
             SelectedOrderGroupBox.TabStop = false;
             SelectedOrderGroupBox.Text = "Selected Order";
@@ -76,55 +76,50 @@ namespace ObjectOrientedPractics.View.Tabs
             // StatusComboBox
             // 
             StatusComboBox.FormattingEnabled = true;
-            StatusComboBox.Location = new Point(93, 152);
-            StatusComboBox.Margin = new Padding(4, 5, 4, 5);
+            StatusComboBox.Location = new Point(65, 91);
             StatusComboBox.Name = "StatusComboBox";
-            StatusComboBox.Size = new Size(171, 33);
+            StatusComboBox.Size = new Size(121, 23);
             StatusComboBox.TabIndex = 5;
+            StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
             // 
             // CreatedTextBox
             // 
-            CreatedTextBox.Location = new Point(93, 93);
-            CreatedTextBox.Margin = new Padding(4, 5, 4, 5);
+            CreatedTextBox.Location = new Point(65, 56);
             CreatedTextBox.Name = "CreatedTextBox";
-            CreatedTextBox.Size = new Size(171, 31);
+            CreatedTextBox.Size = new Size(121, 23);
             CreatedTextBox.TabIndex = 4;
             // 
             // IdTextBox
             // 
-            IdTextBox.Location = new Point(93, 37);
-            IdTextBox.Margin = new Padding(4, 5, 4, 5);
+            IdTextBox.Location = new Point(65, 22);
             IdTextBox.Name = "IdTextBox";
-            IdTextBox.Size = new Size(171, 31);
+            IdTextBox.Size = new Size(121, 23);
             IdTextBox.TabIndex = 3;
             // 
             // StatusLabel
             // 
             StatusLabel.AutoSize = true;
-            StatusLabel.Location = new Point(9, 157);
-            StatusLabel.Margin = new Padding(4, 0, 4, 0);
+            StatusLabel.Location = new Point(6, 94);
             StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new Size(64, 25);
+            StatusLabel.Size = new Size(42, 15);
             StatusLabel.TabIndex = 2;
             StatusLabel.Text = "Status:";
             // 
             // CreatedLabel
             // 
             CreatedLabel.AutoSize = true;
-            CreatedLabel.Location = new Point(9, 98);
-            CreatedLabel.Margin = new Padding(4, 0, 4, 0);
+            CreatedLabel.Location = new Point(6, 59);
             CreatedLabel.Name = "CreatedLabel";
-            CreatedLabel.Size = new Size(77, 25);
+            CreatedLabel.Size = new Size(51, 15);
             CreatedLabel.TabIndex = 1;
             CreatedLabel.Text = "Created:";
             // 
             // IdLabel
             // 
             IdLabel.AutoSize = true;
-            IdLabel.Location = new Point(9, 42);
-            IdLabel.Margin = new Padding(4, 0, 4, 0);
+            IdLabel.Location = new Point(6, 25);
             IdLabel.Name = "IdLabel";
-            IdLabel.Size = new Size(34, 25);
+            IdLabel.Size = new Size(21, 15);
             IdLabel.TabIndex = 0;
             IdLabel.Text = "ID:";
             // 
@@ -132,10 +127,9 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             OrderItemsLabel.AutoSize = true;
             OrderItemsLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            OrderItemsLabel.Location = new Point(8, 0);
-            OrderItemsLabel.Margin = new Padding(4, 0, 4, 0);
+            OrderItemsLabel.Location = new Point(326, 339);
             OrderItemsLabel.Name = "OrderItemsLabel";
-            OrderItemsLabel.Size = new Size(119, 25);
+            OrderItemsLabel.Size = new Size(77, 15);
             OrderItemsLabel.TabIndex = 2;
             OrderItemsLabel.Text = "Order Items";
             // 
@@ -143,23 +137,20 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             OrderItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
-            OrderItemsListBox.ItemHeight = 25;
-            OrderItemsListBox.Location = new Point(0, 30);
-            OrderItemsListBox.Margin = new Padding(4, 5, 4, 5);
+            OrderItemsListBox.ItemHeight = 15;
+            OrderItemsListBox.Location = new Point(0, 22);
             OrderItemsListBox.Name = "OrderItemsListBox";
-            OrderItemsListBox.Size = new Size(691, 129);
+            OrderItemsListBox.Size = new Size(462, 124);
             OrderItemsListBox.TabIndex = 3;
-            OrderItemsListBox.SelectedIndexChanged += OrderItemsListBox_SelectedIndexChanged;
             // 
             // AmountLabel
             // 
             AmountLabel.AutoSize = true;
             AmountLabel.Dock = DockStyle.Bottom;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(4, 303);
-            AmountLabel.Margin = new Padding(4, 0, 4, 0);
+            AmountLabel.Location = new Point(3, 221);
             AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(90, 25);
+            AmountLabel.Size = new Size(60, 15);
             AmountLabel.TabIndex = 4;
             AmountLabel.Text = "Amount:";
             // 
@@ -168,13 +159,11 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostLabel.AutoSize = true;
             TotalCostLabel.Dock = DockStyle.Bottom;
             TotalCostLabel.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalCostLabel.Location = new Point(4, 263);
-            TotalCostLabel.Margin = new Padding(4, 0, 4, 0);
+            TotalCostLabel.Location = new Point(3, 196);
             TotalCostLabel.Name = "TotalCostLabel";
-            TotalCostLabel.Size = new Size(68, 40);
+            TotalCostLabel.Size = new Size(45, 25);
             TotalCostLabel.TabIndex = 5;
             TotalCostLabel.Text = "555";
-            TotalCostLabel.Click += TotalCostLabel_Click;
             // 
             // OrdersDataGridView
             // 
@@ -182,103 +171,90 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.AllowUserToDeleteRows = false;
             OrdersDataGridView.AllowUserToResizeColumns = false;
             OrdersDataGridView.AllowUserToResizeRows = false;
+            OrdersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, OrderStatusColumn, CustomerFullNameColumn });
-            OrdersDataGridView.Dock = DockStyle.Left;
-            OrdersDataGridView.Location = new Point(4, 29);
-            OrdersDataGridView.Margin = new Padding(4, 5, 4, 5);
-            OrdersDataGridView.MinimumSize = new Size(437, 760);
+            OrdersDataGridView.Location = new Point(11, 12);
+            OrdersDataGridView.MinimumSize = new Size(306, 456);
             OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.Name = "OrdersDataGridView";
             OrdersDataGridView.RightToLeft = RightToLeft.No;
             OrdersDataGridView.RowHeadersWidth = 30;
-            OrdersDataGridView.Size = new Size(437, 959);
+            OrdersDataGridView.Size = new Size(306, 561);
             OrdersDataGridView.TabIndex = 6;
+            OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
             // 
             // IdColumn
             // 
             IdColumn.HeaderText = "Id";
-            IdColumn.MinimumWidth = 8;
             IdColumn.Name = "IdColumn";
-            IdColumn.Width = 150;
             // 
             // CreatedColumn
             // 
             CreatedColumn.HeaderText = "Created";
-            CreatedColumn.MinimumWidth = 8;
             CreatedColumn.Name = "CreatedColumn";
-            CreatedColumn.Width = 150;
             // 
             // OrderStatusColumn
             // 
             OrderStatusColumn.HeaderText = "Order Status";
-            OrderStatusColumn.MinimumWidth = 8;
             OrderStatusColumn.Name = "OrderStatusColumn";
-            OrderStatusColumn.Width = 150;
             // 
             // CustomerFullNameColumn
             // 
             CustomerFullNameColumn.HeaderText = "Customer FullName";
-            CustomerFullNameColumn.MinimumWidth = 8;
             CustomerFullNameColumn.Name = "CustomerFullNameColumn";
-            CustomerFullNameColumn.Width = 150;
+            // 
+            // AddressControl
+            // 
+            AddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            AddressControl.Location = new Point(326, 145);
+            AddressControl.Margin = new Padding(3, 2, 3, 2);
+            AddressControl.Name = "AddressControl";
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 100000;
+            address1.Street = "";
+            AddressControl.OurAddress = address1;
+            AddressControl.Size = new Size(464, 181);
+            AddressControl.TabIndex = 7;
             // 
             // DataGridGroupBox
             // 
             DataGridGroupBox.Controls.Add(OrdersDataGridView);
             DataGridGroupBox.Dock = DockStyle.Left;
             DataGridGroupBox.Location = new Point(0, 0);
-            DataGridGroupBox.Margin = new Padding(4, 5, 4, 5);
             DataGridGroupBox.Name = "DataGridGroupBox";
-            DataGridGroupBox.Padding = new Padding(4, 5, 4, 5);
-            DataGridGroupBox.Size = new Size(457, 993);
+            DataGridGroupBox.Size = new Size(320, 596);
             DataGridGroupBox.TabIndex = 8;
             DataGridGroupBox.TabStop = false;
-            DataGridGroupBox.Enter += DataGridGroupBox_Enter;
             // 
             // OrderItemsGroupBox
             // 
+            OrderItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrderItemsGroupBox.Controls.Add(OrderItemsListBox);
-            OrderItemsGroupBox.Controls.Add(OrderItemsLabel);
             OrderItemsGroupBox.Controls.Add(TotalCostLabel);
             OrderItemsGroupBox.Controls.Add(AmountLabel);
-            OrderItemsGroupBox.Location = new Point(465, 531);
-            OrderItemsGroupBox.Margin = new Padding(4, 5, 4, 5);
+            OrderItemsGroupBox.Location = new Point(323, 339);
             OrderItemsGroupBox.Name = "OrderItemsGroupBox";
-            OrderItemsGroupBox.Padding = new Padding(4, 5, 4, 5);
-            OrderItemsGroupBox.Size = new Size(702, 333);
+            OrderItemsGroupBox.Size = new Size(468, 239);
             OrderItemsGroupBox.TabIndex = 9;
             OrderItemsGroupBox.TabStop = false;
             OrderItemsGroupBox.Text = "groupBox1";
             // 
-            // addressControl1
-            // 
-            address2.Apartment = "";
-            address2.Building = "";
-            address2.City = "";
-            address2.Country = "";
-            address2.Index = 100000;
-            address2.Street = "";
-            addressControl1.Address = address2;
-            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            addressControl1.Location = new Point(465, 215);
-            addressControl1.Name = "addressControl1";
-            addressControl1.OurAddress = address2;
-            addressControl1.Size = new Size(703, 211);
-            addressControl1.TabIndex = 10;
-            // 
             // OrdersTab
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(addressControl1);
+            Controls.Add(AddressControl);
+            Controls.Add(OrderItemsLabel);
             Controls.Add(SelectedOrderGroupBox);
             Controls.Add(DataGridGroupBox);
             Controls.Add(OrderItemsGroupBox);
-            Margin = new Padding(4, 5, 4, 5);
-            MinimumSize = new Size(1151, 993);
+            MinimumSize = new Size(806, 596);
             Name = "OrdersTab";
-            Size = new Size(1185, 993);
+            Size = new Size(806, 596);
             SelectedOrderGroupBox.ResumeLayout(false);
             SelectedOrderGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
@@ -286,6 +262,7 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderItemsGroupBox.ResumeLayout(false);
             OrderItemsGroupBox.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -307,8 +284,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private DataGridViewTextBoxColumn OrderStatusColumn;
         private DataGridViewTextBoxColumn CustomerFullNameColumn;
         private Label label1;
+        private GroupBox OrderItemsGroupBox;
+        private Controls.AddressControl AddressControl;
         private GroupBox DataGridGroupBox;
-        private Controls.AddressControl addressControl1;
-        public GroupBox OrderItemsGroupBox;
     }
 }

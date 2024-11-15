@@ -1,4 +1,4 @@
-﻿
+﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View.Controls;
 using System;
 using System.Collections.Generic;
@@ -6,139 +6,150 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomerTab : UserControl
     {
-        /// <summary>
-        /// Список элементов класса <see cref="Customer"/>
-        /// </summary>
+
         private List<Customer> _customers = new List<Customer>();
 
-        /// <summary>
-        /// Данные о текущем клиенте
-        /// </summary>
-        private Customer _currentCustomer;
+  
+        private Customer _currentCustomer = new Customer();
 
-        /// <summary>
-        /// Список строк для отображения в списке клиентов.
-        /// </summary>
-        private List<string> CustomersListBoxItems = new List<string>();
+
+        public List<Customer> Customers { get { return _customers; } set { _customers = value; } }
+
 
         public CustomerTab()
         {
             InitializeComponent();
-            idTextBox.ReadOnly = true;
         }
 
-        /// <summary>
-        /// Получает или задает список клиентов.
-        /// При установке значения добавляет клиентов в ListBox.
-        /// </summary>
-        /// <value>Список объектов <see cref="Customer"/>, представляющий клиентов.</value>
-        public List<Customer> Customer
+
+        private Customer AddItemsInfo()
         {
-            get 
-            { 
-                return _customers;
-            }
-            set
-            {
-                _customers = value;
+            string fullname = FullNameTextBox.Text;
+            return new Customer(fullname);
+        }
 
+
+        private void UpdateListBox()
+        {
+            CustomersListBox.Items.Clear();
+
+            foreach (Customer customer in _customers)
+            {
+                CustomersListBox.Items.Add($"{customer.Id} / {customer.Fullname}");
             }
         }
+
+
+        private void ClearItemInfo()
+        {
+            FullNameTextBox.Clear();
+            FullNameTextBox.BackColor = Color.White;
+            IDTextBox.Clear();
+        }
+
+
+        private void UpdateItemInfo()
+        {
+            _currentCustomer = _customers[CustomersListBox.SelectedIndex];
+            IDTextBox.Text = _currentCustomer.Id.ToString();
+            FullNameTextBox.Text = _currentCustomer.Fullname.ToString();
+            Address selectedAddress = _currentCustomer.CustomerAddress;
+            AddressControl.SelelctedTextBoxs();
+        }
+
+        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentCustomer.Fullname = FullNameTextBox.Text;
+                FullNameTextBox.BackColor = Color.White;
+            }
+            catch (ArgumentException)
+            {
+                FullNameTextBox.BackColor = Color.LightPink;
+            }
+        }
+
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-
-            if (String.IsNullOrEmpty(FullNameTextBox.Text) || addressControl.AddressIsNullOrEmpty())
+            try
             {
-                MessageBox.Show("Заполните все поля");
-                return;
+               
+                var textBoxes = new List<System.Windows.Forms.TextBox>
+                { FullNameTextBox };
+                bool ifRed = true;
+
+                foreach (var textBox in textBoxes)
+                {
+                    if (textBox.BackColor == Color.LightPink)
+                    {
+                        ifRed = false;
+                    }
+                }
+
+               
+                if (textBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text)) && ifRed)
+                {
+                    Customer selectedCustomer = AddItemsInfo();
+                    selectedCustomer.CustomerAddress = AddressControl.AddInfoFromTextBox();
+                    _customers.Add(selectedCustomer);
+                    UpdateListBox();
+                }
+                else
+                {
+                    throw new Exception("Incorrect values.");
+                }
             }
-            if (ValueValidator.IsNumeric(FullNameTextBox.Text))
+            catch (Exception ex)
             {
-                MessageBox.Show("FullName должен состоять из букв");
-                return;
+               
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-
-            Customer NewCustomer = new Customer();
-            NewCustomer.FullName = FullNameTextBox.Text;
-            NewCustomer.Address = addressControl.GiveValues();
-
-            Customer.Add(NewCustomer);
-            CustomersListBoxItems.Add($"ID: {NewCustomer.Id}, Name: {NewCustomer.FullName}");
-            CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);
-
-            ClearInfo();
         }
 
-
-        /// <summary>
-        /// Очищает все текстовые поля и сбрасывает цвет фона.
-        /// </summary>
-        private void ClearInfo()
+        private void RemoveButton_Click(object sender, EventArgs e)
         {
-            idTextBox.Clear();
-            FullNameTextBox.Clear();
-            addressControl.ClearTextBox();
-            FullNameTextBox.BackColor = Color.White;
-        }
-
-
-        private void RemoveButton_Click_1(object sender, EventArgs e)
-        {
-            int selectedIndex = CustomersListBox.SelectedIndex;
-            if (selectedIndex != -1)
+            if (CustomersListBox.SelectedIndex == -1)
             {
-                _customers.RemoveAt(selectedIndex);
-                CustomersListBox.Items.RemoveAt(selectedIndex);
-                _currentCustomer = null;
-                ClearInfo();
+                
+                MessageBox.Show(
+                    "You didnt choose an object to delete it.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                return;
             }
+            _customers.RemoveAt(CustomersListBox.SelectedIndex);
+            CustomersListBox.Items.RemoveAt(CustomersListBox.SelectedIndex);
+            ClearItemInfo();
         }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CustomersListBox.SelectedIndex == -1 || CustomersListBox.Items.Count == 0)
+            if (CustomersListBox.SelectedItem != null)
             {
-                addressControl.IsUpdatingFieldFlag = true;
-                AddButton.Enabled = true;
-                ClearInfo();
-            }
-            else
-            {
-                addressControl.IsUpdatingFieldFlag = false;
-                AddButton.Enabled = false;
-                int selectedIndex = CustomersListBox.SelectedIndex;
-                if (selectedIndex == -1) return;
-                _currentCustomer = Customer[selectedIndex];
-                idTextBox.Text = _currentCustomer.Id.ToString();
-                FullNameTextBox.Text = _currentCustomer.FullName;
-
-                addressControl.UpdateData(_currentCustomer.Address);
-
+                UpdateItemInfo();
             }
         }
 
-        private void CustomersListBox_MouseClick(object sender, MouseEventArgs e)
+        private void CustomerListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (CustomersListBox.IndexFromPoint(e.Location) == -1)
+            if (CustomersListBox.SelectedItem != null)
             {
-                addressControl.IsUpdatingFieldFlag = false;
-                CustomersListBox.ClearSelected();
-                ClearInfo();
+                UpdateListBox();
             }
         }
     }
 }
-

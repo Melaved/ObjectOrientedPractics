@@ -1,29 +1,52 @@
-﻿public class Cart
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ObjectOrientedPractics.Model
 {
-    private List<Item> _items =  new List<Item>();
-
-    public List<Item> Items
+    /// <summary>
+    /// Хранит данные корзины покупок клиента.
+    /// </summary>
+    public class Cart
     {
-        get
-        {
-            return _items;
-        }
-        set
-        {
-            _items = value;
-        }
-    }
+        /// <summary>
+        /// Создаёт переменную типа Item.
+        /// </summary>
+        private List<Item> _items = new List<Item>();
 
-    public double Amount
-    {
-        get 
+        /// <summary>
+        /// Получает и устанавливает товары.
+        /// </summary>
+        public List<Item> Items
         {
-            double amount = 0.0;
-            foreach (Item item in _items)
+            get { return _items; }
+            set { _items = value; }
+        }
+
+        /// <summary>
+        /// Получает стоимость всех товаров в корзине.
+        /// </summary>
+        public double Amount
+        {
+            get
             {
-                amount += item.Cost;
+                if (_items.Count != 0 && _items != null)
+                {
+                    double amount = 0.0;
+                    foreach (var item in _items)
+                    {
+                        amount += item.Cost;
+                    }
+                    return amount;
+
+                }
+                else
+                {
+                    return 0.0;
+                }
             }
-            return amount;
         }
     }
 }

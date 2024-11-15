@@ -1,114 +1,121 @@
-﻿/// <summary>
-/// Хранит данные о покупателе.
-/// </summary>
-public class Customer
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ObjectOrientedPractics.Services;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Уникальный идентификатор для всех объектов данного класса.
+    /// Хранит данные клиента.
     /// </summary>
-    private readonly int _id;
-
-    /// <summary>
-    /// Уникальное имя покупателя(customer).
-    /// </summary>
-    private string _fullname;
-
-    /// <summary>
-    /// Экземпляр класса корзины.
-    /// </summary>
-    private Cart _cart = new Cart();
-
-
-    private List<Order> _orders = new List<Order>();
-
-    /// <summary>
-    /// Уникальное поле с адресом доставки для покупателя.
-    /// </summary>
-    public Address Address { get; set; }
-
-    /// <summary>
-    /// Возвращает и задает данные в корзине товаров.
-    /// </summary>
-    public Cart CustomerCart 
+    public class Customer
     {
-        get 
+        /// <summary>
+        /// Уникальный номер клиента.
+        /// </summary>
+        private readonly int _id;
+
+        /// <summary>
+        /// Полное имя клиента.
+        /// </summary>
+        private string _fullname = string.Empty;
+
+        /// <summary>
+        /// Адрес доставки.
+        /// </summary>
+        private Address _address = new Address();
+
+        /// <summary>
+        /// Новая переменная типа Cart.                                 
+        /// </summary>
+        private Cart _cart = new Cart();
+
+        /// <summary>
+        /// Список заказов.                                            
+        /// </summary>
+        private List<Order> _orders = new List<Order>();
+
+        /// <summary> 
+        /// Получает и устанавливает данные корзины.                                      
+        /// </summary>
+        public Cart CustomerCart
         {
-            return _cart;
+            get { return _cart; }
+            set { _cart = value; }
         }
-        set 
+
+        /// <summary>
+        /// Возвращает уникальный идентификатор клиента.
+        /// </summary>
+        public int Id { get { return _id; } }
+
+        /// <summary>
+        /// Получает и устанавливает адрес для доставки.
+        /// </summary>
+        public Address CustomerAddress
         {
-            _cart = value;
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = value;
+            }
         }
-    }
 
-    public List<Order> Orders
-    {
-        get 
+        /// <summary>
+        /// Получает и устанавливает полное имя клиента.
+        /// </summary>
+        public string Fullname
         {
-            return _orders;
+            get { return _fullname; }
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 200, nameof(_fullname));
+                _fullname = value;
+            }
         }
-        set
+
+        /// <summary>
+        /// Получает и устанавливает список заказов.
+        /// </summary>
+        public List<Order> Orders
         {
-            _orders = value;
+            get
+            {
+                return _orders;
+            }
+            set
+            {
+                _orders = value;
+            }
         }
-    }
 
-
-    /// <summary>
-    /// Возвращает и задает полное имя покупателя.
-    /// </summary>
-    public string FullName
-    {
-        get
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Item"/>.
+        /// </summary>
+        /// <param name="fullname">Полное имя клиента.</param>
+        public Customer(string fullname)
         {
-            return _fullname;
+            Fullname = fullname;
+            CustomerAddress = new Address();
+            _id = IdGenerator.GetNextId();
+            CustomerCart = new Cart();
         }
-        set
+
+        /// <summary>
+        /// Создаёт пустой экземпляр класса <see cref="Item"/>.
+        /// </summary>
+        public Customer()
         {
-            ValueValidator.AssertStringOnLength(value, 200, "FullName");
-            _fullname = value;
+            Fullname = string.Empty;
+            CustomerAddress = new Address();
+            _id = IdGenerator.GetNextId();
+            CustomerCart = new Cart();
+            Orders = new List<Order>();
         }
-    }
-
-    /// <summary>
-    /// Возвращает идентификатор.
-    /// </summary>
-    public int Id
-    {
-        get
-        {
-            return _id;
-        }
-    }
-
-  
-
-    /// <summary>
-    /// Создаёт экземпляр класса <see cref="Customer"/>.
-    /// </summary>
-    /// <param name="fullName">Полное имя покупателя. Должно состоять только из
-    ///букв.</param>
-    /// <param name="address">Адрес доставки. Должен состоять только из
-    ///букв.</param>
-    public Customer(string fullName)
-    {
-        _id = IdGenerator.GetNextId();
-        FullName = fullName;
-        Address = new Address();
-        CustomerCart = new Cart();
-    }
-
-
-    /// <summary>
-    /// Конструктор по умолчанию.
-    /// </summary>
-
-    public Customer()
-    {
-        _id = IdGenerator.GetNextId();
-        FullName = string.Empty;
-        Address = new Address();
-        CustomerCart = new Cart();
     }
 }
-

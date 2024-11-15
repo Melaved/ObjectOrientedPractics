@@ -1,168 +1,115 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/// <summary>
-/// Хранит данные о товаре.
-/// </summary>
-public class Item
+// using System.ComponentModel.DataAnnotations;
+// using System.Reflection.Emit;
+
+using ObjectOrientedPractics.Services;
+
+namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Уникальный идентификатор для всех объектов данного класса.
+    /// Хранит данные о товарах.
     /// </summary>
-    private readonly int _id;
-
-    /// <summary>
-    /// Уникальное имя товара.
-    /// </summary>
-    private string _name;
-
-    /// <summary>
-    /// Информация о товаре.
-    /// </summary>
-    private string _info;
-
-    /// <summary>
-    /// Стоимость товара.
-    /// </summary>
-    private double _cost;
-
-    /// <summary>
-    /// Категория товара.
-    /// </summary>
-    public Category Category { get; set; }
-
-    /// <summary>
-    /// Возвращает отображение товара в меню.
-    /// </summary>
-    public string Display
+    public class Item
     {
-        get
+        /// <summary>
+        /// Уникальный номер товара.
+        /// </summary>
+        private readonly int _id;
+
+        /// <summary>
+        /// Название товара.
+        /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// Описание товара.
+        /// </summary>
+        private string _info;
+
+        /// <summary>
+        /// Стоимость товара.
+        /// </summary>
+        private double _cost;
+
+        /// <summary>
+        /// Возвращает уникальный номер товара.
+        /// </summary>
+        public int Id { get { return _id; } }
+
+        /// <summary>
+        /// Получает и устанавливает название товара.
+        /// </summary>
+        public string Name
         {
-            return $"ID: {_id}, Name: {_name}, Cost {_cost}";
+            get { return _name; }
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 200, nameof(_name));
+                _name = value;
+            }
         }
-    }
 
-    /// <summary>
-    /// Возвращает идентификатор.
-    /// </summary>
-    public int Id
-    {
-        get
+        /// <summary>
+        /// Получает и устанавливает описание товара.
+        /// </summary>
+        public string Info
         {
-            return _id;
+            get { return _info; }
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 1000, nameof(_info));
+                _info = value;
+            }
         }
-    }
 
-    
-
-    /// <summary>
-    /// Возвращает и задает название предмета(товара).
-    /// </summary>
-    public string Name
-    {
-        get
+        /// <summary>
+        /// Получает и устанавливает стоимость товара.
+        /// </summary>
+        public double Cost
         {
-            return _name;
+            get { return _cost; }
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 0, 100000, nameof(_cost));
+                _cost = value;
+            }
         }
-        set
+
+        /// <summary>
+        /// Получает и устанавливает категорию товара. <see cref="Item"/>.
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Item"/>.
+        /// </summary>
+        /// <param name="name">Название товара.</param>
+        /// <param name="info">Описание товара.</param>
+        /// <param name="cost">Стоимость товара.</param>
+        public Item(string name, string info, double cost)
         {
-            ValueValidator.AssertStringOnLength(value, 200, "Name");
-            _name = value;
+            Name = name;
+            Info = info;
+            Cost = cost;
+            _id = IdGenerator.GetNextId();
+            Category = new Category();
         }
-    }
 
-    /// <summary>
-    /// Возвращает и задает информацию о товаре.
-    /// </summary>
-    public string Info
-    {
-        get
+        /// <summary>
+        /// Создаёт пустой экземпляр класса <see cref="Item"/>.
+        /// </summary>
+        public Item()
         {
-            return _info;
+            Name = string.Empty;
+            Info = string.Empty;
+            Cost = 0;
+            _id = IdGenerator.GetNextId();
+            Category = new Category();
         }
-        set
-        {
-            ValueValidator.AssertStringOnLength(value, 1000, "Info");
-            _info = value;
-        }
-    }
-
-    /// <summary>
-    /// Возвращает и задает стоимость товара.
-    /// </summary>
-    public double Cost
-    {
-        get
-        {
-            return _cost;
-        }
-        set
-        {
-            ValueValidator.AssertNumberOnValue(value, 0, 100000,"Cost");
-            _cost = value;
-        }
-    }
- 
-    /// <summary>
-    /// Создаёт экземпляр класса <see cref="Item"/>.
-    /// </summary>
-    /// <param name="name">Имя Должно состоять только из
-    ///букв.</param>
-    /// <param name="info">Информация. Должна состоять только из
-    ///букв.</param>
-    /// <param name="cost">Стоимость. Должна быть вещественным числом.
-    /// </param>
-    /// <param name ="category"> Rатегория. Является перечислением Category. </param> 
-    public Item(string name, string info, double cost, Category category)
-    {
-        _id = IdGenerator.GetNextId();
-
-        Name = name;
-
-        Info = info;
-
-        Cost = cost;
-
-        Category = category;
-    }
-
-    /// <summary>
-    /// Конструктор по умолчанию.
-    /// </summary>
-    public Item()
-    {
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

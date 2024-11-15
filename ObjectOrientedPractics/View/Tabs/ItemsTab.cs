@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,215 +8,207 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace ObjectOrientedPractics.View.ItemsTab
+namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Элемент управления для работы со списком товаров.
-    /// Позволяет добавлять, удалять и отображать товары.
-    /// </summary>
     public partial class ItemsTab : UserControl
     {
-        /// <summary>
-        /// Список элементов класса <see cref="Item"/>
-        /// </summary>
-        private List<Item> _items = new List<Item>();
 
-        private Item _currentItem;
+        public List<Item> _items = new();
 
-        private List<string> ItemsListBoxItems = new List<string>();
+    
+        private Item _currentItem = new Item();
 
+        private Item _selectedItem = new Item();
 
 
-        /// <summary>
-        /// Инициализирует новый экземпляр <see cref="ItemsTab"/> и настраивает события.
-        /// </summary>
+        public List<Item> Items { get { return _items; } set { _items = value; } }
+
         public ItemsTab()
         {
             InitializeComponent();
-            IDfield.ReadOnly = true;
-            comboBoxCategories.DataSource = Enum.GetValues(typeof(Category));
-            comboBoxCategories.SelectedIndex = -1;
-            
-
-            nameField.Leave += nameField_Leave;
-            descriptionField.Leave += descriptionField_Leave;
-            costField.Leave += costField_Leave;
-            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
-            comboBoxCategories.SelectedIndexChanged += comboBoxCategories_SelectedIndexChanged;
-            //comboBoxCategories.Leave += comboBoxCategories_Leave;
-
-        }
-        public List<Item> Item
-        {
-            get 
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-            }
-        }
-        private void Add_Click(object sender, EventArgs e)
-        {
-            
-                string name = nameField.Text;
-                string info = descriptionField.Text;
-  
-              
-                Category category = (Category)comboBoxCategories.SelectedItem;
-
-                Item newItem = new Item(name, info, double.Parse(costField.Text), category);
-                _items.Add(newItem);
-                UpdateListBox();
-                ClearFields();
-            
+            LoadCategoryComboBox();
         }
 
-        private void Remove_Click(object sender, EventArgs e)
+        private Model.Item AddItemsInfo()
         {
-            if (ItemsListBox.SelectedItem is Item selectedItem)
+            string name = NameTextBox.Text;
+            string description = DescriptionTextBox.Text;
+            double cost = double.Parse(CostTextBox.Text);
+            Category category = (Category)CategoryComboBox.SelectedItem;
+            return new Model.Item(name, description, cost);
+        }
+
+
+        private void UpdateListBox()
+        {
+            ItemsListBox.Items.Clear();
+
+            foreach (Item item in _items)
             {
-                _items.Remove(selectedItem);
-                UpdateListBox();
-                ClearFields();
+                ItemsListBox.Items.Add($"{item.Id} / {item.Name} / {item.Category}");
             }
-            else
+        }
+
+        private void ClearItemInfo()
+        {
+            IDTextBox.Clear();
+
+            CostTextBox.Clear();
+            CostTextBox.BackColor = Color.White;
+
+            DescriptionTextBox.Clear();
+            DescriptionTextBox.BackColor = Color.White;
+
+            NameTextBox.Clear();
+            NameTextBox.BackColor = Color.White;
+
+            CategoryComboBox.SelectedIndex = -1;
+        }
+
+        private void UpdateItemInfo(Item item)
+        {
+            IDTextBox.Text = item.Id.ToString();
+            DescriptionTextBox.Text = item.Info.ToString();
+            CostTextBox.Text = item.Cost.ToString();
+            NameTextBox.Text = item.Name.ToString();
+            CategoryComboBox.Text = item.Category.ToString();
+        }
+
+        private void NameTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show("Выберите товар для удаления.");
+                _currentItem.Name = NameTextBox.Text;
+                NameTextBox.BackColor = Color.White;
             }
+            catch (ArgumentException)
+            {
+                NameTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void CostTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Cost = double.Parse(CostTextBox.Text);
+                CostTextBox.BackColor = Color.White;
+            }
+            catch (Exception)
+            {
+                if (CostTextBox.Text != "")
+                {
+                    CostTextBox.BackColor = Color.LightPink;
+                }
+            }
+
+        }
+
+        private void DescriptionTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Info = DescriptionTextBox.Text;
+                DescriptionTextBox.BackColor = Color.White;
+            }
+            catch (ArgumentException)
+            {
+                DescriptionTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "No selected items.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                return;
+            }
+            _items.RemoveAt(ItemsListBox.SelectedIndex);
+            ItemsListBox.Items.RemoveAt(ItemsListBox.SelectedIndex);
+            ClearItemInfo();
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedItem is Item selectedItem)
+            if (ItemsListBox.SelectedItem != null)
             {
-                IDfield.Text = selectedItem.Id.ToString();
-                nameField.Text = selectedItem.Name;
-                descriptionField.Text = selectedItem.Info;
-                costField.Text = selectedItem.Cost.ToString();
-                comboBoxCategories.SelectedItem = selectedItem.Category;
+                _currentItem = _items[ItemsListBox.SelectedIndex];
+                UpdateItemInfo(_currentItem);
             }
         }
 
-        /// <summary>
-        /// Обновляет отображаемый список товаров в элементе управления.
-        /// </summary>
-        private void UpdateListBox()
-        {
-            ItemsListBox.DataSource = null;
-            ItemsListBox.DataSource = _items;
-            ItemsListBox.DisplayMember = "Display";
-        }
-
-        /// <summary>
-        /// Очищает все поля ввода.
-        /// </summary>
-        private void ClearFields()
-        {
-            IDfield.Clear();
-            nameField.Clear();
-            descriptionField.Clear();
-            costField.Clear();
-            comboBoxCategories.SelectedIndex = -1;
-        }
-
-        private void nameField_Leave(object sender, EventArgs e)
-        {
-            ValidateName();
-        }
-        private void descriptionField_Leave(object sender, EventArgs e)
-        {
-            ValidateInfo();
-        }
-        private void costField_Leave(object sender, EventArgs e)
-        {
-            ValidateCost();
-        }
-
-       
-
-        /// <summary>
-        /// Проверяет корректность введенного имени товара.
-        /// </summary>
-        private void ValidateName()
+        private void AddButton_Click(object sender, EventArgs e)
         {
             try
             {
-                ValueValidator.AssertStringOnLength(nameField.Text, 200, "Name");
-                nameField.BackColor = System.Drawing.Color.White;
+          
+                var TextBoxes = new List<TextBox> { CostTextBox, NameTextBox, DescriptionTextBox };
+                bool RedBox = true;
+
+                foreach (var TextBox in TextBoxes)
+                {
+                    if (TextBox.BackColor == Color.LightPink)
+                    {
+                        RedBox = false;
+                    }
+                }
+               
+                if (TextBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text))
+                    && CategoryComboBox.SelectedItem != null && RedBox)
+                {
+                    Item selectedItem = AddItemsInfo();
+                    selectedItem.Category = (Category)CategoryComboBox.SelectedItem;
+                    _items.Add(selectedItem);
+                    UpdateListBox();
+                }
+                else
+                {
+                    throw new Exception("Incorrect Values. ");
+                }
+
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                nameField.BackColor = System.Drawing.Color.Red;
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void ItemsListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (ItemsListBox.SelectedItem != null)
+            {
+                UpdateListBox();
+                _currentItem = _selectedItem;
             }
         }
 
         /// <summary>
-        /// Проверяет корректность введенной информации о товаре(описании).
+        /// Adds elements of Category into CategoryComboBox.
         /// </summary>
-        private void ValidateInfo()
+        private void LoadCategoryComboBox()
         {
-            try
+            foreach (var item in Enum.GetValues(typeof(Category)))
             {
-                ValueValidator.AssertStringOnLength(descriptionField.Text, 1000, "Descriprion");
-                descriptionField.BackColor = System.Drawing.Color.White;
-            }
-            catch (ArgumentException ex)
-            {
-                descriptionField.BackColor = System.Drawing.Color.Red;
-                MessageBox.Show(ex.Message);
+                CategoryComboBox.Items.Add(item);
             }
         }
 
-        /// <summary>
-        /// Проверяет корректность введенной стоимости товара.
-        /// </summary>
-        private void ValidateCost()
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(costField.Text, out double costValue))
+            if (CategoryComboBox.SelectedItem != null && ItemsListBox.SelectedItem != null)
             {
-                try
-                {
-                    ValueValidator.AssertNumberOnValue(costValue, 0, 100000,"Cost");
-                    costField.BackColor = System.Drawing.Color.White;
-                }
-                catch (ArgumentException ex)
-                {
-                    costField.BackColor = System.Drawing.Color.Red;
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                costField.BackColor = System.Drawing.Color.Red;
-                MessageBox.Show("Пожалуйста, введите корректное числовое значение для стоимости.");
+                _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+                UpdateItemInfo(_currentItem);
             }
         }
-
-        private void comboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ItemsListBox.SelectedItem is Item selectedItem && comboBoxCategories.SelectedItem is Category selectedCategory)
-            {
-                selectedItem.Category = selectedCategory;
-            }
-        }
-
-
-        private void ItemsListBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (ItemsListBox.IndexFromPoint(e.Location) == -1)
-            {
-                
-                ItemsListBox.ClearSelected();
-                ItemsListBox.SelectedIndex = -1;
-            }
-        }
-
     }
+
 }
-
-

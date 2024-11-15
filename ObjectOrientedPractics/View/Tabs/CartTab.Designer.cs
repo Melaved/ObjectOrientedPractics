@@ -1,8 +1,6 @@
-﻿using System.Xml.Linq;
-
-namespace ObjectOrientedPractics.View.Tabs
+﻿namespace ObjectOrientedPractics.View.Tabs
 {
-    partial class CartsTab
+    partial class CartTab
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -58,12 +56,10 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerGroupBox.Controls.Add(CartLabel);
             CustomerGroupBox.Controls.Add(CustomerLabel);
             CustomerGroupBox.Controls.Add(CustomerComboBox);
-            CustomerGroupBox.Location = new Point(286, 5);
-            CustomerGroupBox.Margin = new Padding(4, 5, 4, 5);
-            CustomerGroupBox.MinimumSize = new Size(436, 417);
+            CustomerGroupBox.Location = new Point(200, 3);
+            CustomerGroupBox.MinimumSize = new Size(305, 250);
             CustomerGroupBox.Name = "CustomerGroupBox";
-            CustomerGroupBox.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox.Size = new Size(436, 657);
+            CustomerGroupBox.Size = new Size(356, 394);
             CustomerGroupBox.TabIndex = 12;
             CustomerGroupBox.TabStop = false;
             // 
@@ -75,24 +71,22 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerGroupBox2.Controls.Add(TotalCostLabel);
             CustomerGroupBox2.Controls.Add(ClearCartButton);
             CustomerGroupBox2.Controls.Add(RemoveItemButtton);
-            CustomerGroupBox2.Location = new Point(9, 410);
-            CustomerGroupBox2.Margin = new Padding(4, 5, 4, 5);
-            CustomerGroupBox2.MinimumSize = new Size(429, 175);
+            CustomerGroupBox2.Location = new Point(6, 246);
+            CustomerGroupBox2.MinimumSize = new Size(300, 105);
             CustomerGroupBox2.Name = "CustomerGroupBox2";
-            CustomerGroupBox2.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox2.Size = new Size(429, 210);
+            CustomerGroupBox2.Size = new Size(346, 126);
             CustomerGroupBox2.TabIndex = 13;
             CustomerGroupBox2.TabStop = false;
             // 
             // CreateOrderButton
             // 
-            CreateOrderButton.Location = new Point(9, 118);
-            CreateOrderButton.Margin = new Padding(4, 5, 4, 5);
+            CreateOrderButton.Location = new Point(6, 71);
             CreateOrderButton.Name = "CreateOrderButton";
-            CreateOrderButton.Size = new Size(159, 38);
+            CreateOrderButton.Size = new Size(111, 23);
             CreateOrderButton.TabIndex = 8;
             CreateOrderButton.Text = "Create Order";
             CreateOrderButton.UseVisualStyleBackColor = true;
+            CreateOrderButton.Click += CreateOrderButton_Click;
             // 
             // AmountLabel
             // 
@@ -100,10 +94,9 @@ namespace ObjectOrientedPractics.View.Tabs
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.ForeColor = SystemColors.ControlText;
-            AmountLabel.Location = new Point(324, 17);
-            AmountLabel.Margin = new Padding(4, 0, 4, 0);
+            AmountLabel.Location = new Point(272, 10);
             AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(90, 25);
+            AmountLabel.Size = new Size(60, 15);
             AmountLabel.TabIndex = 6;
             AmountLabel.Text = "Amount:";
             // 
@@ -112,62 +105,58 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             TotalCostLabel.AutoSize = true;
             TotalCostLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalCostLabel.Location = new Point(281, 62);
-            TotalCostLabel.Margin = new Padding(4, 0, 4, 0);
+            TotalCostLabel.Location = new Point(272, 37);
             TotalCostLabel.Name = "TotalCostLabel";
-            TotalCostLabel.Size = new Size(114, 32);
+            TotalCostLabel.Size = new Size(60, 21);
             TotalCostLabel.TabIndex = 7;
-            TotalCostLabel.Text = "4999, 90";
+            TotalCostLabel.Text = "44777";
             // 
             // ClearCartButton
             // 
-            ClearCartButton.Location = new Point(341, 118);
-            ClearCartButton.Margin = new Padding(4, 5, 4, 5);
+            ClearCartButton.Location = new Point(239, 71);
             ClearCartButton.Name = "ClearCartButton";
-            ClearCartButton.Size = new Size(141, 38);
+            ClearCartButton.Size = new Size(99, 23);
             ClearCartButton.TabIndex = 10;
             ClearCartButton.Text = "Clear Cart";
             ClearCartButton.UseVisualStyleBackColor = true;
+            ClearCartButton.Click += ClearCartButton_Click;
             // 
             // RemoveItemButtton
             // 
-            RemoveItemButtton.Location = new Point(199, 118);
-            RemoveItemButtton.Margin = new Padding(4, 5, 4, 5);
+            RemoveItemButtton.Location = new Point(139, 71);
             RemoveItemButtton.Name = "RemoveItemButtton";
-            RemoveItemButtton.Size = new Size(134, 38);
+            RemoveItemButtton.Size = new Size(94, 23);
             RemoveItemButtton.TabIndex = 9;
             RemoveItemButtton.Text = "Remove Item";
             RemoveItemButtton.UseVisualStyleBackColor = true;
+            RemoveItemButtton.Click += RemoveItemButtton_Click;
             // 
             // CartListBox
             // 
             CartListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CartListBox.FormattingEnabled = true;
-            CartListBox.ItemHeight = 25;
-            CartListBox.Location = new Point(20, 122);
-            CartListBox.Margin = new Padding(4, 5, 4, 5);
-            CartListBox.MinimumSize = new Size(383, 279);
+            CartListBox.ItemHeight = 15;
+            CartListBox.Location = new Point(14, 73);
+            CartListBox.MinimumSize = new Size(269, 169);
             CartListBox.Name = "CartListBox";
-            CartListBox.Size = new Size(383, 279);
+            CartListBox.Size = new Size(303, 169);
             CartListBox.TabIndex = 11;
             // 
             // CartLabel
             // 
             CartLabel.AutoSize = true;
-            CartLabel.Location = new Point(20, 75);
-            CartLabel.Margin = new Padding(4, 0, 4, 0);
+            CartLabel.Location = new Point(14, 45);
             CartLabel.Name = "CartLabel";
-            CartLabel.Size = new Size(48, 25);
+            CartLabel.Size = new Size(32, 15);
             CartLabel.TabIndex = 4;
             CartLabel.Text = "Cart:";
             // 
             // CustomerLabel
             // 
             CustomerLabel.AutoSize = true;
-            CustomerLabel.Location = new Point(20, 32);
-            CustomerLabel.Margin = new Padding(4, 0, 4, 0);
+            CustomerLabel.Location = new Point(14, 19);
             CustomerLabel.Name = "CustomerLabel";
-            CustomerLabel.Size = new Size(98, 25);
+            CustomerLabel.Size = new Size(65, 15);
             CustomerLabel.TabIndex = 2;
             CustomerLabel.Text = "Customer: ";
             // 
@@ -175,11 +164,11 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             CustomerComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CustomerComboBox.FormattingEnabled = true;
-            CustomerComboBox.Location = new Point(131, 27);
-            CustomerComboBox.Margin = new Padding(4, 5, 4, 5);
+            CustomerComboBox.Location = new Point(92, 16);
             CustomerComboBox.Name = "CustomerComboBox";
-            CustomerComboBox.Size = new Size(247, 33);
+            CustomerComboBox.Size = new Size(225, 23);
             CustomerComboBox.TabIndex = 3;
+            CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
             // 
             // ItemsGroupBox
             // 
@@ -187,11 +176,9 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsGroupBox.Controls.Add(AddToCartButton);
             ItemsGroupBox.Controls.Add(ItemsListBox);
             ItemsGroupBox.Location = new Point(0, 0);
-            ItemsGroupBox.Margin = new Padding(4, 5, 4, 5);
-            ItemsGroupBox.MinimumSize = new Size(286, 667);
+            ItemsGroupBox.MinimumSize = new Size(200, 400);
             ItemsGroupBox.Name = "ItemsGroupBox";
-            ItemsGroupBox.Padding = new Padding(4, 5, 4, 5);
-            ItemsGroupBox.Size = new Size(286, 667);
+            ItemsGroupBox.Size = new Size(200, 400);
             ItemsGroupBox.TabIndex = 0;
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
@@ -199,36 +186,34 @@ namespace ObjectOrientedPractics.View.Tabs
             // AddToCartButton
             // 
             AddToCartButton.Dock = DockStyle.Bottom;
-            AddToCartButton.Location = new Point(4, 612);
-            AddToCartButton.Margin = new Padding(4, 5, 4, 5);
-            AddToCartButton.MinimumSize = new Size(114, 50);
+            AddToCartButton.Location = new Point(3, 367);
+            AddToCartButton.MinimumSize = new Size(80, 30);
             AddToCartButton.Name = "AddToCartButton";
-            AddToCartButton.Size = new Size(278, 50);
+            AddToCartButton.Size = new Size(194, 30);
             AddToCartButton.TabIndex = 1;
             AddToCartButton.Text = "Add To Cart";
             AddToCartButton.UseVisualStyleBackColor = true;
+            AddToCartButton.Click += AddToCartButton_Click;
             // 
             // ItemsListBox
             // 
             ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsListBox.FormattingEnabled = true;
-            ItemsListBox.ItemHeight = 25;
-            ItemsListBox.Location = new Point(4, 32);
-            ItemsListBox.Margin = new Padding(4, 5, 4, 5);
+            ItemsListBox.ItemHeight = 15;
+            ItemsListBox.Location = new Point(3, 19);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(271, 529);
+            ItemsListBox.Size = new Size(191, 319);
             ItemsListBox.TabIndex = 11;
             // 
-            // CartsTab
+            // CartTab
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(ItemsGroupBox);
             Controls.Add(CustomerGroupBox);
-            Margin = new Padding(4, 5, 4, 5);
-            MinimumSize = new Size(794, 672);
-            Name = "CartsTab";
-            Size = new Size(794, 672);
+            MinimumSize = new Size(556, 403);
+            Name = "CartTab";
+            Size = new Size(556, 403);
             CustomerGroupBox.ResumeLayout(false);
             CustomerGroupBox.PerformLayout();
             CustomerGroupBox2.ResumeLayout(false);
