@@ -14,25 +14,16 @@ using System.Net;
 
 namespace ObjectOrientedPractics.View.AdditionalForms
 {
-    /// <summary>
-    /// Modal window for addition of percent discount to a customer.
-    /// </summary>
+
     public partial class DiscountPanel : Form
     {
-        /// <summary>
-        /// Gets and sets the category of the item.
-        /// </summary>
+       
         public Category Category { get; set; }
 
-        /// <summary>
-        /// Returns the customers.
-        /// </summary>
+        
         public Customer Customer { get; } = new Customer();
 
-        /// <summary>
-        /// Creates a sample of the class
-        /// </summary>
-        /// <param name="customer"> Current customer. </param>
+        
         public DiscountPanel(Customer customer)
         {
             InitializeComponent();
@@ -40,9 +31,7 @@ namespace ObjectOrientedPractics.View.AdditionalForms
             LoadCategoryComboBox();
         }
 
-        /// <summary>
-        /// Adds elements of category into categorycombobox.
-        /// </summary>
+        
         private void LoadCategoryComboBox()
         {
             var customerCategories = Customer.Discounts

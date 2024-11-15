@@ -14,44 +14,29 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Cart tab.
-    /// </summary>
+
     public partial class CartTab : UserControl
     {
-        /// <summary>
-        /// A list of items.
-        /// </summary>
+
         public List<Item> _items;
 
-        /// <summary>
-        /// A list of customers.
-        /// </summary>
+  
         public List<Customer> _customers;
 
 
-
-        /// <summary>
-        /// Gets and set a list of items.
-        /// </summary>
         public List<Item> Items
         {
             get { return _items; }
             set { _items = value; }
         }
 
-        /// <summary>
-        /// Gets and set a list of customers.
-        /// </summary>
+
         public List<Customer> Customers
         {
             get { return _customers; }
             set { _customers = value; }
         }
 
-        /// <summary>
-        /// Gets and sets current customer.
-        /// </summary>
         private Customer CurrentCustomer { get; set; } = new Customer();
 
         public CartTab()
@@ -59,10 +44,6 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
-
-        /// <summary>
-        /// Adds elements of the item list to ItemsListBox.
-        /// </summary>
         private void FillItemListBox()
         {
             ItemsListBox.Items.Clear();
@@ -73,9 +54,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Adds elements of the customer list to CustomerComboBox.
-        /// </summary>
         private void LoadCustomersComboBox()
         {
             CustomerComboBox.Items.Clear();
@@ -86,9 +64,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Updates customers cart.
-        /// </summary>
         private void UpdateCartListBox()
         {
             CartListBox.Items.Clear();
@@ -107,9 +82,6 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostLabel.Text = CurrentCustomer.CustomerCart.Amount.ToString();
         }
 
-        /// <summary>
-        /// Updates values of items and customers.
-        /// </summary>
         public void RefreshData()
         {
             LoadCustomersComboBox();
@@ -233,11 +205,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-
-
-        /// <summary>
-        /// Updates discounts of the customer.
-        /// </summary>
         private void UpdateCustomerDiscounts()
         {
             for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
@@ -252,9 +219,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Uodates data in discounts list.
-        /// </summary>
+
         private void UpdateDiscountsCheckedListBox()
         {
             DiscountsCheckedListBox.Items.Clear();
@@ -265,9 +230,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Updates the discount.
-        /// </summary>
+
         private void UpdateDiscounts()
         {
             double discountAmount = 0;

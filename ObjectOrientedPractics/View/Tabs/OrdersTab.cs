@@ -17,34 +17,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Orders tab.
-    /// </summary>
+
     public partial class OrdersTab : UserControl
     {
-        /// <summary>
-        /// Gets and sets a list of customers.
-        /// </summary>
+
         public List<Customer> Customers { get; set; } = new List<Customer>();
 
-        /// <summary>
-        /// Selected index of the row in the orders list.
-        /// </summary>
+
         private int _selectedOrderIndex;
 
-        /// <summary>
-        /// Gets and sets a list of orders.
-        /// </summary>
+
         private List<Order> _orders = new List<Order>();
 
-        /// <summary>
-        /// Selected order.
-        /// </summary>
         private Order _selectedOrder = new Order();
 
-        /// <summary>
-        /// Priority order.
-        /// </summary>
+
         private PriorityOrder _priorityOrder;
 
         public OrdersTab()
@@ -54,9 +41,7 @@ namespace ObjectOrientedPractics.View.Tabs
             DeliveryTimeComboBox.DataSource = Enum.GetValues(typeof(OrderTime));
         }
 
-        /// <summary>
-        /// Refreshes data in OrdersDataGRidView.
-        /// </summary>
+
         public void RefreshData()
         {
             OrdersDataGridView.Rows.Clear();
@@ -64,12 +49,10 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateOrders();
             TotalCostLabel.Text = "0";
             TotalAmountLabel.Text = "0";
-            //LoadStatusComboBox();
+           
         }
 
-        /// <summary>
-        /// Updates orders in DataGridView.
-        /// </summary>
+
         private void UpdateOrders()
         {
             _orders.Clear();
@@ -92,9 +75,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Fills the list with orders.
-        /// </summary>
         private void FillOrderItemsListBox()
         {
             OrderItemsListBox.Items.Clear();
