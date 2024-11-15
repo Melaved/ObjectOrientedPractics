@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Редактирует информацию из текстовых полей.                     
         /// </summary>
-        private void EditTextBoxes(Customer customer)
+        public void EditTextBoxes(Customer customer)
         {
             customer.CustomerAddress.Index = int.Parse(PostIndexTextBox.Text);
             customer.CustomerAddress.Country = CountryTextBox.Text;

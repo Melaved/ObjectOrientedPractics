@@ -4,6 +4,8 @@ using System.Linq;
 using ObjectOrientedPractics.Services;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -45,6 +47,8 @@ namespace ObjectOrientedPractics.Model
             get { return _cart; }
             set { _cart = value; }
         }
+
+        public List<IDiscount> Discounts { get; set; }
 
         /// <summary>
         /// Возвращает уникальный идентификатор клиента.
@@ -109,6 +113,8 @@ namespace ObjectOrientedPractics.Model
             CustomerAddress = new Address();
             _id = IdGenerator.GetNextId();
             CustomerCart = new Cart();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
 
         /// <summary>
@@ -121,6 +127,8 @@ namespace ObjectOrientedPractics.Model
             _id = IdGenerator.GetNextId();
             CustomerCart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
     }
 }

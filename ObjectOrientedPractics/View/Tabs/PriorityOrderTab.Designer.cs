@@ -361,7 +361,7 @@
             OrdersDataGridView.RowHeadersWidth = 30;
             OrdersDataGridView.Size = new Size(437, 1008);
             OrdersDataGridView.TabIndex = 12;
-            OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
+            //OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
             // 
             // PriorityOrderTab
             // 

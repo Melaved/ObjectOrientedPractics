@@ -1,6 +1,4 @@
-﻿using ObjectOrientedPractics.Model;
-using System.Reflection;
-
+﻿
 namespace ObjectOrientedPractics.View.Tabs
 {
     partial class OrdersTab
@@ -31,8 +29,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
-            Address address1 = new Address();
+            Model.Address address1 = new Model.Address();
             SelectedOrderGroupBox = new GroupBox();
+            PriorityOptionsGroupBox = new GroupBox();
+            DeliveryTimeComboBox = new ComboBox();
+            DeliveryTimeLabel = new Label();
             StatusComboBox = new ComboBox();
             CreatedTextBox = new TextBox();
             IdTextBox = new TextBox();
@@ -48,10 +49,14 @@ namespace ObjectOrientedPractics.View.Tabs
             CreatedColumn = new DataGridViewTextBoxColumn();
             OrderStatusColumn = new DataGridViewTextBoxColumn();
             CustomerFullNameColumn = new DataGridViewTextBoxColumn();
+            TotalColumn = new DataGridViewTextBoxColumn();
             AddressControl = new Controls.AddressControl();
             DataGridGroupBox = new GroupBox();
             OrderItemsGroupBox = new GroupBox();
+            TotalLabel = new Label();
+            TotalAmountLabel = new Label();
             SelectedOrderGroupBox.SuspendLayout();
+            PriorityOptionsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             DataGridGroupBox.SuspendLayout();
             OrderItemsGroupBox.SuspendLayout();
@@ -60,6 +65,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // SelectedOrderGroupBox
             // 
             SelectedOrderGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedOrderGroupBox.Controls.Add(PriorityOptionsGroupBox);
             SelectedOrderGroupBox.Controls.Add(StatusComboBox);
             SelectedOrderGroupBox.Controls.Add(CreatedTextBox);
             SelectedOrderGroupBox.Controls.Add(IdTextBox);
@@ -72,6 +78,38 @@ namespace ObjectOrientedPractics.View.Tabs
             SelectedOrderGroupBox.TabIndex = 0;
             SelectedOrderGroupBox.TabStop = false;
             SelectedOrderGroupBox.Text = "Selected Order";
+            // 
+            // PriorityOptionsGroupBox
+            // 
+            PriorityOptionsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            PriorityOptionsGroupBox.Controls.Add(DeliveryTimeComboBox);
+            PriorityOptionsGroupBox.Controls.Add(DeliveryTimeLabel);
+            PriorityOptionsGroupBox.Location = new Point(240, 25);
+            PriorityOptionsGroupBox.Name = "PriorityOptionsGroupBox";
+            PriorityOptionsGroupBox.Size = new Size(209, 67);
+            PriorityOptionsGroupBox.TabIndex = 7;
+            PriorityOptionsGroupBox.TabStop = false;
+            PriorityOptionsGroupBox.Text = "Priority Options";
+            PriorityOptionsGroupBox.Visible = false;
+            // 
+            // DeliveryTimeComboBox
+            // 
+            DeliveryTimeComboBox.FormattingEnabled = true;
+            DeliveryTimeComboBox.Location = new Point(93, 26);
+            DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            DeliveryTimeComboBox.Size = new Size(85, 23);
+            DeliveryTimeComboBox.TabIndex = 1;
+            DeliveryTimeComboBox.Text = "9:00 - 11:00";
+            DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
+            // 
+            // DeliveryTimeLabel
+            // 
+            DeliveryTimeLabel.AutoSize = true;
+            DeliveryTimeLabel.Location = new Point(6, 26);
+            DeliveryTimeLabel.Name = "DeliveryTimeLabel";
+            DeliveryTimeLabel.Size = new Size(81, 15);
+            DeliveryTimeLabel.TabIndex = 0;
+            DeliveryTimeLabel.Text = "Delivery Time:";
             // 
             // StatusComboBox
             // 
@@ -173,7 +211,7 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.AllowUserToResizeRows = false;
             OrdersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, OrderStatusColumn, CustomerFullNameColumn });
+            OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, CreatedColumn, OrderStatusColumn, CustomerFullNameColumn, TotalColumn });
             OrdersDataGridView.Location = new Point(11, 12);
             OrdersDataGridView.MinimumSize = new Size(306, 456);
             OrdersDataGridView.MultiSelect = false;
@@ -204,11 +242,17 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerFullNameColumn.HeaderText = "Customer FullName";
             CustomerFullNameColumn.Name = "CustomerFullNameColumn";
             // 
+            // TotalColumn
+            // 
+            TotalColumn.HeaderText = "Total";
+            TotalColumn.Name = "TotalColumn";
+            // 
             // AddressControl
             // 
             AddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             AddressControl.Location = new Point(326, 145);
             AddressControl.Margin = new Padding(3, 2, 3, 2);
+            AddressControl.MinimumSize = new Size(390, 180);
             AddressControl.Name = "AddressControl";
             address1.Apartment = "";
             address1.Building = "";
@@ -233,6 +277,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // OrderItemsGroupBox
             // 
             OrderItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            OrderItemsGroupBox.Controls.Add(TotalAmountLabel);
+            OrderItemsGroupBox.Controls.Add(TotalLabel);
             OrderItemsGroupBox.Controls.Add(OrderItemsListBox);
             OrderItemsGroupBox.Controls.Add(TotalCostLabel);
             OrderItemsGroupBox.Controls.Add(AmountLabel);
@@ -242,6 +288,28 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderItemsGroupBox.TabIndex = 9;
             OrderItemsGroupBox.TabStop = false;
             OrderItemsGroupBox.Text = "groupBox1";
+            // 
+            // TotalLabel
+            // 
+            TotalLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            TotalLabel.AutoSize = true;
+            TotalLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalLabel.Location = new Point(324, 200);
+            TotalLabel.Name = "TotalLabel";
+            TotalLabel.Size = new Size(52, 21);
+            TotalLabel.TabIndex = 6;
+            TotalLabel.Text = "Total:";
+            // 
+            // TotalAmountLabel
+            // 
+            TotalAmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            TotalAmountLabel.AutoSize = true;
+            TotalAmountLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalAmountLabel.Location = new Point(382, 200);
+            TotalAmountLabel.Name = "TotalAmountLabel";
+            TotalAmountLabel.Size = new Size(46, 21);
+            TotalAmountLabel.TabIndex = 7;
+            TotalAmountLabel.Text = "4555";
             // 
             // OrdersTab
             // 
@@ -257,6 +325,8 @@ namespace ObjectOrientedPractics.View.Tabs
             Size = new Size(806, 596);
             SelectedOrderGroupBox.ResumeLayout(false);
             SelectedOrderGroupBox.PerformLayout();
+            PriorityOptionsGroupBox.ResumeLayout(false);
+            PriorityOptionsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
             DataGridGroupBox.ResumeLayout(false);
             OrderItemsGroupBox.ResumeLayout(false);
@@ -287,5 +357,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private GroupBox OrderItemsGroupBox;
         private Controls.AddressControl AddressControl;
         private GroupBox DataGridGroupBox;
+        private GroupBox PriorityOptionsGroupBox;
+        private ComboBox DeliveryTimeComboBox;
+        private Label DeliveryTimeLabel;
+        private DataGridViewTextBoxColumn TotalColumn;
+        private Label TotalAmountLabel;
+        private Label TotalLabel;
     }
 }

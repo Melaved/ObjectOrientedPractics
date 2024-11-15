@@ -1,4 +1,5 @@
-﻿namespace ObjectOrientedPractics.View.Tabs
+﻿
+namespace ObjectOrientedPractics.View.Tabs
 {
     partial class CartTab
     {
@@ -42,9 +43,17 @@
             ItemsGroupBox = new GroupBox();
             AddToCartButton = new Button();
             ItemsListBox = new ListBox();
+            DiscountsPanel = new Panel();
+            TotalCostWithDiscountLabel = new Label();
+            TotalLabel = new Label();
+            TotalDiscountLabel = new Label();
+            DiscoumtAmountLabel = new Label();
+            DiscountsLabel = new Label();
+            DiscountsCheckedListBox = new CheckedListBox();
             CustomerGroupBox.SuspendLayout();
             CustomerGroupBox2.SuspendLayout();
             ItemsGroupBox.SuspendLayout();
+            DiscountsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // CustomerGroupBox
@@ -61,7 +70,7 @@
             CustomerGroupBox.MinimumSize = new Size(436, 417);
             CustomerGroupBox.Name = "CustomerGroupBox";
             CustomerGroupBox.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox.Size = new Size(436, 657);
+            CustomerGroupBox.Size = new Size(948, 657);
             CustomerGroupBox.TabIndex = 12;
             CustomerGroupBox.TabStop = false;
             // 
@@ -73,14 +82,15 @@
             CustomerGroupBox2.Controls.Add(TotalCostLabel);
             CustomerGroupBox2.Controls.Add(ClearCartButton);
             CustomerGroupBox2.Controls.Add(RemoveItemButtton);
-            CustomerGroupBox2.Location = new Point(9, 410);
+            CustomerGroupBox2.Location = new Point(20, 368);
             CustomerGroupBox2.Margin = new Padding(4, 5, 4, 5);
             CustomerGroupBox2.MinimumSize = new Size(429, 175);
             CustomerGroupBox2.Name = "CustomerGroupBox2";
             CustomerGroupBox2.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox2.Size = new Size(429, 210);
+            CustomerGroupBox2.Size = new Size(923, 175);
             CustomerGroupBox2.TabIndex = 13;
             CustomerGroupBox2.TabStop = false;
+            CustomerGroupBox2.Enter += CustomerGroupBox2_Enter;
             // 
             // CreateOrderButton
             // 
@@ -99,7 +109,7 @@
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.ForeColor = SystemColors.ControlText;
-            AmountLabel.Location = new Point(324, 17);
+            AmountLabel.Location = new Point(817, 17);
             AmountLabel.Margin = new Padding(4, 0, 4, 0);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(90, 25);
@@ -111,12 +121,12 @@
             TotalCostLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             TotalCostLabel.AutoSize = true;
             TotalCostLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalCostLabel.Location = new Point(324, 62);
+            TotalCostLabel.Location = new Point(817, 62);
             TotalCostLabel.Margin = new Padding(4, 0, 4, 0);
             TotalCostLabel.Name = "TotalCostLabel";
-            TotalCostLabel.Size = new Size(86, 32);
+            TotalCostLabel.Size = new Size(28, 32);
             TotalCostLabel.TabIndex = 7;
-            TotalCostLabel.Text = "44777";
+            TotalCostLabel.Text = "0";
             // 
             // ClearCartButton
             // 
@@ -149,7 +159,7 @@
             CartListBox.Margin = new Padding(4, 5, 4, 5);
             CartListBox.MinimumSize = new Size(383, 279);
             CartListBox.Name = "CartListBox";
-            CartListBox.Size = new Size(383, 279);
+            CartListBox.Size = new Size(871, 279);
             CartListBox.TabIndex = 11;
             // 
             // CartLabel
@@ -179,7 +189,7 @@
             CustomerComboBox.Location = new Point(131, 27);
             CustomerComboBox.Margin = new Padding(4, 5, 4, 5);
             CustomerComboBox.Name = "CustomerComboBox";
-            CustomerComboBox.Size = new Size(247, 33);
+            CustomerComboBox.Size = new Size(760, 33);
             CustomerComboBox.TabIndex = 3;
             CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
             // 
@@ -193,7 +203,7 @@
             ItemsGroupBox.MinimumSize = new Size(286, 667);
             ItemsGroupBox.Name = "ItemsGroupBox";
             ItemsGroupBox.Padding = new Padding(4, 5, 4, 5);
-            ItemsGroupBox.Size = new Size(286, 667);
+            ItemsGroupBox.Size = new Size(286, 960);
             ItemsGroupBox.TabIndex = 0;
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
@@ -201,7 +211,7 @@
             // AddToCartButton
             // 
             AddToCartButton.Dock = DockStyle.Bottom;
-            AddToCartButton.Location = new Point(4, 612);
+            AddToCartButton.Location = new Point(4, 905);
             AddToCartButton.Margin = new Padding(4, 5, 4, 5);
             AddToCartButton.MinimumSize = new Size(114, 50);
             AddToCartButton.Name = "AddToCartButton";
@@ -213,30 +223,117 @@
             // 
             // ItemsListBox
             // 
-            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 25;
-            ItemsListBox.Location = new Point(4, 32);
+            ItemsListBox.Location = new Point(4, 29);
             ItemsListBox.Margin = new Padding(4, 5, 4, 5);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(271, 529);
+            ItemsListBox.Size = new Size(271, 904);
             ItemsListBox.TabIndex = 11;
+            // 
+            // DiscountsPanel
+            // 
+            DiscountsPanel.Controls.Add(TotalCostWithDiscountLabel);
+            DiscountsPanel.Controls.Add(TotalLabel);
+            DiscountsPanel.Controls.Add(TotalDiscountLabel);
+            DiscountsPanel.Controls.Add(DiscoumtAmountLabel);
+            DiscountsPanel.Controls.Add(DiscountsLabel);
+            DiscountsPanel.Controls.Add(DiscountsCheckedListBox);
+            DiscountsPanel.Location = new Point(294, 647);
+            DiscountsPanel.Margin = new Padding(4, 5, 4, 5);
+            DiscountsPanel.Name = "DiscountsPanel";
+            DiscountsPanel.Size = new Size(607, 308);
+            DiscountsPanel.TabIndex = 13;
+            // 
+            // TotalCostWithDiscountLabel
+            // 
+            TotalCostWithDiscountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            TotalCostWithDiscountLabel.AutoSize = true;
+            TotalCostWithDiscountLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalCostWithDiscountLabel.Location = new Point(484, 232);
+            TotalCostWithDiscountLabel.Margin = new Padding(4, 0, 4, 0);
+            TotalCostWithDiscountLabel.Name = "TotalCostWithDiscountLabel";
+            TotalCostWithDiscountLabel.Size = new Size(28, 32);
+            TotalCostWithDiscountLabel.TabIndex = 5;
+            TotalCostWithDiscountLabel.Text = "0";
+            // 
+            // TotalLabel
+            // 
+            TotalLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            TotalLabel.AutoSize = true;
+            TotalLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalLabel.Location = new Point(513, 197);
+            TotalLabel.Margin = new Padding(4, 0, 4, 0);
+            TotalLabel.Name = "TotalLabel";
+            TotalLabel.Size = new Size(77, 32);
+            TotalLabel.TabIndex = 4;
+            TotalLabel.Text = "Total:";
+            // 
+            // TotalDiscountLabel
+            // 
+            TotalDiscountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            TotalDiscountLabel.AutoSize = true;
+            TotalDiscountLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalDiscountLabel.Location = new Point(534, 83);
+            TotalDiscountLabel.Margin = new Padding(4, 0, 4, 0);
+            TotalDiscountLabel.Name = "TotalDiscountLabel";
+            TotalDiscountLabel.Size = new Size(28, 32);
+            TotalDiscountLabel.TabIndex = 3;
+            TotalDiscountLabel.Text = "0";
+            // 
+            // DiscoumtAmountLabel
+            // 
+            DiscoumtAmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DiscoumtAmountLabel.AutoSize = true;
+            DiscoumtAmountLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscoumtAmountLabel.Location = new Point(434, 42);
+            DiscoumtAmountLabel.Margin = new Padding(4, 0, 4, 0);
+            DiscoumtAmountLabel.Name = "DiscoumtAmountLabel";
+            DiscoumtAmountLabel.Size = new Size(166, 25);
+            DiscoumtAmountLabel.TabIndex = 2;
+            DiscoumtAmountLabel.Text = "Discount Amount:";
+            // 
+            // DiscountsLabel
+            // 
+            DiscountsLabel.AutoSize = true;
+            DiscountsLabel.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscountsLabel.Location = new Point(11, 12);
+            DiscountsLabel.Margin = new Padding(4, 0, 4, 0);
+            DiscountsLabel.Name = "DiscountsLabel";
+            DiscountsLabel.Size = new Size(116, 26);
+            DiscountsLabel.TabIndex = 1;
+            DiscountsLabel.Text = "Discounts:";
+            // 
+            // DiscountsCheckedListBox
+            // 
+            DiscountsCheckedListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DiscountsCheckedListBox.FormattingEnabled = true;
+            DiscountsCheckedListBox.Location = new Point(11, 42);
+            DiscountsCheckedListBox.Margin = new Padding(4, 5, 4, 5);
+            DiscountsCheckedListBox.MaximumSize = new Size(444, 304);
+            DiscountsCheckedListBox.Name = "DiscountsCheckedListBox";
+            DiscountsCheckedListBox.Size = new Size(370, 200);
+            DiscountsCheckedListBox.TabIndex = 0;
+            DiscountsCheckedListBox.SelectedIndexChanged += DiscountsCheckedListBox_SelectedIndexChanged;
             // 
             // CartTab
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(DiscountsPanel);
             Controls.Add(ItemsGroupBox);
             Controls.Add(CustomerGroupBox);
             Margin = new Padding(4, 5, 4, 5);
-            MinimumSize = new Size(794, 672);
+            MinimumSize = new Size(907, 965);
             Name = "CartTab";
-            Size = new Size(794, 672);
+            Size = new Size(1234, 965);
             CustomerGroupBox.ResumeLayout(false);
             CustomerGroupBox.PerformLayout();
             CustomerGroupBox2.ResumeLayout(false);
             CustomerGroupBox2.PerformLayout();
             ItemsGroupBox.ResumeLayout(false);
+            DiscountsPanel.ResumeLayout(false);
+            DiscountsPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -256,5 +353,12 @@
         private Label TotalCostLabel;
         private Button ClearCartButton;
         private Button RemoveItemButtton;
+        private Panel DiscountsPanel;
+        private CheckedListBox DiscountsCheckedListBox;
+        private Label TotalDiscountLabel;
+        private Label DiscoumtAmountLabel;
+        private Label DiscountsLabel;
+        private Label TotalCostWithDiscountLabel;
+        private Label TotalLabel;
     }
 }

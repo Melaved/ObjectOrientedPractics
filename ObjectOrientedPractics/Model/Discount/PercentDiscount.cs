@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     public class PercentDiscount : IDiscount
     {
 
-        private int _percent = 1;
+        private int _percent = 5;
 
 
         public Category Category { get; set; }
