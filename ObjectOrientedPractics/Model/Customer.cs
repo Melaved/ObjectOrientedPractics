@@ -4,6 +4,7 @@ using System.Linq;
 using ObjectOrientedPractics.Services;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -93,6 +94,11 @@ namespace ObjectOrientedPractics.Model
                 _orders = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает приоритетность заказа.
+        /// </summary>
+        public bool IsPriority { get; set; } = false;
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Item"/>.

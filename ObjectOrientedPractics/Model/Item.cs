@@ -39,14 +39,23 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает уникальный номер товара.
         /// </summary>
-        public int Id { get { return _id; } }
+        public int Id 
+        { 
+            get 
+            { 
+                return _id;
+            } 
+        }
 
         /// <summary>
         /// Получает и устанавливает название товара.
         /// </summary>
         public string Name
         {
-            get { return _name; }
+            get
+            { 
+                return _name; 
+            }
             set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(_name));

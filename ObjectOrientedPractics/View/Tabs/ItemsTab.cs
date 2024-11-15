@@ -190,9 +190,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Adds elements of Category into CategoryComboBox.
-        /// </summary>
         private void LoadCategoryComboBox()
         {
             foreach (var item in Enum.GetValues(typeof(Category)))

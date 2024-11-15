@@ -1,5 +1,5 @@
-﻿using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.View.Controls;
+﻿
+using ObjectOrientedPractics.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,18 +18,16 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private List<Customer> _customers = new List<Customer>();
 
-  
         private Customer _currentCustomer = new Customer();
-
 
         public List<Customer> Customers { get { return _customers; } set { _customers = value; } }
 
+        private bool _isPriority = false;
 
         public CustomerTab()
         {
             InitializeComponent();
         }
-
 
         private Customer AddItemsInfo()
         {
@@ -37,7 +35,7 @@ namespace ObjectOrientedPractics.View.Tabs
             return new Customer(fullname);
         }
 
-
+ 
         private void UpdateListBox()
         {
             CustomersListBox.Items.Clear();
@@ -47,7 +45,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomersListBox.Items.Add($"{customer.Id} / {customer.Fullname}");
             }
         }
-
 
         private void ClearItemInfo()
         {
@@ -64,6 +61,15 @@ namespace ObjectOrientedPractics.View.Tabs
             FullNameTextBox.Text = _currentCustomer.Fullname.ToString();
             Address selectedAddress = _currentCustomer.CustomerAddress;
             AddressControl.SelelctedTextBoxs();
+
+            if (PriorityCheckBox.Checked)
+            {
+                _currentCustomer.IsPriority = true;
+            }
+            else
+            {
+                _currentCustomer.IsPriority = false;
+            }
         }
 
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
@@ -84,7 +90,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-               
+              
                 var textBoxes = new List<System.Windows.Forms.TextBox>
                 { FullNameTextBox };
                 bool ifRed = true;
@@ -102,8 +108,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     Customer selectedCustomer = AddItemsInfo();
                     selectedCustomer.CustomerAddress = AddressControl.AddInfoFromTextBox();
+                    selectedCustomer.IsPriority = _isPriority;
                     _customers.Add(selectedCustomer);
                     UpdateListBox();
+                   
                 }
                 else
                 {
@@ -122,7 +130,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersListBox.SelectedIndex == -1)
             {
-                
+              
                 MessageBox.Show(
                     "You didnt choose an object to delete it.",
                     "Error",
@@ -149,6 +157,18 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CustomersListBox.SelectedItem != null)
             {
                 UpdateListBox();
+            }
+        }
+
+        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PriorityCheckBox.Checked == true)
+            {
+                _isPriority = true;
+            }
+            else
+            {
+                _isPriority = false;
             }
         }
     }
