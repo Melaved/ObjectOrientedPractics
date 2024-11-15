@@ -140,6 +140,20 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostLabel.Text = _selectedOrder.Amount.ToString();
         }
 
+        private void ClearOrderButton_Click(object sender, EventArgs e)
+        {
+            _selectedOrderIndex = OrdersDataGridView.CurrentCell.RowIndex;
+
+            _priorityOrders.RemoveAt(_selectedOrderIndex);
+            OrdersDataGridView.Rows.RemoveAt(_selectedOrderIndex);
+
+            var newOrder = new PriorityOrder();
+            _priorityOrders.Add(newOrder);
+            OrdersDataGridView.Rows.Insert(_selectedOrderIndex, newOrder.Id,
+                newOrder.Date, newOrder.Status);
+
+            ClearTextBoxs();
+        }
 
         private void OrdersDataGridView_SelectionChanged(object sender, EventArgs e)
         {
