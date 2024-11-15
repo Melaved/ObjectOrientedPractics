@@ -1,5 +1,4 @@
-﻿
-namespace ObjectOrientedPractics.Model
+﻿namespace ObjectOrientedPractics.Model.Enum
 {
     public enum OrderTime
     {
