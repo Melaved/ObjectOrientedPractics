@@ -20,27 +20,27 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Страна покупателя.
         /// </summary>
-        private string _country = string.Empty;
+        private string _country;
 
         /// <summary>
         /// Город покупателя.
         /// </summary>
-        private string _city = string.Empty;
+        private string _city;
 
         /// <summary>
         /// Улица покупателя.
         /// </summary>
-        private string _street = string.Empty;
+        private string _street;
 
         /// <summary>
         /// Номер дома покупателя.
         /// </summary>
-        private string _building = string.Empty;
+        private string _building;
 
         /// <summary>
         /// Квартира покупателя.
         /// </summary>
-        private string _apartment = string.Empty;
+        private string _apartment;
 
         /// <summary>
         /// Возвращает и задает почтовый индекс.
