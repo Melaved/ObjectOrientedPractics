@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Мне всё ещё нужна помощь
+
 
 namespace ObjectOrientedPractics.Model
 {
