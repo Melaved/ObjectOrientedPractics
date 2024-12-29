@@ -36,6 +36,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private PriorityOrder _priorityOrder;
 
+
         public OrdersTab()
         {
             InitializeComponent();
@@ -129,6 +130,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     PriorityOptionsGroupBox.Visible = false;
                 }
                 FillOrderItemsListBox();
+
             }
         }
 

@@ -22,7 +22,7 @@ namespace ObjectOrientedPractics.Model
         private List<Customer> _customers = new List<Customer>();
 
         /// <summary>
-        /// Gets and sets a list of items and items.
+        /// Gets and setd a list of items and items.
         /// </summary>
         public List<Item> Items { get { return _items; } set { _items = value; } }
 

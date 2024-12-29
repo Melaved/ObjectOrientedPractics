@@ -81,12 +81,12 @@
             CustomerGroupBox2.Controls.Add(TotalCostLabel);
             CustomerGroupBox2.Controls.Add(ClearCartButton);
             CustomerGroupBox2.Controls.Add(RemoveItemButtton);
-            CustomerGroupBox2.Location = new Point(1, 402);
+            CustomerGroupBox2.Location = new Point(20, 399);
             CustomerGroupBox2.Margin = new Padding(4, 5, 4, 5);
             CustomerGroupBox2.MinimumSize = new Size(429, 175);
             CustomerGroupBox2.Name = "CustomerGroupBox2";
             CustomerGroupBox2.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox2.Size = new Size(607, 175);
+            CustomerGroupBox2.Size = new Size(596, 175);
             CustomerGroupBox2.TabIndex = 13;
             CustomerGroupBox2.TabStop = false;
             // 
@@ -107,7 +107,7 @@
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.ForeColor = SystemColors.ControlText;
-            AmountLabel.Location = new Point(501, 17);
+            AmountLabel.Location = new Point(490, 17);
             AmountLabel.Margin = new Padding(4, 0, 4, 0);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(90, 25);
@@ -119,7 +119,7 @@
             TotalCostLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             TotalCostLabel.AutoSize = true;
             TotalCostLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalCostLabel.Location = new Point(501, 62);
+            TotalCostLabel.Location = new Point(490, 62);
             TotalCostLabel.Margin = new Padding(4, 0, 4, 0);
             TotalCostLabel.Name = "TotalCostLabel";
             TotalCostLabel.Size = new Size(86, 32);
