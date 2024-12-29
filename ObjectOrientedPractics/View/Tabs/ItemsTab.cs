@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -24,10 +25,23 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public List<Item> Items { get { return _items; } set { _items = value; } }
 
+        /// <summary>
+        /// Gets and sets a delegate of filtration criteria.
+        /// </summary>
+        private Predicate<Item> FilterCriteria { get; set; }
+
+        /// <summary>
+        /// Gets and sets a delegate of sort criteria.
+        /// </summary>
+        private DataTools.CompareCriteria SortCriteria { get; set; }
+
+        private List<Item> _displayedItems = new();
+
         public ItemsTab()
         {
             InitializeComponent();
             LoadCategoryComboBox();
+            SortByComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -45,11 +59,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Adds list elements to ItemListBox.
         /// </summary>
-        private void UpdateListBox()
+        private void UpdateListBox(List<Item> items)
         {
             ItemsListBox.Items.Clear();
 
-            foreach (Item item in _items)
+            foreach (Item item in items)
             {
                 ItemsListBox.Items.Add($"{item.Id} / {item.Name} / {item.Category}");
             }
@@ -160,7 +174,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                // list of TextBoxes
                 var TextBoxes = new List<TextBox> { CostTextBox, NameTextBox, DescriptionTextBox };
                 bool RedBox = true;
 
@@ -171,14 +184,14 @@ namespace ObjectOrientedPractics.View.Tabs
                         RedBox = false;
                     }
                 }
-                // check for empty or red boxes.
                 if (TextBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text))
                     && CategoryComboBox.SelectedItem != null && RedBox)
                 {
                     Item selectedItem = AddItemsInfo();
                     selectedItem.Category = (Category)CategoryComboBox.SelectedItem;
                     _items.Add(selectedItem);
-                    UpdateListBox();
+                    _displayedItems = Items;
+                    UpdateDisplayedItems();
                 }
                 else
                 {
@@ -197,8 +210,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (ItemsListBox.SelectedItem != null)
             {
-                UpdateListBox();
-                _currentItem = _selectedItem;
+                UpdateDisplayedItems();
             }
         }
 
@@ -221,6 +233,70 @@ namespace ObjectOrientedPractics.View.Tabs
                 UpdateItemInfo(_currentItem);
             }
         }
-    }
 
+
+        private void UpdateDisplayedItems()
+        {
+            var displayedItems = Items;
+
+            if (FilterCriteria != null)
+            {
+                displayedItems = DataTools.FilterItems(displayedItems, FilterCriteria);
+            }
+            if (SortCriteria != null)
+            {
+                displayedItems = DataTools.SortItems(displayedItems, SortCriteria);
+            }
+
+            _displayedItems = displayedItems;
+            UpdateListBox(_displayedItems);
+        }
+
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (FindTextBox.Text.Length == 0)
+            {
+                FilterCriteria = null;
+            }
+            else
+            {
+                FilterCriteria = (item) => { return item.Name.Contains(FindTextBox.Text); };
+            }
+            UpdateDisplayedItems();
+        }
+
+        private void SortByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (SortByComboBox.SelectedIndex)
+            {
+                case 0:
+                    {
+                        SortCriteria = (first, second) =>
+                        {
+                            return first.Name.CompareTo(second.Name) < 0;
+                        };
+                        break;
+                    }
+                case 1:
+                    {
+                        SortCriteria = (first, second) =>
+                        {
+                            return first.Cost.CompareTo(second.Cost) > 0;
+                        };
+                        break;
+                    }
+                case 2:
+                    {
+                        SortCriteria = (first, second) =>
+                        {
+                            return first.Cost.CompareTo(second.Cost) < 0;
+                        };
+                        break;
+                    }
+            }
+            _displayedItems = Items;
+            UpdateDisplayedItems();
+        }
+    }
 }
