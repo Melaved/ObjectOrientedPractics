@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Перечисление категорий продуктов.
+/// Items category.
 /// </summary>
 public enum Category
 {

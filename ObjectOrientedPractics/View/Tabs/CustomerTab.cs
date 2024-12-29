@@ -1,15 +1,4 @@
-﻿
-using ObjectOrientedPractics.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View.AdditionalForms;
 using ObjectOrientedPractics.Model.Discounts;
 
@@ -17,13 +6,19 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomerTab : UserControl
     {
-
+        /// <summary>
+        /// List of customers.
+        /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
-
+        /// <summary>
+        /// Variable - Customer type.
+        /// </summary>
         private Customer _currentCustomer = new Customer();
 
-
+        /// <summary>
+        /// Reterns and sets a list of cistomers.
+        /// </summary>
         public List<Customer> Customers { get { return _customers; } set { _customers = value; } }
 
 
@@ -36,13 +31,18 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Generates object of Customer with the help of TextBox.
+        /// </summary>
         private Customer AddItemsInfo()
         {
             string fullname = FullNameTextBox.Text;
             return new Customer(fullname);
         }
 
+        /// <summary>
+        /// Updates elements in ItemsListBox.
+        /// </summary>
         private void UpdateListBox()
         {
             CustomersListBox.Items.Clear();
@@ -53,6 +53,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Clears info about a customer in the TextBox.
+        /// </summary>
         private void ClearItemInfo()
         {
             FullNameTextBox.Clear();
@@ -61,7 +64,10 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Clear();
         }
 
-
+        /// <summary>
+        /// Updates info in discounts list box. 
+        /// </summary>
+        /// <param name="customer"></param>
         private void UpdateDiscountsListBox(Customer customer)
         {
             DiscountsListBox.Items.Clear();
@@ -72,7 +78,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-     
+        /// <summary>
+        /// Updates info in discounts list box. 
+        /// </summary>
         private void UpdateDiscountsListBox()
         {
             if (CustomersListBox.SelectedIndex > 0)
@@ -81,7 +89,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-
+        /// <summary>
+        /// Updates info about a customer in the TextBox.
+        /// </summary>
         private void UpdateItemInfo()
         {
             _currentCustomer = _customers[CustomersListBox.SelectedIndex];
@@ -118,7 +128,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddButton_Click(object sender, EventArgs e)
         {
             try
-            { // Create a list of TextBoxes to check
+            {
                 var textBoxes = new List<System.Windows.Forms.TextBox>
                 { FullNameTextBox };
                 bool ifRed = true;
@@ -131,7 +141,6 @@ namespace ObjectOrientedPractics.View.Tabs
                     }
                 }
 
-             
                 if (textBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text)) && ifRed)
                 {
                     Customer selectedCustomer = AddItemsInfo();
@@ -139,7 +148,6 @@ namespace ObjectOrientedPractics.View.Tabs
                     selectedCustomer.IsPriority = _isPriority;
                     _customers.Add(selectedCustomer);
                     UpdateListBox();
-                  
                 }
                 else
                 {
@@ -148,7 +156,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch (Exception ex)
             {
-
+                // Error message
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
@@ -158,7 +166,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersListBox.SelectedIndex == -1)
             {
-               
+                // No chosen elements error message
                 MessageBox.Show(
                     "You didnt choose an object to delete it.",
                     "Error",
@@ -256,7 +264,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
-               
                 MessageBox.Show(
                     "You didnt choose a discount or a customer to delete.",
                     "Error",

@@ -1,38 +1,42 @@
-﻿
-using ObjectOrientedPractics.Model;
+﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enum;
-
 using ObjectOrientedPractics.Model.Orders;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class PriorityOrderTab : UserControl
     {
+
+
+        /// <summary>
+        /// Selected order.
+        /// </summary>
         private PriorityOrder _selectedOrder;
 
+
+        /// <summary>
+        /// List of orders.
+        /// </summary>
         private List<Order> _orders = new List<Order>();
 
-
+        /// <summary>
+        /// List of priority orders.
+        /// </summary>
         private List<PriorityOrder> _priorityOrders = new List<PriorityOrder>();
 
+        /// <summary>
+        /// Gets and sets a list of customers
+        /// </summary>
         public List<Customer> Customers { get; set; } = new List<Customer>();
 
-
+        /// <summary>
+        /// Gets and sets a list of items.
+        /// </summary>
         public List<Item> Items { get; set; } = new List<Item>();
 
- 
+        /// <summary>
+        /// Selected index in orders.
+        /// </summary>
         private int _selectedOrderIndex;
 
 
@@ -44,6 +48,9 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
 
+        /// <summary>
+        /// Updates list of orders.
+        /// </summary>
         private void UpdateOrders()
         {
             _orders.Clear();
@@ -56,7 +63,6 @@ namespace ObjectOrientedPractics.View.Tabs
                     {
                         if (order is PriorityOrder)
                         {
-                          
                             _priorityOrders.Add(order as PriorityOrder);
                         }
 
@@ -66,28 +72,22 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
 
+        /// <summary>
+        /// Refreshes data with orders.
+        /// </summary>
         private void RefreshDataGrid()
         {
-            _orders.Clear();
             OrdersDataGridView.Rows.Clear();
-
-            foreach (var customer in Customers)
+            foreach (PriorityOrder order in _priorityOrders)
             {
-                var address = $"{customer.CustomerAddress.Country}, {customer.CustomerAddress.City}";
-                address += $"{customer.CustomerAddress.Street}, {customer.CustomerAddress.Building}";
-                address += $"{customer.CustomerAddress.Apartment}";
-
-                foreach (var order in customer.Orders)
-                {
-                    _orders.Add(order);
-                    OrdersDataGridView.Rows.Add(
-                        order.Id, order.Date, order.Status,
-                        customer.Fullname, order.Amount, order.Total
-                        );
-                }
+                OrdersDataGridView.Rows.Add(order.Id, order.Date, order.Status, "aboba");
             }
         }
 
+
+        /// <summary>
+        /// Fills the list with orders.
+        /// </summary>
         private void FillOrderItemsListBox()
         {
             OrderItemsListBox.Items.Clear();
@@ -98,15 +98,17 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
 
+        /// <summary>
+        /// Refreshes data when swith to the tab.
+        /// </summary>
         public void RefreshData()
         {
             UpdateOrders();
-            RefreshDataGrid();
-           
+            RefreshDataGrid();;
             TotalCostLabel.Text = "0";
         }
 
-       
+
         public void ClearTextBoxs()
         {
             IdTextBox.Text = string.Empty;
@@ -125,7 +127,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 string ourStatus = StatusComboBox.Text;
                 OrderStatus orderStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), ourStatus);
-                
                 RefreshDataGrid();
             }
         }
@@ -136,7 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 var selectedDeliveryTime = DeliveryTimeComboBox.Text;
                 OrderTime orderTime = (OrderTime)Enum.Parse(typeof(OrderTime), selectedDeliveryTime);
-              
+                //_selectedOrder.DeliveryTime = orderTime;
                 RefreshDataGrid();
             }
         }
@@ -162,7 +163,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 MessageBox.Show("ASHIBKA, TY DURAK");
             }
         }
-
 
         private void ClearOrderButton_Click(object sender, EventArgs e)
         {

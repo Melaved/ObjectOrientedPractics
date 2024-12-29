@@ -7,32 +7,32 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Хранит данные о товарах и клиентах.
+    /// Holds data about items and customers.
     /// </summary>
     internal class Store
     {
         /// <summary>
-        /// Список товаров.
+        /// List of items.
         /// </summary>
         private List<Item> _items = new List<Item>();
 
         /// <summary>
-        /// Список клиентов.
+        /// List of customers.
         /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
         /// <summary>
-        /// Получает и устанавливает список товаров.
+        /// Gets and sets a list of items and items.
         /// </summary>
         public List<Item> Items { get { return _items; } set { _items = value; } }
 
         /// <summary>
-        /// Получает и устанавливает список клиентов. 
+        /// Returns and sets a list if customers. 
         /// </summary>
         public List<Customer> Customers { get { return _customers; } set { _customers = value; } }
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Store"/>.
+        /// Creates a sample of the class <see cref="Store"/>.
         /// </summary>
         public Store()
         {

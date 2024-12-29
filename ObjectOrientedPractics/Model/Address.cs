@@ -1,49 +1,44 @@
 ﻿using ObjectOrientedPractics.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Данные о адрессе пользователя.
+    /// Has the data about the address.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
-        /// Почтовый индекс.
+        /// Postal code.
         /// </summary>
         private int _index;
 
         /// <summary>
-        /// Страна покупателя.
+        /// Country/region.
         /// </summary>
-        private string _country;
+        private string _country = string.Empty;
 
         /// <summary>
-        /// Город покупателя.
+        /// City.
         /// </summary>
-        private string _city;
+        private string _city = string.Empty;
 
         /// <summary>
-        /// Улица покупателя.
+        /// Street.
         /// </summary>
-        private string _street;
+        private string _street = string.Empty;
 
         /// <summary>
-        /// Номер дома покупателя.
+        /// House number.
         /// </summary>
-        private string _building;
+        private string _building = string.Empty;
 
         /// <summary>
-        /// Квартира покупателя.
+        /// Apartment number.
         /// </summary>
-        private string _apartment;
+        private string _apartment = string.Empty;
 
         /// <summary>
-        /// Возвращает и задает почтовый индекс.
+        /// Gets and sets a postal index. Supposed to have 6 numbers in it.
         /// </summary>
         public int Index
         {
@@ -57,7 +52,7 @@ namespace ObjectOrientedPractics.Model
 
 
         /// <summary>
-        /// Возвращает и задает данные о стране покупателя.
+        /// Gets and sets country/region. Not lonegr than 50 symbols.
         /// </summary>
         public string Country
         {
@@ -70,7 +65,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задает данные о городе покупателя.
+        /// Gets and sets a city. Not longer than 50 symbols.
         /// </summary>
         public string City
         {
@@ -83,7 +78,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задает данные о стране покупателя.
+        /// Gets and sets a street. Not longer than 100 symbols.
         /// </summary>
         public string Street
         {
@@ -96,7 +91,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задает данные о доме покупателя.
+        /// Gets and ssets a house number. Not longer than 10 symbols.
         /// </summary>
         public string Building
         {
@@ -109,7 +104,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        ///Возвращает и задает данные о квартире покупателя.
+        /// Gets and ssets an apartment. Not longer than 10 symbols.
         /// </summary>
         public string Apartment
         {
@@ -123,7 +118,7 @@ namespace ObjectOrientedPractics.Model
 
 
         /// <summary>
-        /// Создает экзмепляр класса <see cref="Address"/>.
+        /// Creates a sample of the class <see cref="Address"/>.
         /// </summary>
         /// <param name="index">Почтовый индекс.</param>
         /// <param name="country">Страна или регион.</param>
@@ -142,7 +137,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="Address"/>.
+        /// Creates a sample of the class <see cref="Address"/>.
         /// </summary>
         public Address()
         {
@@ -152,6 +147,57 @@ namespace ObjectOrientedPractics.Model
             Street = string.Empty;
             Building = string.Empty;
             Apartment = string.Empty;
+        }
+
+        /// <summary>
+        /// Creates a copy of the class.
+        /// </summary>
+        /// <returns> Copy of an object. </returns>
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <summary>
+        /// Checks if the subjects are the same.
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns> Whether they are equal or not. </returns>
+        public bool Equals(Address subject)
+        {
+            if (subject == null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, subject))
+            {
+                return true;
+            }
+            return
+                Index == subject.Index &&
+                Country == subject.Country &&
+                City == subject.City &&
+                Street == subject.Street &&
+                Building == subject.Building &&
+                Apartment == subject.Apartment;
+        }
+
+        /// <summary>
+        /// Checks if the subjects are the same.
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns> Whether they are equal or not. </returns>
+        public override bool Equals(object subject)
+        {
+            if (subject == null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, subject))
+            {
+                return true;
+            }
+            return Equals((Address)subject);
         }
 
     }

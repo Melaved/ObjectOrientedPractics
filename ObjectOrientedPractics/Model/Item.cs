@@ -1,61 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// using System.ComponentModel.DataAnnotations;
-// using System.Reflection.Emit;
-
-using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Хранит данные о товарах.
+    /// Holds data of items.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
-        /// Уникальный номер товара.
+        /// Unique number of the item.
         /// </summary>
         private readonly int _id;
 
         /// <summary>
-        /// Название товара.
+        /// Name of the item.
         /// </summary>
         private string _name;
 
         /// <summary>
-        /// Описание товара.
+        /// Description of the item.
         /// </summary>
         private string _info;
 
         /// <summary>
-        /// Стоимость товара.
+        /// Cost of the item.
         /// </summary>
         private double _cost;
 
         /// <summary>
-        /// Возвращает уникальный номер товара.
+        /// Returns unique number of the item.
         /// </summary>
-        public int Id 
-        { 
-            get 
-            { 
-                return _id;
-            } 
-        }
+        public int Id { get { return _id; } }
 
         /// <summary>
-        /// Получает и устанавливает название товара.
+        /// Gets and sets the name of the item.
         /// </summary>
         public string Name
         {
-            get
-            { 
-                return _name; 
-            }
+            get { return _name; }
             set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(_name));
@@ -64,7 +46,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Получает и устанавливает описание товара.
+        /// Gets and sets the description of the item.
         /// </summary>
         public string Info
         {
@@ -77,7 +59,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Получает и устанавливает стоимость товара.
+        /// Gets and sets the price of the item.
         /// </summary>
         public double Cost
         {
@@ -90,16 +72,18 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Получает и устанавливает категорию товара. <see cref="Item"/>.
+        /// Gets and sets item's category. <see cref="Item"/>.
         /// </summary>
         public Category Category { get; set; }
 
+
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Item"/>.
+        /// Creates a sample of the class <see cref="Item"/>.
         /// </summary>
-        /// <param name="name">Название товара.</param>
-        /// <param name="info">Описание товара.</param>
-        /// <param name="cost">Стоимость товара.</param>
+        /// <param name="name">Name of the item.</param>
+        /// <param name="info">Description of the item.</param>
+        /// <param name="cost">Cost of the item.</param>
+        /// <param name="category">Category of the item.</param>
         public Item(string name, string info, double cost)
         {
             Name = name;
@@ -110,7 +94,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Создаёт пустой экземпляр класса <see cref="Item"/>.
+        /// Creates an emprty sample of the class <see cref="Item"/>.
         /// </summary>
         public Item()
         {
@@ -119,6 +103,84 @@ namespace ObjectOrientedPractics.Model
             Cost = 0;
             _id = IdGenerator.GetNextId();
             Category = new Category();
+        }
+
+        /// <summary>
+        /// Creates a copy of the class.
+        /// </summary>
+        /// <returns> Copy of an object. </returns>
+        public object Clone()
+        {
+            return new Item
+            {
+                Name = Name,
+                Info = Info,
+                Cost = Cost,
+                Category = Category
+            };
+        }
+
+        /// <summary>
+        /// Checks if the subjects are the same.
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns> Whether they are equal or not. </returns>
+        public bool Equals(Item subject)
+        {
+            if (subject == null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, subject))
+            {
+                return true;
+            }
+            return
+                Name == subject.Name &&
+                Info == subject.Info &&
+                Cost == subject.Cost &&
+                Category == subject.Category;
+        }
+
+        /// <summary>
+        /// Checks if the subjects are the same.
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns> Whether they are equal or not. </returns>
+        public override bool Equals(object subject)
+        {
+            if (subject == null)
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, subject))
+            {
+                return true;
+            }
+            return Equals((Item)subject);
+        }
+
+        /// <summary>
+        /// Compares the cost.
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <returns> 0 - equal, 1 - cost is lower, -1 - cost id higher.  </returns>
+        public int CompareTo(Item subject)
+        {
+            if (subject == null)
+            {
+                return 1;
+            }
+
+            if (ReferenceEquals(this, subject))
+            {
+                return 0;
+            }
+
+            else
+            {
+                return _cost.CompareTo(subject.Cost);
+            }
         }
     }
 }

@@ -7,14 +7,45 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Enum
 {
+
+    /// <summary>
+    /// OrderStatus category.
+    /// </summary>
     public enum OrderStatus
     {
+        /// <summary>
+        /// New order.
+        /// </summary>
         New,
+
+        /// <summary>
+        /// Order in process.
+        /// </summary>
         Processing,
+
+        /// <summary>
+        /// Order in assemblance.
+        /// </summary>
         Assembly,
+
+        /// <summary>
+        /// Order is sent.
+        /// </summary>
         Sent,
+
+        /// <summary>
+        /// Order is delivered.
+        /// </summary>
         Delivered,
+
+        /// <summary>
+        /// Order is Returned.
+        /// </summary>
         Returned,
+
+        /// <summary>
+        /// Order is abandoned.
+        /// </summary>
         Abandoned
     }
 }

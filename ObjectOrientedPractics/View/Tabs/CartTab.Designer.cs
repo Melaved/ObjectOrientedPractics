@@ -1,5 +1,4 @@
-﻿
-namespace ObjectOrientedPractics.View.Tabs
+﻿namespace ObjectOrientedPractics.View.Tabs
 {
     partial class CartTab
     {
@@ -70,7 +69,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerGroupBox.MinimumSize = new Size(436, 417);
             CustomerGroupBox.Name = "CustomerGroupBox";
             CustomerGroupBox.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox.Size = new Size(948, 657);
+            CustomerGroupBox.Size = new Size(621, 657);
             CustomerGroupBox.TabIndex = 12;
             CustomerGroupBox.TabStop = false;
             // 
@@ -82,15 +81,14 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerGroupBox2.Controls.Add(TotalCostLabel);
             CustomerGroupBox2.Controls.Add(ClearCartButton);
             CustomerGroupBox2.Controls.Add(RemoveItemButtton);
-            CustomerGroupBox2.Location = new Point(20, 368);
+            CustomerGroupBox2.Location = new Point(1, 402);
             CustomerGroupBox2.Margin = new Padding(4, 5, 4, 5);
             CustomerGroupBox2.MinimumSize = new Size(429, 175);
             CustomerGroupBox2.Name = "CustomerGroupBox2";
             CustomerGroupBox2.Padding = new Padding(4, 5, 4, 5);
-            CustomerGroupBox2.Size = new Size(923, 175);
+            CustomerGroupBox2.Size = new Size(607, 175);
             CustomerGroupBox2.TabIndex = 13;
             CustomerGroupBox2.TabStop = false;
-            CustomerGroupBox2.Enter += CustomerGroupBox2_Enter;
             // 
             // CreateOrderButton
             // 
@@ -109,7 +107,7 @@ namespace ObjectOrientedPractics.View.Tabs
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.ForeColor = SystemColors.ControlText;
-            AmountLabel.Location = new Point(817, 17);
+            AmountLabel.Location = new Point(501, 17);
             AmountLabel.Margin = new Padding(4, 0, 4, 0);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(90, 25);
@@ -121,12 +119,12 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             TotalCostLabel.AutoSize = true;
             TotalCostLabel.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            TotalCostLabel.Location = new Point(817, 62);
+            TotalCostLabel.Location = new Point(501, 62);
             TotalCostLabel.Margin = new Padding(4, 0, 4, 0);
             TotalCostLabel.Name = "TotalCostLabel";
-            TotalCostLabel.Size = new Size(28, 32);
+            TotalCostLabel.Size = new Size(86, 32);
             TotalCostLabel.TabIndex = 7;
-            TotalCostLabel.Text = "0";
+            TotalCostLabel.Text = "44777";
             // 
             // ClearCartButton
             // 
@@ -159,7 +157,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CartListBox.Margin = new Padding(4, 5, 4, 5);
             CartListBox.MinimumSize = new Size(383, 279);
             CartListBox.Name = "CartListBox";
-            CartListBox.Size = new Size(871, 279);
+            CartListBox.Size = new Size(544, 279);
             CartListBox.TabIndex = 11;
             // 
             // CartLabel
@@ -189,7 +187,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerComboBox.Location = new Point(131, 27);
             CustomerComboBox.Margin = new Padding(4, 5, 4, 5);
             CustomerComboBox.Name = "CustomerComboBox";
-            CustomerComboBox.Size = new Size(760, 33);
+            CustomerComboBox.Size = new Size(433, 33);
             CustomerComboBox.TabIndex = 3;
             CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
             // 
@@ -223,16 +221,18 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // ItemsListBox
             // 
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 25;
-            ItemsListBox.Location = new Point(4, 29);
+            ItemsListBox.Location = new Point(4, 32);
             ItemsListBox.Margin = new Padding(4, 5, 4, 5);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(271, 904);
+            ItemsListBox.Size = new Size(271, 804);
             ItemsListBox.TabIndex = 11;
             // 
             // DiscountsPanel
             // 
+            DiscountsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DiscountsPanel.Controls.Add(TotalCostWithDiscountLabel);
             DiscountsPanel.Controls.Add(TotalLabel);
             DiscountsPanel.Controls.Add(TotalDiscountLabel);
@@ -253,9 +253,9 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalCostWithDiscountLabel.Location = new Point(484, 232);
             TotalCostWithDiscountLabel.Margin = new Padding(4, 0, 4, 0);
             TotalCostWithDiscountLabel.Name = "TotalCostWithDiscountLabel";
-            TotalCostWithDiscountLabel.Size = new Size(28, 32);
+            TotalCostWithDiscountLabel.Size = new Size(112, 32);
             TotalCostWithDiscountLabel.TabIndex = 5;
-            TotalCostWithDiscountLabel.Text = "0";
+            TotalCostWithDiscountLabel.Text = "4 500,00";
             // 
             // TotalLabel
             // 
@@ -277,9 +277,9 @@ namespace ObjectOrientedPractics.View.Tabs
             TotalDiscountLabel.Location = new Point(534, 83);
             TotalDiscountLabel.Margin = new Padding(4, 0, 4, 0);
             TotalDiscountLabel.Name = "TotalDiscountLabel";
-            TotalDiscountLabel.Size = new Size(28, 32);
+            TotalDiscountLabel.Size = new Size(56, 32);
             TotalDiscountLabel.TabIndex = 3;
-            TotalDiscountLabel.Text = "0";
+            TotalDiscountLabel.Text = "499";
             // 
             // DiscoumtAmountLabel
             // 
@@ -326,7 +326,7 @@ namespace ObjectOrientedPractics.View.Tabs
             Margin = new Padding(4, 5, 4, 5);
             MinimumSize = new Size(907, 965);
             Name = "CartTab";
-            Size = new Size(1234, 965);
+            Size = new Size(907, 965);
             CustomerGroupBox.ResumeLayout(false);
             CustomerGroupBox.PerformLayout();
             CustomerGroupBox2.ResumeLayout(false);

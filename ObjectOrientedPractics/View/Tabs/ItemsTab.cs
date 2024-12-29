@@ -1,27 +1,27 @@
 ﻿using ObjectOrientedPractics.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
-
+        /// <summary>
+        /// List of items.
+        /// </summary>
         public List<Item> _items = new();
 
-    
+        /// <summary>
+        /// Variable - type Item.
+        /// </summary>
         private Item _currentItem = new Item();
 
+        /// <summary>
+        /// Variable - type Item.
+        /// </summary>
         private Item _selectedItem = new Item();
 
-
+        /// <summary>
+        /// Gets and sets a list of item.
+        /// </summary>
         public List<Item> Items { get { return _items; } set { _items = value; } }
 
         public ItemsTab()
@@ -30,6 +30,9 @@ namespace ObjectOrientedPractics.View.Tabs
             LoadCategoryComboBox();
         }
 
+        /// <summary>
+        /// Generates objects of an item with TextBoxes.
+        /// </summary>
         private Model.Item AddItemsInfo()
         {
             string name = NameTextBox.Text;
@@ -39,7 +42,9 @@ namespace ObjectOrientedPractics.View.Tabs
             return new Model.Item(name, description, cost);
         }
 
-
+        /// <summary>
+        /// Adds list elements to ItemListBox.
+        /// </summary>
         private void UpdateListBox()
         {
             ItemsListBox.Items.Clear();
@@ -50,6 +55,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Clears info about an item from TextBoxes.
+        /// </summary>
         private void ClearItemInfo()
         {
             IDTextBox.Clear();
@@ -66,6 +74,10 @@ namespace ObjectOrientedPractics.View.Tabs
             CategoryComboBox.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Updates info about an item in TextBox.
+        /// </summary>
+        /// <param name="item">Обновляемая книга.</param>
         private void UpdateItemInfo(Item item)
         {
             IDTextBox.Text = item.Id.ToString();
@@ -148,7 +160,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-          
+                // list of TextBoxes
                 var TextBoxes = new List<TextBox> { CostTextBox, NameTextBox, DescriptionTextBox };
                 bool RedBox = true;
 
@@ -159,7 +171,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         RedBox = false;
                     }
                 }
-               
+                // check for empty or red boxes.
                 if (TextBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text))
                     && CategoryComboBox.SelectedItem != null && RedBox)
                 {
@@ -190,6 +202,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Adds elements of Category into CategoryComboBox.
+        /// </summary>
         private void LoadCategoryComboBox()
         {
             foreach (var item in Enum.GetValues(typeof(Category)))

@@ -1,46 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ObjectOrientedPractics.Services;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.Model
 {
+
     /// <summary>
-    /// Хранит данные клиента.
+    /// Holds data of a customer.
     /// </summary>
     public class Customer
     {
         /// <summary>
-        /// Уникальный номер клиента.
+        /// Unique customer number.
         /// </summary>
         private readonly int _id;
 
         /// <summary>
-        /// Полное имя клиента.
+        /// Full name of a customer.
         /// </summary>
         private string _fullname = string.Empty;
 
         /// <summary>
-        /// Адрес доставки.
+        /// Delivery address.
         /// </summary>
         private Address _address = new Address();
 
+
         /// <summary>
-        /// Новая переменная типа Cart.                                 
+        /// New variable of a Cart type.                                 
         /// </summary>
         private Cart _cart = new Cart();
 
         /// <summary>
-        /// Список заказов.                                            
+        /// A list of orders.                                            
         /// </summary>
         private List<Order> _orders = new List<Order>();
 
+
         /// <summary> 
-        /// Получает и устанавливает данные корзины.                                      
+        /// Gets and sets cart data.                                      
         /// </summary>
         public Cart CustomerCart
         {
@@ -48,15 +46,13 @@ namespace ObjectOrientedPractics.Model
             set { _cart = value; }
         }
 
-        public List<IDiscount> Discounts { get; set; }
-
         /// <summary>
-        /// Возвращает уникальный идентификатор клиента.
+        /// Returns unique id of a customer.
         /// </summary>
         public int Id { get { return _id; } }
 
         /// <summary>
-        /// Получает и устанавливает адрес для доставки.
+        /// Gets and sets an address for delivery.
         /// </summary>
         public Address CustomerAddress
         {
@@ -71,7 +67,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Получает и устанавливает полное имя клиента.
+        /// Gets and sets the full name of a customer.
         /// </summary>
         public string Fullname
         {
@@ -84,7 +80,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Получает и устанавливает список заказов.
+        /// Gets and sets the list of orders.
         /// </summary>
         public List<Order> Orders
         {
@@ -99,14 +95,20 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задает приоритетность заказа.
+        /// Gets and sets the priority of the order.
         /// </summary>
         public bool IsPriority { get; set; } = false;
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Item"/>.
+        /// Gets and sets a list of discounts for a customer.
         /// </summary>
-        /// <param name="fullname">Полное имя клиента.</param>
+        public List<IDiscount> Discounts { get; set; }
+
+        /// <summary>
+        /// Creates a sample of a class  <see cref="Item"/>.
+        /// </summary>
+        /// <param name="fullname">Full name of a customer.</param>
+
         public Customer(string fullname)
         {
             Fullname = fullname;
@@ -118,7 +120,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Создаёт пустой экземпляр класса <see cref="Item"/>.
+        /// Creates an empty sample of a class <see cref="Item"/>.
         /// </summary>
         public Customer()
         {
@@ -130,5 +132,6 @@ namespace ObjectOrientedPractics.Model
             Discounts = new List<IDiscount>();
             Discounts.Add(new PointsDiscount());
         }
+
     }
 }

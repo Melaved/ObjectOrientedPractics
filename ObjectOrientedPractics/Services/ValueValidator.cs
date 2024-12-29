@@ -1,43 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObjectOrientedPractics.Services
+﻿namespace ObjectOrientedPractics.Services
 {
     /// <summary>
-    /// Реализует валидацию статистических данных.
+    /// Implements statistical data validation.
     /// </summary>
     class ValueValidator
     {
         /// <summary>
-        /// Проверяет, что строка не превышает заданную длину.
+        /// Checks that the number is not bigger than the border.
         /// </summary>
-        /// <param name="value">Строка, которую мы проверяем.</param>
-        /// <param name="maxLength">Максимальная длина.</param>
-        /// <param name="propertyName">Имя проверяемого объекта.</param>
+        /// <param name="value">Subject that we check.</param>
+        /// <param name="max">Upper border.</param>
+        /// <param name="propertyName">Name of the subject.</param>
         public static void AssertStringOnLength(string value, int maxLength, string propertyName)
         {
             if (value.Length > maxLength)
             {
-                throw new ArgumentOutOfRangeException($"{propertyName} ожидается меньше {maxLength}");
+                throw new ArgumentOutOfRangeException($"{propertyName} is expected to be less than {maxLength}");
             }
         }
 
+
         /// <summary>
-        /// Проверяет, находится ли число в заданном диапазоне.
+        /// Checks if the number is in the gap.
         /// </summary>
-        /// <param name="value">Проверяемое число.</param>
-        /// <param name="min">Минимальное значение.</param>
-        /// <param name="max">Максимальное значение.</param>
-        /// <param name="propertyName">Имя проверяемого объекта.</param>
+        /// <param name="value">Checks the number.</param>
+        /// <param name="min">Lower border.</param>
+        /// <param name="max">Upper border.</param>
+        /// <param name="propertyName">Name of the subject.</param>
         public static void AssertStringOnLength(double value, int minLength, int maxLength, string propertyName)
         {
             if (value < minLength || value > maxLength)
             {
-                throw new ArgumentOutOfRangeException($"{propertyName} ожидается больше {minLength} и меньше {maxLength}");
+                throw new ArgumentOutOfRangeException($"{propertyName} is expected to be less than {minLength} and bigger than {maxLength}");
             }
         }
+
     }
 }

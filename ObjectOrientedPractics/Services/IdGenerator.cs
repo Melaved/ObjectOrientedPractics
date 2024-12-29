@@ -1,19 +1,22 @@
-﻿/// <summary>
-/// Генерирует значения для переменных _id.
-/// </summary>
-public class IdGenerator
+﻿namespace ObjectOrientedPractics.Services
 {
     /// <summary>
-    /// Значение следующего идентификатора.
+    /// Implements statistical generation of the next number for an object.
     /// </summary>
-    public static int _nextId = 1;
-    
-    /// <summary>
-    /// Прибавляет единицу к следующему идентификатору.
-    /// </summary>
-    /// <returns>Возвращает значение идентификатора</returns>
-    public static int GetNextId()
+    internal class IdGenerator
     {
-        return _nextId++;
+        /// <summary>
+        /// Counter for all existing object.
+        /// </summary>
+        private static int _nextId;
+
+        /// <summary>
+        /// Generates next number.
+        /// </summary>
+        /// <returns>Returns next number for an object.</returns>
+        public static int GetNextId()
+        {
+            return _nextId++;
+        }
     }
 }

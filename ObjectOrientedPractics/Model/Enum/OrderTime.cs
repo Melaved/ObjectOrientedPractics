@@ -1,5 +1,8 @@
 ﻿namespace ObjectOrientedPractics.Model.Enum
 {
+    /// <summary>
+    /// Holds data of time gaps.
+    /// </summary>
     public enum OrderTime
     {
         /// <summary>

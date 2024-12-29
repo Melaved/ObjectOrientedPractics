@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObjectOrientedPractics.Model
+﻿namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Хранит данные корзины покупок клиента.
+    /// Holds data of a customers cart.
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         /// <summary>
-        /// Создаёт переменную типа Item.
+        /// Create a variable of a Item type.
         /// </summary>
         private List<Item> _items = new List<Item>();
 
         /// <summary>
-        /// Получает и устанавливает товары.
+        /// Gets and sets items.
         /// </summary>
         public List<Item> Items
         {
@@ -26,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Получает стоимость всех товаров в корзине.
+        /// Gets the cost of all item in the cart.
         /// </summary>
         public double Amount
         {
@@ -47,6 +41,28 @@ namespace ObjectOrientedPractics.Model
                     return 0.0;
                 }
             }
+        }
+
+        /// <summary>
+        /// creates a sample of the class.
+        /// </summary>
+        public Cart()
+        {
+            Items = new List<Item>();
+        }
+
+        /// <summary>
+        /// Copies an object of the class.
+        /// </summary>
+        /// <returns> A copy of the object. </returns>
+        public object Clone()
+        {
+            var cartClone = new Cart();
+            foreach (Item item in Items)
+            {
+                cartClone.Items.Add((Item)item.Clone());
+            }
+            return cartClone;
         }
     }
 }

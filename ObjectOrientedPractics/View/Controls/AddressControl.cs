@@ -1,28 +1,19 @@
 ﻿using ObjectOrientedPractics.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Net;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Controls
 {
     public partial class AddressControl : UserControl
     {
         /// <summary>
-        /// Переменная типа - Address.
+        /// Variable type - Address.
         /// </summary>
         private Address _address = new Address();
 
         /// <summary>
-        /// Получает и устанавливает адрес.
+        /// Gets and sets an address.
         /// </summary>
         public Address OurAddress { get { return _address; } set { _address = value; } }
+
 
         public AddressControl()
         {
@@ -30,7 +21,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обновляет информацию в текстовых полях.
+        /// Updates information in TextBoxes.
         /// </summary>
         public void SelelctedTextBoxs()
         {
@@ -43,7 +34,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Очищает информацию в текстовых полях.
+        /// Clears information in TextBoxes.
         /// </summary>
         public void ClearTextBoxes()
         {
@@ -56,7 +47,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Добавляет информацию из текстовых полей.                        
+        /// Adds information from TextBoxes.                        
         /// </summary>
         public Address AddInfoFromTextBox()
         {
@@ -71,7 +62,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Редактирует информацию из текстовых полей.                     
+        /// Edits information from TextBoxes.                     
         /// </summary>
         public void EditTextBoxes(Customer customer)
         {
